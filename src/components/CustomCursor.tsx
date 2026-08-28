@@ -67,7 +67,7 @@ export default function CustomCursor() {
       }}
       transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
     >
-      <div className={`w-3 h-3 rounded-full border border-white mix-blend-difference transition-colors duration-200 ${hovering ? 'bg-rust border-rust' : 'bg-white'}`} />
+      <div className={`w-3 h-3 rounded-full border border-gold transition-colors duration-200 ${hovering ? 'bg-gold/80' : 'bg-gold'}`} />
     </motion.div>
   );
 }

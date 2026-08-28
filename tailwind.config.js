@@ -7,20 +7,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        rust: {
-          DEFAULT: '#B85C38',
-          deep: '#8F4028',
-          light: '#D47A5A',
+        gold: {
+          DEFAULT: '#CBA153',
+          deep: '#B08845',
+          light: '#E8C581',
         },
         warm: {
-          white: '#F8F6F2',
-          beige: '#EDE8E2',
-          grey: '#6F6B67',
+          white: '#FAFAFA',
+          beige: '#F0F0F0',
+          grey: '#8F9193',
         },
         charcoal: {
-          DEFAULT: '#171717',
-          soft: '#111111',
-          light: '#2A2A2A',
+          DEFAULT: '#222222',
+          soft: '#333333',
+          light: '#555555',
         },
       },
       fontFamily: {

@@ -61,13 +61,13 @@ export default function Home() {
     <div className="bg-warm-white">
       {/* HERO */}
       <section className="relative h-screen min-h-[700px] overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-white">
           <img
-            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1920&q=80"
-            alt="Luxury kitchen interior"
-            className="w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
+            alt="Luxury white bathroom interior"
+            className="w-full h-full object-cover mix-blend-multiply opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/70 via-charcoal/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-warm-white/90 via-warm-white/40 to-transparent" />
         </div>
         <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
           <motion.div
@@ -76,20 +76,20 @@ export default function Home() {
             variants={stagger}
             className="max-w-2xl"
           >
-            <motion.p variants={fadeUp} className="text-rust text-sm font-medium tracking-[0.2em] uppercase mb-6">
-              Furniture Solutions • Muscat, Oman
+            <motion.p variants={fadeUp} className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-6">
+              Premium Bath & Plumbing • Muscat, Oman
             </motion.p>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-light text-white leading-[1.1] tracking-tight">
-              Engineered for<br />beautiful living.
+            <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-normal text-charcoal leading-[1.1] tracking-tight">
+              Elevating the art<br />of the bathroom.
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-white/80 text-lg mt-6 max-w-lg leading-relaxed">
-              Premium furniture fittings and intelligent solutions for modern living and working spaces.
+            <motion.p variants={fadeUp} className="text-charcoal/80 text-lg md:text-xl mt-6 max-w-lg leading-relaxed">
+              Premium plumbing fittings, intelligent showers, and high-end closets for modern luxury spaces.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
-              <Link to="/products" className="inline-flex items-center gap-2 px-8 py-4 bg-rust text-white font-medium hover:bg-rust-deep transition-colors">
-                Explore Products <ArrowRight className="w-4 h-4" />
+              <Link to="/products" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-white font-medium hover:bg-gold-deep transition-colors">
+                Explore Collection <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/solutions" className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white font-medium hover:border-rust hover:text-rust transition-colors">
+              <Link to="/solutions" className="inline-flex items-center gap-2 px-8 py-4 border border-charcoal/30 text-charcoal font-medium hover:border-gold hover:text-gold transition-colors">
                 Our Solutions <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -99,7 +99,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-charcoal/60"
         >
           <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
           <ChevronDown className="w-5 h-5 animate-bounce" />
@@ -107,28 +107,28 @@ export default function Home() {
       </section>
 
       {/* BRAND STATEMENT */}
-      <section className="py-32 md:py-40">
+      <section className="py-32 md:py-40 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl lg:text-7xl font-light text-charcoal tracking-tight leading-[1.1]">
-              Small mechanisms.<br />
-              <span className="text-rust">Big possibilities.</span>
+              Pristine flow.<br />
+              <span className="text-gold">Impeccable design.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-warm-grey text-lg md:text-xl mt-8 max-w-2xl leading-relaxed">
-              From a single hinge to complete furniture systems, intelligent engineering transforms the way furniture feels, functions and lasts.
+              From a single designer faucet to complete architectural shower systems, our luxury fittings transform the daily rituals of water into unparalleled experiences.
             </motion.p>
           </AnimatedSection>
         </div>
       </section>
 
       {/* PRODUCT CATEGORIES */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-warm-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
-              number="01 / PRODUCTS"
-              title="Explore our solutions"
-              subtitle="Precision-engineered systems designed for every furniture application."
+              number="01 / COLLECTIONS"
+              title="Explore our collections"
+              subtitle="Precision-engineered bathroom fittings designed for the most elegant spaces."
             />
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -136,21 +136,22 @@ export default function Home() {
               <AnimatedSection key={cat.id}>
                 <motion.div
                   variants={fadeUp}
-                  className={`group relative overflow-hidden cursor-pointer ${i === 0 || i === 3 ? 'md:col-span-1' : ''}`}
+                  className={`group relative overflow-hidden cursor-pointer bg-white border border-warm-beige flex flex-col h-full`}
                 >
-                  <div className="aspect-[4/3] overflow-hidden bg-warm-beige">
+                  <div className="aspect-[3/2] overflow-hidden bg-warm-white">
                     <img
                       src={cat.image}
                       alt={cat.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-rust text-xs font-medium tracking-wider">{cat.count} Products</span>
-                    <h3 className="text-white text-xl font-medium mt-1">{cat.name}</h3>
-                    <p className="text-white/70 text-sm mt-2 line-clamp-2">{cat.description}</p>
-                    <div className="flex items-center gap-2 mt-4 text-rust text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="p-6 bg-white flex-1 flex flex-col justify-between">
+                    <div>
+                      <span className="text-gold text-xs font-medium tracking-wider">{cat.count} Products</span>
+                      <h3 className="text-charcoal text-xl font-medium mt-1">{cat.name}</h3>
+                      <p className="text-warm-grey text-sm mt-2 line-clamp-2">{cat.description}</p>
+                    </div>
+                    <div className="flex items-center gap-2 mt-4 text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                       Explore <ArrowUpRight className="w-4 h-4" />
                     </div>
                   </div>
@@ -162,37 +163,37 @@ export default function Home() {
       </section>
 
       {/* FEATURED PRODUCT */}
-      <section className="py-20">
+      <section className="py-20 bg-warm-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <AnimatedSection>
               <motion.div variants={fadeUp} className="relative overflow-hidden bg-warm-beige aspect-square">
                 <img
-                  src={products[0].image}
-                  alt={products[0].name}
+                  src={import.meta.env.BASE_URL + 'plumbing_fittings.jpeg'}
+                  alt="Precision Faucet"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
             </AnimatedSection>
             <AnimatedSection>
               <motion.div variants={fadeUp}>
-                <span className="text-rust text-sm font-medium tracking-wider">Featured Solution</span>
-                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">{products[0].name}</h2>
-                <p className="text-rust text-xl mt-2 font-light">Precision you can feel.</p>
-                <p className="text-warm-grey mt-6 leading-relaxed">{products[0].description}</p>
+                <span className="text-gold text-sm font-medium tracking-wider">Featured Fitting</span>
+                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">The Aeterna Faucet</h2>
+                <p className="text-gold text-xl mt-2 font-light">Precision you can feel. Elegance you can see.</p>
+                <p className="text-warm-grey mt-6 leading-relaxed">Engineered from solid brass and coated in pristine polished chrome, our signature faucet delivers flawlessly smooth water control while standing as a sculptural centerpiece for the modern luxury vanity.</p>
                 <div className="mt-8 space-y-3">
-                  {products[0].benefits.map((b) => (
+                  {['Ceramic disc cartridge', 'Water-saving aerator', 'Solid brass construction', 'PVD premium finish'].map((b) => (
                     <div key={b} className="flex items-center gap-3 text-sm text-charcoal">
-                      <span className="w-1.5 h-1.5 bg-rust rounded-full" />
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full" />
                       {b}
                     </div>
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-4 mt-10">
-                  <Link to={`/product/${products[0].slug}`} className="inline-flex items-center gap-2 px-6 py-3 bg-rust text-white text-sm font-medium hover:bg-rust-deep transition-colors">
+                  <Link to="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-white text-sm font-medium hover:bg-gold-deep transition-colors">
                     Explore Product <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <Link to="/resources" className="inline-flex items-center gap-2 px-6 py-3 border border-charcoal text-charcoal text-sm font-medium hover:border-rust hover:text-rust transition-colors">
+                  <Link to="/resources" className="inline-flex items-center gap-2 px-6 py-3 border border-charcoal/20 text-charcoal text-sm font-medium hover:border-gold hover:text-gold transition-colors">
                     View Specifications
                   </Link>
                 </div>
@@ -203,20 +204,20 @@ export default function Home() {
       </section>
 
       {/* SOLUTIONS FOR EVERY SPACE */}
-      <section className="py-20 bg-charcoal text-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
-              number="02 / SOLUTIONS"
-              title="Solutions for the way spaces evolve."
+              number="02 / ARCHITECTURE"
+              title="Solutions for every environment."
             />
           </AnimatedSection>
-          <div className="grid lg:grid-cols-2 gap-12 mt-12">
+          <div className="grid lg:grid-cols-2 gap-12 mt-12 p-8 border border-warm-beige bg-warm-white">
             <div className="relative aspect-[4/3] overflow-hidden">
               <img
                 src={solutions[activeSolution].image}
                 alt={solutions[activeSolution].title}
-                className="w-full h-full object-cover transition-opacity duration-500"
+                className="w-full h-full object-cover transition-opacity duration-500 rounded-sm"
               />
             </div>
             <div className="flex flex-col justify-center">
@@ -225,19 +226,18 @@ export default function Home() {
                   <button
                     key={sol.id}
                     onClick={() => setActiveSolution(i)}
-                    className={`px-4 py-2 text-sm border transition-colors ${
-                      activeSolution === i
-                        ? 'border-rust text-rust'
-                        : 'border-white/20 text-white/60 hover:border-white/40'
-                    }`}
+                    className={`px-4 py-2 text-sm border transition-colors ${activeSolution === i
+                      ? 'border-gold text-gold bg-gold/5'
+                      : 'border-warm-beige text-warm-grey hover:border-charcoal hover:text-charcoal'
+                      }`}
                   >
                     {sol.title}
                   </button>
                 ))}
               </div>
-              <h3 className="text-3xl font-light">{solutions[activeSolution].title}</h3>
-              <p className="text-white/70 mt-4 leading-relaxed">{solutions[activeSolution].description}</p>
-              <Link to="/solutions" className="inline-flex items-center gap-2 mt-8 text-rust text-sm font-medium hover:gap-3 transition-all">
+              <h3 className="text-3xl font-light text-charcoal">{solutions[activeSolution].title}</h3>
+              <p className="text-warm-grey mt-4 leading-relaxed">{solutions[activeSolution].description}</p>
+              <Link to="/solutions" className="inline-flex items-center gap-2 mt-8 text-gold text-sm font-medium hover:gap-3 transition-all">
                 Explore solution <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -246,20 +246,20 @@ export default function Home() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-32">
+      <section className="py-32 bg-warm-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
               number="03 / ABOUT"
-              title="Engineered around real life."
+              title="A heritage of pristine water flow."
             />
           </AnimatedSection>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16 p-12 bg-white border border-warm-beige">
             {[
-              { ref: stats1.ref, value: stats1.count, suffix: '+', label: 'Years of Expertise' },
-              { ref: stats2.ref, value: stats2.count, suffix: '+', label: 'Furniture Solutions' },
-              { ref: stats3.ref, value: stats3.count, suffix: '+', label: 'Markets Served' },
-              { ref: stats4.ref, value: stats4.count, suffix: '%', label: 'Quality Focus' },
+              { ref: stats1.ref, value: stats1.count, suffix: '+', label: 'Years of Excellence' },
+              { ref: stats2.ref, value: stats2.count, suffix: '+', label: 'Plumbing Solutions' },
+              { ref: stats3.ref, value: stats3.count, suffix: '+', label: 'Global Markets' },
+              { ref: stats4.ref, value: stats4.count, suffix: '%', label: 'Purity Factor' },
             ].map((stat) => (
               <div key={stat.label} ref={stat.ref} className="text-center">
                 <div className="text-5xl md:text-6xl font-light text-charcoal">
@@ -273,28 +273,28 @@ export default function Home() {
       </section>
 
       {/* TECHNOLOGY */}
-      <section className="py-20 bg-charcoal-soft text-white">
+      <section className="py-20 bg-white text-charcoal">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-16">
-              <span className="text-rust text-sm font-medium tracking-wider">04 / TECHNOLOGY</span>
+              <span className="text-gold text-sm font-medium tracking-wider">04 / TECHNOLOGY</span>
               <h2 className="text-4xl md:text-5xl font-light mt-3 tracking-tight">
-                Technology that disappears.<br />
-                <span className="text-white/60">Performance that doesn't.</span>
+                Engineering that disappears.<br />
+                <span className="text-warm-grey">Elegance that remains.</span>
               </h2>
             </div>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { num: '01', title: 'Precision Engineering', desc: 'Every component manufactured to tolerances that ensure flawless operation for decades.' },
-              { num: '02', title: 'Silent Movement', desc: 'Advanced damping technology that makes furniture feel effortless and soundless.' },
-              { num: '03', title: 'Long-Term Reliability', desc: 'Tested through hundreds of thousands of cycles to guarantee lasting performance.' },
+              { num: '01', title: 'Precision Valves', desc: 'State-of-the-art ceramic discs that guarantee decades of drip-free luxury and flawless temperature control.' },
+              { num: '02', title: 'Acoustic Insulation', desc: 'Advanced internal geometries that reduce water noise to a whisper, preserving the tranquility of your bathroom.' },
+              { num: '03', title: 'PVD Coating', desc: 'Physical Vapor Deposition creates an ultra-hard, pristine finish that resists scratches and tarnishing endlessly.' },
             ].map((item) => (
               <AnimatedSection key={item.num}>
-                <motion.div variants={fadeUp} className="border-t border-white/10 pt-8">
-                  <span className="text-rust text-3xl font-light">{item.num}</span>
+                <motion.div variants={fadeUp} className="border-t border-warm-beige pt-8">
+                  <span className="text-gold text-3xl font-light">{item.num}</span>
                   <h3 className="text-xl font-medium mt-4">{item.title}</h3>
-                  <p className="text-white/60 mt-3 text-sm leading-relaxed">{item.desc}</p>
+                  <p className="text-warm-grey mt-3 text-sm leading-relaxed">{item.desc}</p>
                 </motion.div>
               </AnimatedSection>
             ))}
@@ -303,27 +303,27 @@ export default function Home() {
       </section>
 
       {/* INSPIRATION */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-warm-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
               number="05 / INSPIRATION"
-              title="Furniture inspiration"
+              title="Bathroom inspiration"
             />
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {articles.map((article) => (
               <AnimatedSection key={article.id}>
-                <motion.div variants={fadeUp} className="group cursor-pointer">
-                  <div className="aspect-[3/4] overflow-hidden bg-warm-beige mb-4">
+                <motion.div variants={fadeUp} className="group cursor-pointer p-4 bg-white border border-warm-beige hover:border-gold transition-colors">
+                  <div className="aspect-[3/2] overflow-hidden bg-warm-beige mb-4">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <span className="text-rust text-xs font-medium tracking-wider">{article.category}</span>
-                  <h3 className="text-lg font-medium text-charcoal mt-2 group-hover:text-rust transition-colors leading-snug">
+                  <span className="text-gold text-xs font-medium tracking-wider">{article.category}</span>
+                  <h3 className="text-lg font-medium text-charcoal mt-2 group-hover:text-gold transition-colors leading-snug">
                     {article.title}
                   </h3>
                   <div className="flex items-center gap-3 mt-3 text-xs text-warm-grey">
@@ -339,10 +339,10 @@ export default function Home() {
       </section>
 
       {/* CASE STUDY */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
-            <span className="text-rust text-sm font-medium tracking-wider">06 / CASE STUDY</span>
+            <span className="text-gold text-sm font-medium tracking-wider">06 / CASE STUDY</span>
           </AnimatedSection>
           <div className="grid lg:grid-cols-2 gap-12 mt-8 items-center">
             <AnimatedSection>
@@ -373,7 +373,7 @@ export default function Home() {
                     <p className="text-charcoal text-sm mt-1">{projects[0].solution}</p>
                   </div>
                 </div>
-                <Link to="/projects" className="inline-flex items-center gap-2 mt-6 text-rust text-sm font-medium hover:gap-3 transition-all">
+                <Link to="/projects" className="inline-flex items-center gap-2 mt-6 text-gold text-sm font-medium hover:gap-3 transition-all">
                   View project <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
@@ -383,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-warm-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -403,10 +403,10 @@ export default function Home() {
               <AnimatedSection key={service.title}>
                 <motion.div
                   variants={fadeUp}
-                  className="group p-8 border border-warm-beige hover:border-rust transition-colors cursor-pointer"
+                  className="group p-8 bg-white border border-warm-beige hover:border-gold transition-colors cursor-pointer"
                 >
-                  <service.icon className="w-6 h-6 text-rust mb-4" />
-                  <h3 className="text-lg font-medium text-charcoal group-hover:text-rust transition-colors">{service.title}</h3>
+                  <service.icon className="w-6 h-6 text-gold mb-4" />
+                  <h3 className="text-lg font-medium text-charcoal group-hover:text-gold transition-colors">{service.title}</h3>
                   <p className="text-warm-grey text-sm mt-2">{service.desc}</p>
                 </motion.div>
               </AnimatedSection>
@@ -416,7 +416,7 @@ export default function Home() {
       </section>
 
       {/* DOWNLOAD CENTER */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -429,11 +429,10 @@ export default function Home() {
               <button
                 key={f.id}
                 onClick={() => setResourceFilter(f.id)}
-                className={`px-4 py-2 text-sm border transition-colors ${
-                  resourceFilter === f.id
-                    ? 'border-rust text-rust bg-rust/5'
-                    : 'border-warm-beige text-warm-grey hover:border-charcoal'
-                }`}
+                className={`px-4 py-2 text-sm border transition-colors ${resourceFilter === f.id
+                  ? 'border-gold text-gold bg-gold/5'
+                  : 'border-warm-beige text-warm-grey hover:border-charcoal hover:text-charcoal'
+                  }`}
               >
                 {f.label}
               </button>
@@ -444,11 +443,11 @@ export default function Home() {
               <AnimatedSection key={res.id}>
                 <motion.div
                   variants={fadeUp}
-                  className="flex flex-col md:flex-row md:items-center justify-between p-6 border border-warm-beige hover:border-rust transition-colors group"
+                  className="flex flex-col md:flex-row md:items-center justify-between p-6 border border-warm-beige hover:border-gold transition-colors group bg-warm-white"
                 >
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-medium text-rust uppercase tracking-wider">{res.type}</span>
+                      <span className="text-xs font-medium text-gold uppercase tracking-wider">{res.type}</span>
                       <span className="text-xs text-warm-grey">{res.format}</span>
                     </div>
                     <h3 className="text-lg font-medium text-charcoal">{res.title}</h3>
@@ -458,7 +457,7 @@ export default function Home() {
                     <span className="text-xs text-warm-grey">{res.size}</span>
                     <button
                       onClick={handleDownload}
-                      className="flex items-center gap-2 px-4 py-2 bg-charcoal text-white text-sm hover:bg-rust transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-charcoal text-white text-sm hover:bg-gold transition-colors"
                     >
                       <Download className="w-4 h-4" /> Download
                     </button>
@@ -471,7 +470,7 @@ export default function Home() {
       </section>
 
       {/* AUDIENCE */}
-      <section className="py-20 bg-charcoal text-white">
+      <section className="py-20 bg-warm-white text-charcoal border-t border-warm-beige">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeading
@@ -482,10 +481,10 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {audienceSegments.map((seg) => (
               <AnimatedSection key={seg.id}>
-                <motion.div variants={fadeUp} className="p-8 border border-white/10 hover:border-rust transition-colors group cursor-pointer">
-                  <span className="text-xs text-rust uppercase tracking-[0.2em]">{seg.title}</span>
-                  <p className="text-white/70 mt-4 text-sm leading-relaxed">{seg.description}</p>
-                  <span className="inline-flex items-center gap-2 mt-6 text-sm text-white/50 group-hover:text-rust transition-colors">
+                <motion.div variants={fadeUp} className="p-8 bg-white border border-warm-beige hover:border-gold transition-colors group cursor-pointer shadow-sm">
+                  <span className="text-xs text-gold font-medium uppercase tracking-[0.2em]">{seg.title}</span>
+                  <p className="text-warm-grey mt-4 text-sm leading-relaxed">{seg.description}</p>
+                  <span className="inline-flex items-center gap-2 mt-6 text-sm text-charcoal group-hover:text-gold transition-colors">
                     {seg.cta} <ArrowRight className="w-4 h-4" />
                   </span>
                 </motion.div>
@@ -499,17 +498,17 @@ export default function Home() {
       <Newsletter />
 
       {/* CONTACT CTA */}
-      <section className="py-32">
+      <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-light text-charcoal tracking-tight">
-              Let's build something<br /><span className="text-rust">better.</span>
+              Create the perfect<br /><span className="text-gold">sanctuary.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-warm-grey mt-6 max-w-xl mx-auto">
-              Tell us about your project and our team will help you find the right solution.
+              Tell us about your project and our team will help you find the right luxury plumbing solutions.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-10">
-              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-rust text-white font-medium hover:bg-rust-deep transition-colors">
+              <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-white font-medium hover:bg-gold-deep transition-colors">
                 Send Enquiry <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>

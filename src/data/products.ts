@@ -103,10 +103,10 @@ export const products: Product[] = [
 ];
 
 export const categories = [
-  { id: 'hinges', name: 'Hinges', description: 'Soft-close, concealed and special application hinges for every cabinet type.', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80', count: 24 },
-  { id: 'drawer-systems', name: 'Drawer Systems', description: 'Premium drawer systems designed for modern kitchens, wardrobes and office furniture.', image: 'https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=600&q=80', count: 18 },
-  { id: 'runner-systems', name: 'Runner Systems', description: 'Ball bearing, undermount and soft-close runners for smooth drawer movement.', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80', count: 15 },
-  { id: 'sliding-systems', name: 'Sliding Systems', description: 'Sliding door, pocket door and room divider systems for flexible spaces.', image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=80', count: 12 },
-  { id: 'cabinet-interiors', name: 'Cabinet Interiors', description: 'Kitchen storage, wardrobe organization and corner solutions.', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80', count: 20 },
-  { id: 'furniture-accessories', name: 'Accessories', description: 'Lift mechanisms, handles, lighting and complementary hardware.', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80', count: 32 },
+  { id: 'fittings', name: 'Plumbing Fittings', description: 'Premium faucets, mixers, and control valves with flawless chrome and gold finishes.', image: import.meta.env.BASE_URL + 'plumbing_fittings.jpeg', count: 24 },
+  { id: 'showers', name: 'Luxury Showers', description: 'Rain showers, hand showers, and complete thermostatic shower systems.', image: import.meta.env.BASE_URL + 'luxury_showers.jpeg', count: 18 },
+  { id: 'closets', name: 'Premium Closets', description: 'Intelligent water closets, wall-hung toilets, and automated smart bathroom seating.', image: import.meta.env.BASE_URL + 'premium_closets.jpeg', count: 15 },
+  { id: 'hardware', name: 'Bathroom Hardware', description: 'Towel rails, robe hooks, soap dispensers, and essential bathroom accessories.', image: import.meta.env.BASE_URL + 'bathroom_hardwares.jpeg', count: 42 },
+  { id: 'vanities', name: 'Vanity Units', description: 'Luxury bathroom storage, under-sink cabinets, and pristine washbasin consoles.', image: import.meta.env.BASE_URL + 'vanity_units.jpeg', count: 20 },
+  { id: 'washbasins', name: 'Washbasins', description: 'Ceramic, marble, and composite basins for a sophisticated minimalist aesthetic.', image: import.meta.env.BASE_URL + 'washbase.jpeg', count: 16 },
 ];

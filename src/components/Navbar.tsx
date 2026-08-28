@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const isHome = location.pathname === '/';
   const navBg = scrolled || !isHome ? 'bg-warm-white/95 backdrop-blur-md border-b border-warm-beige' : 'bg-transparent';
-  const textColor = scrolled || !isHome ? 'text-charcoal' : 'text-white';
+  const textColor = 'text-charcoal';
 
   return (
     <>
@@ -33,11 +33,8 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <div className={`text-2xl font-bold tracking-tight transition-colors duration-300 ${textColor}`}>
+              <div className={`text-3xl font-extrabold tracking-tight transition-colors duration-300 ${textColor}`}>
                 SMT
-              </div>
-              <div className={`hidden sm:block text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 ${scrolled || !isHome ? 'text-warm-grey' : 'text-white/70'}`}>
-                Furniture Solutions
               </div>
             </Link>
 
@@ -52,7 +49,7 @@ export default function Navbar() {
                 >
                   <Link
                     to={link.href}
-                    className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-rust ${textColor} ${location.pathname === link.href ? 'text-rust' : ''}`}
+                    className={`text-sm font-bold tracking-wide transition-colors duration-300 hover:text-gold ${textColor} ${location.pathname === link.href ? 'text-gold' : ''}`}
                   >
                     {link.label}
                   </Link>
@@ -64,15 +61,15 @@ export default function Navbar() {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSearchOpen(true)}
-                className={`p-2 transition-colors duration-300 hover:text-rust ${textColor}`}
+                className={`p-2 transition-colors duration-300 hover:text-gold ${textColor}`}
                 aria-label="Search"
               >
                 <Search className="w-5 h-5" />
               </button>
-              <span className={`hidden md:block text-sm ${textColor}`}>EN</span>
+              <span className={`hidden md:block text-sm font-bold ${textColor}`}>EN</span>
               <Link
                 to="/contact"
-                className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-rust text-white text-sm font-medium hover:bg-rust-deep transition-colors duration-300"
+                className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-gold text-white text-sm font-bold hover:bg-gold-deep transition-colors duration-300"
               >
                 Talk to us
               </Link>
@@ -105,12 +102,12 @@ export default function Navbar() {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <h3 className="text-sm font-semibold text-charcoal mb-2 group-hover:text-rust transition-colors">
+                    <h3 className="text-sm font-semibold text-charcoal mb-2 group-hover:text-gold transition-colors">
                       {cat.title}
                     </h3>
                     <ul className="space-y-1">
                       {cat.items.map((item) => (
-                        <li key={item} className="text-xs text-warm-grey hover:text-rust transition-colors cursor-pointer">
+                        <li key={item} className="text-xs text-warm-grey hover:text-gold transition-colors cursor-pointer">
                           {item}
                         </li>
                       ))}
@@ -119,8 +116,8 @@ export default function Navbar() {
                 ))}
               </div>
               <div className="mt-8 pt-6 border-t border-warm-beige">
-                <Link to="/products" className="inline-flex items-center gap-2 text-sm font-medium text-rust hover:gap-3 transition-all">
-                  View all products <ArrowRight className="w-4 h-4" />
+                <Link to="/products" className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:gap-3 transition-all">
+                  View all collections <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -130,11 +127,11 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[60] bg-charcoal">
+        <div className="fixed inset-0 z-[60] bg-white">
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between p-6">
-              <span className="text-2xl font-bold text-white">SMT</span>
-              <button onClick={() => setMobileOpen(false)} className="text-white p-2">
+              <span className="text-3xl font-extrabold text-charcoal">SMT</span>
+              <button onClick={() => setMobileOpen(false)} className="text-charcoal p-2 hover:bg-warm-beige rounded-full transition-colors">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -143,18 +140,18 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="flex items-center justify-between py-4 border-b border-white/10 text-white text-2xl font-light"
+                  className="flex items-center justify-between py-4 border-b border-warm-beige text-charcoal text-2xl font-light hover:text-gold transition-colors"
                   style={{ animationDelay: `${i * 50}ms` }}
                 >
                   {link.label}
-                  <ChevronRight className="w-5 h-5 text-rust" />
+                  <ChevronRight className="w-5 h-5 text-gold" />
                 </Link>
               ))}
             </div>
             <div className="p-6">
               <Link
                 to="/contact"
-                className="block w-full text-center py-4 bg-rust text-white font-medium"
+                className="block w-full text-center py-4 bg-gold text-white font-medium hover:bg-gold-deep transition-colors"
               >
                 Talk to us
               </Link>
@@ -165,25 +162,25 @@ export default function Navbar() {
 
       {/* Search Overlay */}
       {searchOpen && (
-        <div className="fixed inset-0 z-[70] bg-charcoal/95 backdrop-blur-md flex items-start justify-center pt-32">
+        <div className="fixed inset-0 z-[70] bg-white/95 backdrop-blur-md flex items-start justify-center pt-32">
           <div className="w-full max-w-3xl px-6">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl text-white font-light">What are you looking for?</h2>
-              <button onClick={() => setSearchOpen(false)} className="text-white p-2">
+              <h2 className="text-2xl text-charcoal font-light">What are you looking for?</h2>
+              <button onClick={() => setSearchOpen(false)} className="text-charcoal p-2 hover:bg-warm-beige rounded-full transition-colors">
                 <X className="w-6 h-6" />
               </button>
             </div>
             <input
               type="text"
-              placeholder="Search products, categories, applications..."
-              className="w-full bg-transparent border-b-2 border-white/30 text-white text-xl py-4 focus:outline-none focus:border-rust placeholder:text-white/40"
+              placeholder="Search faucets, showers, closets..."
+              className="w-full bg-transparent border-b-2 border-warm-beige text-charcoal text-xl py-4 focus:outline-none focus:border-gold placeholder:text-warm-grey"
               autoFocus
             />
             <div className="mt-8">
-              <p className="text-white/50 text-sm mb-4">Popular searches</p>
+              <p className="text-warm-grey text-sm mb-4">Popular searches</p>
               <div className="flex flex-wrap gap-3">
-                {['Hinges', 'Drawer systems', 'Kitchen storage', 'Sliding doors', 'Soft close'].map((term) => (
-                  <span key={term} className="px-4 py-2 border border-white/20 text-white/70 text-sm hover:border-rust hover:text-rust transition-colors cursor-pointer">
+                {['Rain showers', 'Thermostatic mixers', 'Wall-mounted basins', 'Smart toilets', 'Gold finish'].map((term) => (
+                  <span key={term} className="px-4 py-2 border border-warm-beige text-charcoal text-sm hover:border-gold hover:text-gold transition-colors cursor-pointer bg-warm-white">
                     {term}
                   </span>
                 ))}

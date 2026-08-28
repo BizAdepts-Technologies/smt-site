@@ -1,7 +1,7 @@
 export const companyInfo = {
   name: 'SMT',
-  fullName: 'SMT Furniture Solutions',
-  tagline: 'Premium furniture fittings and intelligent solutions',
+  fullName: 'SMT Bath & Plumbing Solutions',
+  tagline: 'Premium plumbing fittings and luxury bath solutions',
   location: 'Muscat, Sultanate of Oman',
   email: 'info@smt-oman.com',
   phone: '+968 2412 3456',
@@ -24,21 +24,18 @@ export const navLinks = [
 ];
 
 export const megaMenuCategories = [
-  { title: 'Hinges', items: ['Soft-close hinges', 'Concealed hinges', 'Special application hinges'], image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&q=80' },
-  { title: 'Drawer Systems', items: ['Premium drawer systems', 'Slim drawer systems', 'Heavy-duty systems'], image: 'https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=300&q=80' },
-  { title: 'Runner Systems', items: ['Ball bearing runners', 'Undermount runners', 'Soft-close runners'], image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&q=80' },
-  { title: 'Sliding Systems', items: ['Sliding door systems', 'Pocket door systems', 'Room divider systems'], image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=300&q=80' },
-  { title: 'Cabinet Interiors', items: ['Kitchen storage', 'Wardrobe storage', 'Corner solutions'], image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300&q=80' },
-  { title: 'Furniture Solutions', items: ['Office', 'Kitchen', 'Bedroom', 'Living', 'Commercial'], image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=300&q=80' },
+  { title: 'Fittings', items: ['Basin mixers', 'Bath mixers', 'Bidet mixers'], image: import.meta.env.BASE_URL + 'plumbing_fittings.jpeg' },
+  { title: 'Showers', items: ['Rain showers', 'Hand showers', 'Thermostats'], image: import.meta.env.BASE_URL + 'luxury_showers.jpeg' },
+  { title: 'Closets', items: ['Wall-hung', 'Floor-standing', 'Smart toilets'], image: import.meta.env.BASE_URL + 'premium_closets.jpeg' },
+  { title: 'Hardware', items: ['Towel rails', 'Soap dispensers', 'Robe hooks'], image: import.meta.env.BASE_URL + 'bathroom_hardwares.jpeg' },
+  { title: 'Vanities', items: ['Under-sink cabinets', 'Mirrors', 'Consoles'], image: import.meta.env.BASE_URL + 'vanity_units.jpeg' },
+  { title: 'Washbasins', items: ['Countertop', 'Under-mount', 'Free-standing'], image: import.meta.env.BASE_URL + 'washbase.jpeg' },
 ];
 
 export const solutions = [
-  { id: 'kitchen', title: 'Kitchen', description: 'Intelligent storage and movement solutions designed for the heart of the home. From soft-close hinges to full-extension drawer systems.', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80' },
-  { id: 'bedroom', title: 'Bedroom', description: 'Wardrobe systems, sliding doors and interior organization that transforms personal spaces into sanctuaries of order.', image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=1200&q=80' },
-  { id: 'living', title: 'Living', description: 'Flexible furniture solutions for modern living spaces that adapt to how families actually live.', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80' },
-  { id: 'office', title: 'Office', description: 'Precision-engineered systems for productive workspaces — from executive offices to collaborative environments.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80' },
-  { id: 'hospitality', title: 'Hospitality', description: 'Durable, elegant solutions for hotels, restaurants and commercial spaces that withstand intensive use.', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80' },
-  { id: 'commercial', title: 'Commercial', description: 'Heavy-duty systems for retail, healthcare and institutional applications where reliability is paramount.', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80' },
+  { id: 'residential', title: 'Luxury Residential', description: 'Transform master bathrooms into personal spas with thermostatic showers, elegant freestanding tubs, and pristine gold fittings.', image: import.meta.env.BASE_URL + 'luxury_residential.jpeg' },
+  { id: 'hospitality', title: 'Hospitality', description: 'Enduring luxury for premium hotels. Our heavy-duty yet elegant hardware withstands intensive use while providing a flawless guest experience.', image: import.meta.env.BASE_URL + 'hospitality.jpeg' },
+  { id: 'commercial', title: 'Commercial Washrooms', description: 'Sensor-operated faucets, robust smart closets, and hygienic solutions designed for high-traffic environments.', image: import.meta.env.BASE_URL + 'commercial_washrooms.jpeg' },
 ];
 
 export const audienceSegments = [
