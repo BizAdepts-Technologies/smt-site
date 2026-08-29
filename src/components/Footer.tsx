@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
           <h2 className="text-4xl md:text-5xl font-light tracking-tight">
-            Create the perfect <span className="text-gold">sanctuary.</span>
+            Bring the furniture of this <span className="text-gold">world to life.</span>
           </h2>
         </div>
       </div>
@@ -21,7 +21,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-6">Collections</h3>
             <ul className="space-y-3">
-              {['Fittings', 'Showers', 'Closets', 'Hardware', 'Vanities'].map((item) => (
+              {['Hinges', 'Drawers', 'Sliding Doors', 'Handles', 'Assembly Tools'].map((item) => (
                 <li key={item}>
                   <Link to={`/products`} className="text-sm text-white/70 hover:text-gold transition-colors">
                     {item}
@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-6">Solutions</h3>
             <ul className="space-y-3">
-              {['Residential', 'Hospitality', 'Commercial', 'Wellness', 'Spas'].map((item) => (
+              {['Residential', 'Hospitality', 'Commercial', 'Offices', 'Kitchens'].map((item) => (
                 <li key={item}>
                   <Link to={`/solutions`} className="text-sm text-white/70 hover:text-gold transition-colors">
                     {item}
@@ -73,7 +73,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm text-white/50">
-            <span>© 2026 SMT Bath Solutions</span>
+            <span>© 2026 Sahab Al Mabelah Trading LLC</span>
             <Link to="/" className="hover:text-gold transition-colors">Privacy</Link>
             <Link to="/" className="hover:text-gold transition-colors">Terms</Link>
           </div>

@@ -5,10 +5,16 @@ export default function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
 
   useEffect(() => {
-    // Only on desktop
-    if (window.innerWidth < 1024) return;
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -25,8 +31,7 @@ export default function CustomCursor() {
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
 
-    // Add hover listeners to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, select, textarea');
     interactiveElements.forEach((el) => {
       el.addEventListener('mouseenter', handleHoverStart);
       el.addEventListener('mouseleave', handleHoverEnd);
@@ -41,20 +46,20 @@ export default function CustomCursor() {
         el.removeEventListener('mouseleave', handleHoverEnd);
       });
     };
-  }, []);
-
-  if (typeof window !== 'undefined' && window.innerWidth < 1024) return null;
+  }, [isDesktop]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+    if (isDesktop) {
       document.body.classList.add('custom-cursor-active');
+    } else {
+      document.body.classList.remove('custom-cursor-active');
     }
     return () => {
       document.body.classList.remove('custom-cursor-active');
     };
-  }, []);
+  }, [isDesktop]);
 
-  if (typeof window !== 'undefined' && window.innerWidth < 1024) return null;
+  if (!isDesktop) return null;
 
   return (
     <motion.div

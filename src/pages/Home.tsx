@@ -60,11 +60,11 @@ export default function Home() {
   return (
     <div className="bg-warm-white">
       {/* HERO */}
-      <section className="relative h-screen min-h-[700px] overflow-hidden">
+      <section className="relative h-[100dvh] w-full overflow-hidden">
         <div className="absolute inset-0 bg-white">
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
-            alt="Luxury white bathroom interior"
+            src={import.meta.env.BASE_URL + 'home_hero.jpg'}
+            alt="Luxury modern furniture interior"
             className="w-full h-full object-cover mix-blend-multiply opacity-80"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-warm-white/90 via-warm-white/40 to-transparent" />
@@ -77,13 +77,13 @@ export default function Home() {
             className="max-w-2xl"
           >
             <motion.p variants={fadeUp} className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-6">
-              Premium Bath & Plumbing • Muscat, Oman
+              Premium Furniture Fittings • Muscat, Oman
             </motion.p>
             <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-normal text-charcoal leading-[1.1] tracking-tight">
-              Elevating the art<br />of the bathroom.
+              Intelligent functions.<br />Brought to life.
             </motion.h1>
             <motion.p variants={fadeUp} className="text-charcoal/80 text-lg md:text-xl mt-6 max-w-lg leading-relaxed">
-              Premium plumbing fittings, intelligent showers, and high-end closets for modern luxury spaces.
+              Built into furniture of all kinds, our products are usually invisible. But they are no less essential for that.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
               <Link to="/products" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-white font-medium hover:bg-gold-deep transition-colors">
@@ -111,11 +111,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl lg:text-7xl font-light text-charcoal tracking-tight leading-[1.1]">
-              Pristine flow.<br />
-              <span className="text-gold">Impeccable design.</span>
+              Invisible mechanics.<br />
+              <span className="text-gold">Flawless design.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-warm-grey text-lg md:text-xl mt-8 max-w-2xl leading-relaxed">
-              From a single designer faucet to complete architectural shower systems, our luxury fittings transform the daily rituals of water into unparalleled experiences.
+              Whenever a cabinet door opens, a drawer is pulled out or whenever furniture elements move in any other way, we are usually behind the movement. Our fittings provide convenient and reliable operation in millions of furniture applications.
             </motion.p>
           </AnimatedSection>
         </div>
@@ -128,7 +128,7 @@ export default function Home() {
             <SectionHeading
               number="01 / COLLECTIONS"
               title="Explore our collections"
-              subtitle="Precision-engineered bathroom fittings designed for the most elegant spaces."
+              subtitle="Precision-engineered furniture fittings designed for the most elegant and functional spaces."
             />
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -169,8 +169,8 @@ export default function Home() {
             <AnimatedSection>
               <motion.div variants={fadeUp} className="relative overflow-hidden bg-warm-beige aspect-square">
                 <img
-                  src={import.meta.env.BASE_URL + 'plumbing_fittings.jpeg'}
-                  alt="Precision Faucet"
+                  src={import.meta.env.BASE_URL + 'silentclose_hinge.jpeg'}
+                  alt="Precision Hinge"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
@@ -178,11 +178,11 @@ export default function Home() {
             <AnimatedSection>
               <motion.div variants={fadeUp}>
                 <span className="text-gold text-sm font-medium tracking-wider">Featured Fitting</span>
-                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">The Aeterna Faucet</h2>
+                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">The SilentClose Hinge</h2>
                 <p className="text-gold text-xl mt-2 font-light">Precision you can feel. Elegance you can see.</p>
-                <p className="text-warm-grey mt-6 leading-relaxed">Engineered from solid brass and coated in pristine polished chrome, our signature faucet delivers flawlessly smooth water control while standing as a sculptural centerpiece for the modern luxury vanity.</p>
+                <p className="text-warm-grey mt-6 leading-relaxed">Engineered from premium materials with advanced soft-closing technology, our signature hinge delivers flawlessly smooth articulation while ensuring long-lasting durability for modern cabinetry.</p>
                 <div className="mt-8 space-y-3">
-                  {['Ceramic disc cartridge', 'Water-saving aerator', 'Solid brass construction', 'PVD premium finish'].map((b) => (
+                  {['Soft-close technology', 'Adjustable tension', 'High load capacity', 'Premium finish'].map((b) => (
                     <div key={b} className="flex items-center gap-3 text-sm text-charcoal">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full" />
                       {b}
@@ -251,13 +251,13 @@ export default function Home() {
           <AnimatedSection>
             <SectionHeading
               number="03 / ABOUT"
-              title="A heritage of pristine water flow."
+              title="A heritage of flawless movement."
             />
           </AnimatedSection>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16 p-12 bg-white border border-warm-beige">
             {[
               { ref: stats1.ref, value: stats1.count, suffix: '+', label: 'Years of Excellence' },
-              { ref: stats2.ref, value: stats2.count, suffix: '+', label: 'Plumbing Solutions' },
+              { ref: stats2.ref, value: stats2.count, suffix: '+', label: 'Fitting Solutions' },
               { ref: stats3.ref, value: stats3.count, suffix: '+', label: 'Global Markets' },
               { ref: stats4.ref, value: stats4.count, suffix: '%', label: 'Purity Factor' },
             ].map((stat) => (
@@ -286,9 +286,9 @@ export default function Home() {
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { num: '01', title: 'Precision Valves', desc: 'State-of-the-art ceramic discs that guarantee decades of drip-free luxury and flawless temperature control.' },
-              { num: '02', title: 'Acoustic Insulation', desc: 'Advanced internal geometries that reduce water noise to a whisper, preserving the tranquility of your bathroom.' },
-              { num: '03', title: 'PVD Coating', desc: 'Physical Vapor Deposition creates an ultra-hard, pristine finish that resists scratches and tarnishing endlessly.' },
+              { num: '01', title: 'Intelligent Dampers', desc: 'State-of-the-art soft-close technology that guarantees decades of whisper-quiet luxury and flawless closure.' },
+              { num: '02', title: 'Acoustic Insulation', desc: 'Advanced internal geometries that reduce closing noise to a whisper, preserving the tranquility of your space.' },
+              { num: '03', title: 'Premium Durability', desc: 'Engineered for intensive use, creating robust mechanisms that resist wear and tear endlessly.' },
             ].map((item) => (
               <AnimatedSection key={item.num}>
                 <motion.div variants={fadeUp} className="border-t border-warm-beige pt-8">
@@ -308,7 +308,7 @@ export default function Home() {
           <AnimatedSection>
             <SectionHeading
               number="05 / INSPIRATION"
-              title="Bathroom inspiration"
+              title="Design inspiration"
             />
           </AnimatedSection>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -505,7 +505,7 @@ export default function Home() {
               Create the perfect<br /><span className="text-gold">sanctuary.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className="text-warm-grey mt-6 max-w-xl mx-auto">
-              Tell us about your project and our team will help you find the right luxury plumbing solutions.
+              Tell us about your project and our team will help you find the right premium furniture fittings.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-10">
               <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-white font-medium hover:bg-gold-deep transition-colors">

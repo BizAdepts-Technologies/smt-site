@@ -32,7 +32,7 @@ export default function About() {
           <AnimatedSection>
             <motion.div variants={fadeUp} className="aspect-[4/3] overflow-hidden bg-warm-beige">
               <img
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80"
+                src={import.meta.env.BASE_URL + 'offices_commercial.jpeg'}
                 alt="SMT headquarters"
                 className="w-full h-full object-cover"
               />

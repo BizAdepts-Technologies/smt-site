@@ -30,12 +30,10 @@ export default function Navbar() {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <div className={`text-3xl font-extrabold tracking-tight transition-colors duration-300 ${textColor}`}>
-                SMT
-              </div>
+              <img src={import.meta.env.BASE_URL + 'smt-logo.png'} alt="SMT Logo" className="h-14 w-auto object-contain py-1" />
             </Link>
 
             {/* Desktop Nav */}
@@ -130,7 +128,7 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[60] bg-white">
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between p-6">
-              <span className="text-3xl font-extrabold text-charcoal">SMT</span>
+              <img src={import.meta.env.BASE_URL + 'smt-logo.png'} alt="SMT Logo" className="h-12 w-auto object-contain" />
               <button onClick={() => setMobileOpen(false)} className="text-charcoal p-2 hover:bg-warm-beige rounded-full transition-colors">
                 <X className="w-6 h-6" />
               </button>
@@ -172,14 +170,14 @@ export default function Navbar() {
             </div>
             <input
               type="text"
-              placeholder="Search faucets, showers, closets..."
+              placeholder="Search hinges, drawers, sliding doors..."
               className="w-full bg-transparent border-b-2 border-warm-beige text-charcoal text-xl py-4 focus:outline-none focus:border-gold placeholder:text-warm-grey"
               autoFocus
             />
             <div className="mt-8">
               <p className="text-warm-grey text-sm mb-4">Popular searches</p>
               <div className="flex flex-wrap gap-3">
-                {['Rain showers', 'Thermostatic mixers', 'Wall-mounted basins', 'Smart toilets', 'Gold finish'].map((term) => (
+                {['Silent hinges', 'Sliding door systems', 'Runner systems', 'ProLock handles', 'Cabinet mechanics'].map((term) => (
                   <span key={term} className="px-4 py-2 border border-warm-beige text-charcoal text-sm hover:border-gold hover:text-gold transition-colors cursor-pointer bg-warm-white">
                     {term}
                   </span>

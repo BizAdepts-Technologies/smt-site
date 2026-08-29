@@ -1,12 +1,13 @@
 export const companyInfo = {
   name: 'SMT',
-  fullName: 'SMT Bath & Plumbing Solutions',
-  tagline: 'Premium plumbing fittings and luxury bath solutions',
+  fullName: 'Sahab Al Mabelah Trading LLC',
+  tagline: 'Premium furniture fittings and intelligent home solutions',
   location: 'Muscat, Sultanate of Oman',
-  email: 'info@smt-oman.com',
+  email: 'info@sahabalmabelah.com',
   phone: '+968 2412 3456',
-  address: 'Building 247, Way 2903, Al Khuwair, Muscat, Oman',
-  founded: '2001',
+  address: 'Office no:3-C, Vitality logistics, opposite of asian paints warehouse, Muscat, Oman',
+  mapLink: 'https://goo.gl/maps/PGNd6KGx9jxMoBRR9',
+  founded: '2007',
   employees: '120+',
   markets: 40,
   solutions: 500,
@@ -24,22 +25,22 @@ export const navLinks = [
 ];
 
 export const megaMenuCategories = [
-  { title: 'Fittings', items: ['Basin mixers', 'Bath mixers', 'Bidet mixers'], image: import.meta.env.BASE_URL + 'plumbing_fittings.jpeg' },
-  { title: 'Showers', items: ['Rain showers', 'Hand showers', 'Thermostats'], image: import.meta.env.BASE_URL + 'luxury_showers.jpeg' },
-  { title: 'Closets', items: ['Wall-hung', 'Floor-standing', 'Smart toilets'], image: import.meta.env.BASE_URL + 'premium_closets.jpeg' },
-  { title: 'Hardware', items: ['Towel rails', 'Soap dispensers', 'Robe hooks'], image: import.meta.env.BASE_URL + 'bathroom_hardwares.jpeg' },
-  { title: 'Vanities', items: ['Under-sink cabinets', 'Mirrors', 'Consoles'], image: import.meta.env.BASE_URL + 'vanity_units.jpeg' },
-  { title: 'Washbasins', items: ['Countertop', 'Under-mount', 'Free-standing'], image: import.meta.env.BASE_URL + 'washbase.jpeg' },
+  { title: 'Hinges', items: ['Sensys', 'Intermat', 'SlideOn'], image: import.meta.env.BASE_URL + 'hinges&fittings.jpeg' },
+  { title: 'Drawers', items: ['AvanTech YOU', 'ArciTech', 'InnoTech Atira'], image: import.meta.env.BASE_URL + 'drawer.jpeg' },
+  { title: 'Runners', items: ['Actro 5D', 'Quadro', 'Ball Bearing'], image: import.meta.env.BASE_URL + 'drawer.jpeg' },
+  { title: 'Sliding Doors', items: ['TopLine', 'SlideLine', 'WingLine'], image: import.meta.env.BASE_URL + 'sliding_doors.jpeg' },
+  { title: 'Handles', items: ['ProLock Luxury', 'Touch-in', 'Aluminium Handles'], image: import.meta.env.BASE_URL + 'prolock_handles.jpeg' },
+  { title: 'Assembly', items: ['Practica', 'BlueMax', 'Accura'], image: import.meta.env.BASE_URL + 'assembly_machinery.jpeg' },
 ];
 
 export const solutions = [
-  { id: 'residential', title: 'Luxury Residential', description: 'Transform master bathrooms into personal spas with thermostatic showers, elegant freestanding tubs, and pristine gold fittings.', image: import.meta.env.BASE_URL + 'luxury_residential.jpeg' },
-  { id: 'hospitality', title: 'Hospitality', description: 'Enduring luxury for premium hotels. Our heavy-duty yet elegant hardware withstands intensive use while providing a flawless guest experience.', image: import.meta.env.BASE_URL + 'hospitality.jpeg' },
-  { id: 'commercial', title: 'Commercial Washrooms', description: 'Sensor-operated faucets, robust smart closets, and hygienic solutions designed for high-traffic environments.', image: import.meta.env.BASE_URL + 'commercial_washrooms.jpeg' },
+  { id: 'residential', title: 'Luxury Residential', description: 'Transform living spaces with furniture fittings that provide convenient and reliable operation. Usually invisible, but essential.', image: import.meta.env.BASE_URL + 'luxury_residential.jpeg' },
+  { id: 'hospitality', title: 'Hospitality', description: 'Enduring hardware for premium hotels. Built into furniture of all kinds, ensuring whisper-quiet movement and intensive use durability.', image: import.meta.env.BASE_URL + 'hospitality.jpeg' },
+  { id: 'commercial', title: 'Offices & Commercial', description: 'Table and desk systems, intelligent organizers, and sliding solutions designed for high-traffic work environments.', image: import.meta.env.BASE_URL + 'offices_commercial.jpeg' },
 ];
 
 export const audienceSegments = [
-  { id: 'architects', title: 'Architects', description: 'Design with freedom. Build with confidence. Access technical resources and planning tools.', cta: 'Explore architect resources' },
+  { id: 'architects', title: 'Architects', description: 'Design with freedom. Build with confidence. Access technical resources and planning tools for architectural integration.', cta: 'Explore architect resources' },
   { id: 'manufacturers', title: 'Furniture Manufacturers', description: 'Reliable hardware solutions that elevate your product quality and manufacturing efficiency.', cta: 'View manufacturer solutions' },
   { id: 'cabinet-makers', title: 'Cabinet Makers', description: 'Precision fittings that make installation smoother and the finished product exceptional.', cta: 'Explore cabinet solutions' },
   { id: 'designers', title: 'Interior Designers', description: 'Curated solutions that bring your vision to life with hardware that matches your design standards.', cta: 'Designer resources' },
