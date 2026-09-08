@@ -1,26 +1,27 @@
 export const companyInfo = {
-  name: 'SMT',
+  name: 'Sahab Al Mabelah',
   fullName: 'Sahab Al Mabelah Trading LLC',
-  tagline: 'Premium furniture fittings and intelligent home solutions',
+  tagline: 'Premium products and reliable service to the furniture, interior, and construction industries',
   location: 'Muscat, Sultanate of Oman',
   email: 'info@sahabalmabelah.com',
   phone: '+968 2412 3456',
   address: 'Office no:3-C, Vitality logistics, opposite of asian paints warehouse, Muscat, Oman',
   mapLink: 'https://goo.gl/maps/PGNd6KGx9jxMoBRR9',
   founded: '2007',
-  employees: '120+',
-  markets: 40,
+  founder: 'Mr. Shameem Shah',
+  employees: '25',
+  markets: 6,
   solutions: 500,
-  yearsExperience: 25,
+  yearsExperience: new Date().getFullYear() - 2007,
   qualityScore: 99,
 };
 
 export const navLinks = [
+  { label: 'About', href: '/about' },
   { label: 'Products', href: '/products' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Inspiration', href: '/inspiration' },
   { label: 'Resources', href: '/resources' },
-  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 

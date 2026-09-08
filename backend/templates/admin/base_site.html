@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | SMT CMS Admin{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/custom_admin.css' %}">
+<style>
+    /* Prevent any dark-mode override from browser */
+    :root {
+        color-scheme: light only;
+    }
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        🌿 SMT Portal
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

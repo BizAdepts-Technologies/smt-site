@@ -18,6 +18,7 @@ import Resources from './pages/Resources';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
+import CmsApp from './cms/CmsApp';
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -35,6 +36,13 @@ function PageTransition({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isCms = location.pathname === '/cms' || location.pathname.startsWith('/cms/');
+
+  if (isCms) {
+    return <CmsApp />;
+  }
+
   return (
     <div className="min-h-screen bg-warm-white">
       <CustomCursor />
@@ -64,3 +72,5 @@ export default function App() {
     </div>
   );
 }
+
+
