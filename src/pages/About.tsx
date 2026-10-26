@@ -68,12 +68,11 @@ export default function About() {
   }, []);
 
   return (
-    <div className="pt-32 pb-20 bg-warm-white min-h-screen">
+    <div className="pt-2 pb-20 bg-warm-white min-h-screen">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <motion.div variants={fadeUp}>
-            <span className="text-rust text-sm font-medium tracking-wider">03 / ABOUT</span>
-            <h1 className="text-4xl md:text-6xl font-light text-charcoal mt-3 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-light text-charcoal tracking-tight">
               Built on precision.<br />
               <span className="text-rust">Driven by possibility.</span>
             </h1>
@@ -82,10 +81,10 @@ export default function About() {
 
         <div className="grid lg:grid-cols-2 gap-12 mt-16">
           <AnimatedSection>
-            <motion.div variants={fadeUp} className="aspect-[4/3] overflow-hidden bg-warm-beige">
+            <motion.div variants={fadeUp} className="aspect-[4/3] overflow-hidden bg-warm-beige rounded-2xl border border-warm-beige/80 shadow-sm">
               <img
-                src={import.meta.env.BASE_URL + 'offices_commercial.jpeg'}
-                alt="SMT headquarters"
+                src={import.meta.env.BASE_URL + 'about/smt_experience_centre.webp'}
+                alt="SMT Experience Centre Muscat"
                 className="w-full h-full object-cover"
               />
             </motion.div>

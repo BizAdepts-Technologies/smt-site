@@ -21,10 +21,14 @@ export default function Footer() {
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-6">Collections</h3>
             <ul className="space-y-3">
-              {['Hinges', 'Drawers', 'Sliding Doors', 'Handles', 'Assembly Tools'].map((item) => (
-                <li key={item}>
-                  <Link to={`/products`} className="text-sm text-white/70 hover:text-gold transition-colors">
-                    {item}
+              {[
+                { name: 'Aluminium Profiles', slug: 'aluminium-profiles' },
+                { name: 'Hettich Door Handles', slug: 'door-handles' },
+                { name: 'Furniture & Storage', slug: 'furniture-accessories' },
+              ].map((item) => (
+                <li key={item.slug}>
+                  <Link to={`/products/${item.slug}`} className="text-sm text-white/70 hover:text-gold transition-colors">
+                    {item.name}
                   </Link>
                 </li>
               ))}

@@ -62,10 +62,11 @@ export default function CmsLogin({ onLogin }: { onLogin: () => void }) {
                         src="/smt-site/smt-logo.png"
                         alt="SMT Logo"
                         style={{
+                            display: 'block',
+                            margin: '0 auto 14px auto',
                             width: '90px',
                             height: 'auto',
                             objectFit: 'contain',
-                            marginBottom: '14px',
                             filter: 'drop-shadow(0 4px 12px rgba(122,69,34,0.25))',
                         }}
                     />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from './api';
-import { Building, FileText, Tags, Package, LogOut } from 'lucide-react';
+import { Building, FileText, Tags, Package, LogOut, Search, Filter, Folder, Grid, X } from 'lucide-react';
 
 
 // ─── Brown Design Tokens ─────────────────────
@@ -339,8 +339,18 @@ function ProductsTab() {
     const [showForm, setShowForm] = useState(false);
     const [editId, setEditId] = useState<number | null>(null);
     const [formProduct, setFormProduct] = useState({ title: '', description: '', category: '' });
+    const [currentImage, setCurrentImage] = useState<string | null>(null);
+    const [removeCurrentImage, setRemoveCurrentImage] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [toast, setToast] = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
+    const [imageToDelete, setImageToDelete] = useState<any | null>(null);
+    const [deletingImage, setDeletingImage] = useState(false);
+
+    // Search and Filter State
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState<string | number>('all');
+    const [viewMode, setViewMode] = useState<'grouped' | 'grid'>('grouped');
+    const [imageFilter, setImageFilter] = useState<'all' | 'with_image' | 'no_image'>('all');
 
     const load = () => {
         api.getProducts().then(r => setProducts(r.data));
@@ -348,16 +358,25 @@ function ProductsTab() {
     };
     useEffect(() => { load(); }, []);
 
-    const openCreate = () => {
+    const openCreate = (prefillCategoryId?: string | number) => {
         setEditId(null);
-        setFormProduct({ title: '', description: '', category: '' });
+        setFormProduct({
+            title: '',
+            description: '',
+            category: prefillCategoryId ? String(prefillCategoryId) : (categories[0]?.id ? String(categories[0].id) : '')
+        });
+        setCurrentImage(null);
+        setRemoveCurrentImage(false);
         setImageFile(null);
         setShowForm(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const openEdit = (p: any) => {
         setEditId(p.id);
-        setFormProduct({ title: p.title, description: p.description || '', category: p.category });
+        setFormProduct({ title: p.title, description: p.description || '', category: String(p.category) });
+        setCurrentImage(p.image || null);
+        setRemoveCurrentImage(false);
         setImageFile(null);
         setShowForm(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -368,15 +387,19 @@ function ProductsTab() {
         fd.append('title', formProduct.title);
         fd.append('description', formProduct.description);
         fd.append('category', formProduct.category);
-        if (imageFile) fd.append('image', imageFile);
+        if (imageFile) {
+            fd.append('image', imageFile);
+        } else if (removeCurrentImage) {
+            fd.append('delete_image', 'true');
+        }
 
         try {
             if (editId) {
                 await api.updateProduct(editId, fd);
-                setToast({ msg: 'Product updated!', type: 'success' });
+                setToast({ msg: 'Product updated successfully!', type: 'success' });
             } else {
                 await api.createProduct(fd);
-                setToast({ msg: 'Product added!', type: 'success' });
+                setToast({ msg: 'Product added successfully!', type: 'success' });
             }
             setShowForm(false);
             load();
@@ -386,26 +409,178 @@ function ProductsTab() {
     };
 
     const del = async (id: number) => {
-        if (!confirm('Delete this product?')) return;
-        try { await api.deleteProduct(id); load(); setToast({ msg: 'Deleted.', type: 'success' }); }
-        catch { setToast({ msg: 'Failed.', type: 'error' }); }
+        if (!confirm('Are you sure you want to delete this product?')) return;
+        try { await api.deleteProduct(id); load(); setToast({ msg: 'Product deleted.', type: 'success' }); }
+        catch { setToast({ msg: 'Failed to delete product.', type: 'error' }); }
     };
+
+    const confirmDeleteImage = async () => {
+        if (!imageToDelete) return;
+        setDeletingImage(true);
+        try {
+            await api.deleteProductImage(imageToDelete.id);
+            setToast({ msg: `Image for "${imageToDelete.title}" deleted.`, type: 'success' });
+            if (editId === imageToDelete.id) {
+                setCurrentImage(null);
+                setRemoveCurrentImage(false);
+            }
+            setImageToDelete(null);
+            load();
+        } catch {
+            setToast({ msg: 'Failed to delete image.', type: 'error' });
+        } finally {
+            setDeletingImage(false);
+        }
+    };
+
+    // Helper functions for category identification
+    const getCategoryName = (p: any) => {
+        if (p.category_name) return p.category_name;
+        const cat = categories.find(c => String(c.id) === String(p.category) || c.slug === p.category_slug);
+        return cat ? cat.name : 'Uncategorized';
+    };
+
+    // Category count mapping for filter pills
+    const categoryCounts = categories.reduce((acc: Record<string, number>, cat) => {
+        acc[String(cat.id)] = products.filter(p => String(p.category) === String(cat.id) || p.category_slug === cat.slug).length;
+        return acc;
+    }, {});
+
+    // Filter products based on search, category pill, and image filter
+    const filteredProducts = products.filter(p => {
+        const q = searchQuery.trim().toLowerCase();
+        const catName = getCategoryName(p).toLowerCase();
+        const matchesSearch = !q ||
+            p.title.toLowerCase().includes(q) ||
+            (p.description && p.description.toLowerCase().includes(q)) ||
+            catName.includes(q);
+
+        const matchesCategory = selectedCategory === 'all' ||
+            String(p.category) === String(selectedCategory) ||
+            p.category_slug === selectedCategory;
+
+        const matchesImage = imageFilter === 'all' ||
+            (imageFilter === 'with_image' ? Boolean(p.image) : !p.image);
+
+        return matchesSearch && matchesCategory && matchesImage;
+    });
+
+    const renderProductCard = (p: any) => (
+        <div key={p.id} style={{ border: `1.5px solid ${C.grey200}`, borderRadius: '12px', overflow: 'hidden', background: C.white, boxShadow: '0 1px 4px rgba(60,25,10,.06)', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ position: 'relative' }}>
+                {p.image
+                    ? <img src={p.image} alt={p.title} style={{ width: '100%', height: '140px', objectFit: 'cover' }} />
+                    : <div style={{ width: '100%', height: '140px', background: `linear-gradient(135deg, ${C.brown100}, ${C.brown200})`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.brown600 }}><Package size={40} /></div>
+                }
+                {p.image && (
+                    <button
+                        type="button"
+                        title="Delete image only"
+                        style={{
+                            position: 'absolute', top: '8px', right: '8px',
+                            background: 'rgba(255,255,255,0.95)', border: '1px solid #fca5a5',
+                            borderRadius: '6px', padding: '4px 8px', fontSize: '11px',
+                            cursor: 'pointer', color: '#b91c1c', fontWeight: 600,
+                            boxShadow: '0 2px 6px rgba(0,0,0,0.12)', display: 'flex', alignItems: 'center', gap: '4px'
+                        }}
+                        onClick={() => setImageToDelete(p)}
+                    >
+                        🗑️ Remove Image
+                    </button>
+                )}
+                <div style={{
+                    position: 'absolute', bottom: '8px', left: '8px',
+                    background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)',
+                    color: '#fff', fontSize: '10.5px', padding: '2px 7px',
+                    borderRadius: '4px', fontWeight: 600
+                }}>
+                    #{p.id}
+                </div>
+            </div>
+            <div style={{ padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ fontSize: '10.5px', color: C.brown500, fontWeight: 700, textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.4px' }}>
+                    {getCategoryName(p)}
+                </div>
+                <p style={{ margin: '0 0 4px', fontWeight: 600, fontSize: '13.5px', color: C.grey900, lineHeight: 1.3 }}>{p.title}</p>
+                {p.description && <p style={{ margin: '0 0 10px', fontSize: '12px', color: C.grey500, lineHeight: 1.4, flex: 1 }}>{p.description}</p>}
+                <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', paddingTop: '8px' }}>
+                    <button style={{ ...S.btnOutline, padding: '5px 10px', fontSize: '12px', flex: 1 }} onClick={() => openEdit(p)}>Edit</button>
+                    <button style={{ ...S.btnRed, padding: '5px 10px', fontSize: '12px', flex: 1 }} onClick={() => del(p.id)}>Delete</button>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div>
             {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+
+            {/* Image Delete Confirmation Modal with Preview */}
+            {imageToDelete && (
+                <div style={{
+                    position: 'fixed', inset: 0, zIndex: 10000,
+                    background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(3px)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    padding: '20px'
+                }}>
+                    <div style={{
+                        background: '#ffffff', borderRadius: '16px', maxWidth: '460px', width: '100%',
+                        padding: '28px', boxShadow: '0 20px 50px rgba(0,0,0,0.25)',
+                        border: '1.5px solid #fee2e2'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                            <span style={{ fontSize: '24px' }}>⚠️</span>
+                            <h3 style={{ margin: 0, fontSize: '18px', color: '#991b1b', fontWeight: 700 }}>
+                                Confirm Delete Product Image
+                            </h3>
+                        </div>
+                        <p style={{ margin: '0 0 16px', fontSize: '13.5px', color: '#4a3828', lineHeight: 1.5 }}>
+                            Are you sure you want to permanently delete the image for <strong>{imageToDelete.title}</strong>? The image will be removed from disk.
+                        </p>
+                        {imageToDelete.image && (
+                            <div style={{ background: '#f8f7f6', border: '1.5px solid #e2d9d0', borderRadius: '12px', padding: '12px', textAlign: 'center', marginBottom: '20px' }}>
+                                <img
+                                    src={imageToDelete.image}
+                                    alt={imageToDelete.title}
+                                    style={{ maxWidth: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: '8px' }}
+                                />
+                            </div>
+                        )}
+                        <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                            <button
+                                style={S.btnOutline}
+                                onClick={() => setImageToDelete(null)}
+                                disabled={deletingImage}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                style={{ ...S.btnRed, background: '#dc2626', color: '#ffffff', border: 'none', padding: '9px 20px', fontWeight: 600 }}
+                                onClick={confirmDeleteImage}
+                                disabled={deletingImage}
+                            >
+                                {deletingImage ? 'Deleting...' : '🗑️ Yes, Delete Image'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div style={S.card}>
                 <div style={S.cardHeader}>
                     <h3 style={{ ...S.cardTitle, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <Package size={18} /> Products
+                        <Package size={18} /> Products Management
+                        <span style={{ fontSize: '12px', background: C.brown200, color: C.brown900, padding: '2px 8px', borderRadius: '12px', fontWeight: 700 }}>
+                            {products.length} total
+                        </span>
                     </h3>
-                    <button style={S.btnBrown} onClick={() => setShowForm(!showForm)}>
+                    <button style={S.btnBrown} onClick={() => { if (showForm) setShowForm(false); else openCreate(); }}>
                         {showForm ? 'Cancel' : '+ Add Product'}
                     </button>
                 </div>
                 <div style={S.cardBody}>
                     {showForm && (
-                        <div style={{ border: `1.5px solid ${C.brown200}`, borderRadius: '12px', padding: '20px', marginBottom: '20px', background: C.brown50 }}>
+                        <div style={{ border: `1.5px solid ${C.brown200}`, borderRadius: '12px', padding: '20px', marginBottom: '24px', background: C.brown50 }}>
                             <h4 style={{ margin: '0 0 16px', color: C.brown700, fontSize: '14px', fontWeight: 600 }}>
                                 {editId ? 'Edit Product' : 'New Product'}
                             </h4>
@@ -418,16 +593,52 @@ function ProductsTab() {
                                     <label style={S.label}>Category</label>
                                     <select style={{ ...S.input, background: C.brown50 }} value={formProduct.category} onChange={e => setFormProduct({ ...formProduct, category: e.target.value })}>
                                         <option value="">Select category…</option>
-                                        {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                                        {categories.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
                                     </select>
                                 </div>
                                 <div style={{ gridColumn: '1/-1' }}>
                                     <label style={S.label}>Description</label>
                                     <textarea rows={2} style={{ ...S.input, resize: 'vertical' }} value={formProduct.description} onChange={e => setFormProduct({ ...formProduct, description: e.target.value })} placeholder="Short description…" />
                                 </div>
+
+                                {/* Current Image Preview & Deletion Option */}
+                                {editId && currentImage && !removeCurrentImage && (
+                                    <div style={{ gridColumn: '1/-1', marginBottom: '14px', background: '#ffffff', border: `1.5px solid ${C.grey200}`, borderRadius: '10px', padding: '14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                                            <img src={currentImage} alt="Current" style={{ width: '70px', height: '70px', objectFit: 'cover', borderRadius: '8px', border: `1px solid ${C.grey200}` }} />
+                                            <div>
+                                                <div style={{ fontSize: '12.5px', fontWeight: 600, color: C.grey900 }}>Current Product Image</div>
+                                                <div style={{ fontSize: '11.5px', color: C.grey500, marginTop: '2px' }}>Upload a new image below to replace, or delete this image directly.</div>
+                                            </div>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '8px' }}>
+                                            <button
+                                                type="button"
+                                                style={{ ...S.btnRed, padding: '6px 12px', fontSize: '12px' }}
+                                                onClick={() => setImageToDelete({ id: editId, title: formProduct.title, image: currentImage })}
+                                            >
+                                                🗑️ Delete Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {editId && currentImage && (
+                                    <div style={{ gridColumn: '1/-1', marginBottom: '10px' }}>
+                                        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: '#b91c1c', cursor: 'pointer', fontWeight: 500 }}>
+                                            <input
+                                                type="checkbox"
+                                                checked={removeCurrentImage}
+                                                onChange={e => setRemoveCurrentImage(e.target.checked)}
+                                            />
+                                            Remove current image without replacement
+                                        </label>
+                                    </div>
+                                )}
+
                                 <div style={{ gridColumn: '1/-1' }}>
-                                    <label style={S.label}>{editId ? 'New Image (leave blank to keep current)' : 'Product Image'}</label>
-                                    <input type="file" accept="image/*" style={{ ...S.input, padding: '6px' }} onChange={e => setImageFile(e.target.files?.[0] || null)} />
+                                    <label style={S.label}>{editId ? 'Upload New Image (optional replace)' : 'Product Image'}</label>
+                                    <input type="file" accept="image/*" style={{ ...S.input, padding: '6px' }} onChange={e => { setImageFile(e.target.files?.[0] || null); setRemoveCurrentImage(false); }} />
                                 </div>
                             </div>
                             <button style={S.btnBrown} onClick={save}>
@@ -436,26 +647,322 @@ function ProductsTab() {
                         </div>
                     )}
 
-                    {products.length === 0 && <p style={{ color: C.grey500, textAlign: 'center', padding: '20px' }}>No products yet. Add one!</p>}
-
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '14px' }}>
-                        {products.map(p => (
-                            <div key={p.id} style={{ border: `1.5px solid ${C.grey200}`, borderRadius: '12px', overflow: 'hidden', background: C.white, boxShadow: '0 1px 4px rgba(60,25,10,.06)' }}>
-                                {p.image
-                                    ? <img src={p.image} alt={p.title} style={{ width: '100%', height: '130px', objectFit: 'cover' }} />
-                                    : <div style={{ width: '100%', height: '130px', background: `linear-gradient(135deg, ${C.brown100}, ${C.brown200})`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: C.brown600 }}><Package size={40} /></div>
-                                }
-                                <div style={{ padding: '12px 14px' }}>
-                                    <p style={{ margin: '0 0 4px', fontWeight: 600, fontSize: '13px', color: C.grey900 }}>{p.title}</p>
-                                    {p.description && <p style={{ margin: '0 0 10px', fontSize: '12px', color: C.grey500, lineHeight: 1.5 }}>{p.description}</p>}
-                                    <div style={{ display: 'flex', gap: '8px' }}>
-                                        <button style={{ ...S.btnOutline, padding: '5px 12px', fontSize: '12px', flex: 1 }} onClick={() => openEdit(p)}>Edit</button>
-                                        <button style={{ ...S.btnRed, padding: '5px 12px', fontSize: '12px', flex: 1 }} onClick={() => del(p.id)}>Delete</button>
-                                    </div>
-                                </div>
+                    {/* ─── Search & Category Filtering Bar ─── */}
+                    <div style={{
+                        background: '#ffffff',
+                        border: `1.5px solid ${C.grey200}`,
+                        borderRadius: '12px',
+                        padding: '16px',
+                        marginBottom: '20px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '14px',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+                    }}>
+                        {/* Search Input + View Mode Toggle + Image Filter */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <div style={{ position: 'relative', flex: '1 1 280px', maxWidth: '480px' }}>
+                                <Search size={16} color={C.grey500} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                                <input
+                                    type="text"
+                                    placeholder="Search products by title, description, category..."
+                                    value={searchQuery}
+                                    onChange={e => setSearchQuery(e.target.value)}
+                                    style={{
+                                        ...S.input,
+                                        paddingLeft: '38px',
+                                        paddingRight: searchQuery ? '36px' : '14px',
+                                        marginBottom: 0,
+                                        borderRadius: '24px',
+                                        background: C.grey50,
+                                        border: `1.5px solid ${C.grey200}`,
+                                        fontSize: '13px',
+                                    }}
+                                />
+                                {searchQuery && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setSearchQuery('')}
+                                        style={{
+                                            position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
+                                            background: 'none', border: 'none', cursor: 'pointer', color: C.grey500, padding: '4px'
+                                        }}
+                                    >
+                                        <X size={15} />
+                                    </button>
+                                )}
                             </div>
-                        ))}
+
+                            {/* View Mode Toggle: Under Categories vs Flat Grid */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <div style={{ display: 'inline-flex', background: C.grey100, padding: '3px', borderRadius: '8px', border: `1px solid ${C.grey200}` }}>
+                                    <button
+                                        type="button"
+                                        onClick={() => setViewMode('grouped')}
+                                        style={{
+                                            background: viewMode === 'grouped' ? C.white : 'transparent',
+                                            color: viewMode === 'grouped' ? C.brown800 : C.grey700,
+                                            border: 'none',
+                                            borderRadius: '6px',
+                                            padding: '5px 12px',
+                                            fontSize: '12px',
+                                            fontWeight: 600,
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '6px',
+                                            boxShadow: viewMode === 'grouped' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                                        }}
+                                    >
+                                        <Folder size={14} /> Under Categories
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setViewMode('grid')}
+                                        style={{
+                                            background: viewMode === 'grid' ? C.white : 'transparent',
+                                            color: viewMode === 'grid' ? C.brown800 : C.grey700,
+                                            border: 'none',
+                                            borderRadius: '6px',
+                                            padding: '5px 12px',
+                                            fontSize: '12px',
+                                            fontWeight: 600,
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '6px',
+                                            boxShadow: viewMode === 'grid' ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                                        }}
+                                    >
+                                        <Grid size={14} /> All Grid
+                                    </button>
+                                </div>
+
+                                {/* Image Filter Dropdown */}
+                                <select
+                                    value={imageFilter}
+                                    onChange={e => setImageFilter(e.target.value as any)}
+                                    style={{
+                                        padding: '7px 12px',
+                                        borderRadius: '8px',
+                                        border: `1.5px solid ${C.grey200}`,
+                                        fontSize: '12px',
+                                        fontWeight: 500,
+                                        background: '#fff',
+                                        color: C.grey700,
+                                        outline: 'none',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    <option value="all">All Images</option>
+                                    <option value="with_image">✓ Has Image</option>
+                                    <option value="no_image">✗ No Image</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {/* Category Filter Pills */}
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                                <Filter size={13} color={C.brown600} />
+                                <span style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', color: C.brown600 }}>
+                                    Filter by Category:
+                                </span>
+                            </div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedCategory('all')}
+                                    style={{
+                                        border: selectedCategory === 'all' ? `1.5px solid ${C.brown700}` : `1.5px solid ${C.grey200}`,
+                                        background: selectedCategory === 'all' ? C.brown700 : '#fff',
+                                        color: selectedCategory === 'all' ? '#fff' : C.grey700,
+                                        padding: '5px 12px',
+                                        borderRadius: '20px',
+                                        fontSize: '12px',
+                                        fontWeight: 600,
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '6px',
+                                        transition: 'all .15s',
+                                    }}
+                                >
+                                    <span>All</span>
+                                    <span style={{
+                                        fontSize: '10.5px',
+                                        background: selectedCategory === 'all' ? 'rgba(255,255,255,0.25)' : C.grey100,
+                                        padding: '1px 6px',
+                                        borderRadius: '10px',
+                                    }}>
+                                        {products.length}
+                                    </span>
+                                </button>
+
+                                {categories.map(cat => {
+                                    const isSelected = String(selectedCategory) === String(cat.id) || selectedCategory === cat.slug;
+                                    const count = categoryCounts[String(cat.id)] || 0;
+                                    return (
+                                        <button
+                                            key={cat.id}
+                                            type="button"
+                                            onClick={() => setSelectedCategory(isSelected ? 'all' : cat.id)}
+                                            style={{
+                                                border: isSelected ? `1.5px solid ${C.brown700}` : `1.5px solid ${C.grey200}`,
+                                                background: isSelected ? C.brown700 : '#fff',
+                                                color: isSelected ? '#fff' : C.grey700,
+                                                padding: '5px 12px',
+                                                borderRadius: '20px',
+                                                fontSize: '12px',
+                                                fontWeight: 600,
+                                                cursor: 'pointer',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '6px',
+                                                transition: 'all .15s',
+                                            }}
+                                        >
+                                            <span>{cat.name}</span>
+                                            <span style={{
+                                                fontSize: '10.5px',
+                                                background: isSelected ? 'rgba(255,255,255,0.25)' : C.grey100,
+                                                padding: '1px 6px',
+                                                borderRadius: '10px',
+                                            }}>
+                                                {count}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* Status bar */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px', borderTop: `1px solid ${C.grey100}`, fontSize: '12px', color: C.grey500 }}>
+                            <span>
+                                Showing <strong>{filteredProducts.length}</strong> of {products.length} products
+                                {selectedCategory !== 'all' && (
+                                    <> in category <strong>{categories.find(c => String(c.id) === String(selectedCategory) || c.slug === selectedCategory)?.name || selectedCategory}</strong></>
+                                )}
+                                {searchQuery && <> matching "<strong>{searchQuery}</strong>"</>}
+                            </span>
+
+                            {(searchQuery || selectedCategory !== 'all' || imageFilter !== 'all') && (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setSearchQuery('');
+                                        setSelectedCategory('all');
+                                        setImageFilter('all');
+                                    }}
+                                    style={{
+                                        background: 'none', border: 'none', color: '#b91c1c', cursor: 'pointer', fontWeight: 600, fontSize: '12px'
+                                    }}
+                                >
+                                    ✕ Clear filters
+                                </button>
+                            )}
+                        </div>
                     </div>
+
+                    {/* ─── Product Listing ─── */}
+                    {filteredProducts.length === 0 ? (
+                        <div style={{ textAlign: 'center', padding: '48px 20px', background: C.grey50, borderRadius: '12px', border: `1.5px dashed ${C.grey200}` }}>
+                            <Package size={44} color={C.grey500} style={{ marginBottom: '8px', opacity: 0.6 }} />
+                            <h4 style={{ margin: '0 0 6px', color: C.grey900, fontSize: '15px' }}>No products match your criteria</h4>
+                            <p style={{ margin: 0, color: C.grey500, fontSize: '13px' }}>Try searching with a different keyword or select another category filter.</p>
+                            <button
+                                style={{ ...S.btnOutline, marginTop: '16px', fontSize: '12px' }}
+                                onClick={() => { setSearchQuery(''); setSelectedCategory('all'); setImageFilter('all'); }}
+                            >
+                                Reset all filters
+                            </button>
+                        </div>
+                    ) : viewMode === 'grouped' ? (
+                        /* Grouped Under Categories View */
+                        <div>
+                            {categories
+                                .filter(cat => {
+                                    if (selectedCategory !== 'all' && String(selectedCategory) !== String(cat.id) && selectedCategory !== cat.slug) {
+                                        return false;
+                                    }
+                                    const catProducts = filteredProducts.filter(p => String(p.category) === String(cat.id) || p.category_slug === cat.slug);
+                                    return catProducts.length > 0;
+                                })
+                                .map(cat => {
+                                    const catProducts = filteredProducts.filter(p => String(p.category) === String(cat.id) || p.category_slug === cat.slug);
+                                    return (
+                                        <div key={cat.id} style={{ marginBottom: '32px' }}>
+                                            {/* Category Section Header */}
+                                            <div style={{
+                                                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                                                padding: '11px 18px', background: 'linear-gradient(135deg, #fdf9f6 0%, #f7eee7 100%)',
+                                                border: `1.5px solid ${C.brown200}`, borderRadius: '10px',
+                                                marginBottom: '14px'
+                                            }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                    <Folder size={18} color={C.brown600} />
+                                                    <span style={{ fontWeight: 700, fontSize: '14.5px', color: C.brown900 }}>{cat.name}</span>
+                                                    <span style={{
+                                                        background: C.brown800, color: '#fff', fontSize: '11px',
+                                                        fontWeight: 700, padding: '2px 8px', borderRadius: '12px'
+                                                    }}>
+                                                        {catProducts.length} {catProducts.length === 1 ? 'item' : 'items'}
+                                                    </span>
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    style={{
+                                                        background: '#fff', border: `1px solid ${C.brown300}`,
+                                                        color: C.brown700, borderRadius: '6px', padding: '4px 10px',
+                                                        fontSize: '11.5px', fontWeight: 600, cursor: 'pointer'
+                                                    }}
+                                                    onClick={() => openCreate(cat.id)}
+                                                >
+                                                    + Add to {cat.name}
+                                                </button>
+                                            </div>
+
+                                            {/* Product Cards Grid for this category */}
+                                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: '14px' }}>
+                                                {catProducts.map(renderProductCard)}
+                                            </div>
+                                        </div>
+                                    );
+                                })
+                            }
+
+                            {/* Any uncategorized products */}
+                            {(() => {
+                                const uncategorized = filteredProducts.filter(p => !categories.some(c => String(c.id) === String(p.category) || c.slug === p.category_slug));
+                                if (uncategorized.length === 0) return null;
+                                return (
+                                    <div style={{ marginBottom: '32px' }}>
+                                        <div style={{
+                                            display: 'flex', alignItems: 'center', gap: '10px',
+                                            padding: '11px 18px', background: C.grey100,
+                                            border: `1.5px solid ${C.grey200}`, borderRadius: '10px',
+                                            marginBottom: '14px'
+                                        }}>
+                                            <Folder size={18} color={C.grey500} />
+                                            <span style={{ fontWeight: 700, fontSize: '14.5px', color: C.grey900 }}>Uncategorized</span>
+                                            <span style={{ background: C.grey500, color: '#fff', fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '12px' }}>
+                                                {uncategorized.length}
+                                            </span>
+                                        </div>
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: '14px' }}>
+                                            {uncategorized.map(renderProductCard)}
+                                        </div>
+                                    </div>
+                                );
+                            })()}
+                        </div>
+                    ) : (
+                        /* Flat Grid View */
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: '14px' }}>
+                            {filteredProducts.map(renderProductCard)}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

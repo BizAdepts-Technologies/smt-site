@@ -20,12 +20,11 @@ export default function Solutions() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="pt-32 pb-20 bg-warm-white min-h-screen">
+    <div className="pt-2 pb-20 bg-warm-white min-h-screen">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <motion.div variants={fadeUp}>
-            <span className="text-rust text-sm font-medium tracking-wider">02 / SOLUTIONS</span>
-            <h1 className="text-4xl md:text-6xl font-light text-charcoal mt-3 tracking-tight">Solutions for every space.</h1>
+            <h1 className="text-4xl md:text-6xl font-light text-charcoal tracking-tight">Solutions for every space.</h1>
             <p className="text-warm-grey mt-4 max-w-xl">Intelligent furniture systems designed for how people actually live and work.</p>
           </motion.div>
         </AnimatedSection>

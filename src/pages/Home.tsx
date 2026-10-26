@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, ChevronDown, Download, FileText, Wrench, Ruler, HelpCircle, BookOpen, Users, MessageSquare } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Download, FileText, Wrench, Ruler, HelpCircle, BookOpen, Users, MessageSquare } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import Newsletter from '../components/Newsletter';
+import HeroSlider, { type HeroSlide } from '../components/HeroSlider';
 import { useCounter } from '../hooks/useCounter';
 import { categories, products } from '../data/products';
 import { articles } from '../data/articles';
@@ -39,11 +40,60 @@ function SectionHeading({ number, title, subtitle }: { number: string; title: st
   );
 }
 
+const heroSlides: HeroSlide[] = [
+  {
+    image: import.meta.env.BASE_URL + 'home_hero.webp',
+    lines: ['Intelligent', 'functions.', 'Brought to life.'],
+    tag: 'Premium furniture fittings',
+    text: 'Built into furniture of all kinds, our fittings are usually invisible. But they are no less essential for that.',
+    cta: 'Explore collection',
+    href: '/products',
+    nextLabel: 'Collections',
+  },
+  {
+    image: import.meta.env.BASE_URL + 'hero_slide_movement.webp',
+    lines: ['Movement', 'that feels', 'effortless.'],
+    tag: 'Collections',
+    text: 'Precision-engineered aluminium profiles, luxury handles, and intelligent storage solutions for the most elegant spaces.',
+    cta: 'View products',
+    href: '/products',
+    nextLabel: 'Solutions',
+  },
+  {
+    image: import.meta.env.BASE_URL + 'hero_slide_solutions.webp',
+    lines: ['Solutions for', 'every room', 'and workspace.'],
+    tag: 'Solutions',
+    text: 'From kitchens and wardrobes to offices and hospitality, we fit the function to the space.',
+    cta: 'See solutions',
+    href: '/solutions',
+    nextLabel: 'Projects',
+  },
+  {
+    image: projects[0]?.image ?? import.meta.env.BASE_URL + 'home_hero.webp',
+    lines: ['Built into', 'projects across', 'the region.'],
+    tag: 'Case study',
+    text: projects[0]?.description ?? 'See how our fittings perform in real projects, from first sketch to final install.',
+    cta: 'View projects',
+    href: '/projects',
+    nextLabel: 'Inspiration',
+  },
+  {
+    image: import.meta.env.BASE_URL + 'luxury_hero_bg.webp',
+    lines: ['Ideas for', 'better', 'interiors.'],
+    tag: 'Inspiration',
+    text: 'Guides, specifications and design stories from our technical and design team in Muscat.',
+    cta: 'Get in touch',
+    href: '/contact',
+    nextLabel: 'Intelligent functions',
+  },
+];
+
 export default function Home() {
   const [activeSolution, setActiveSolution] = useState(0);
   const [resourceFilter, setResourceFilter] = useState('all');
   const [showToast, setShowToast] = useState(false);
-  const [cookieBanner, setCookieBanner] = useState(true);
+  // Cookie banner disabled/hidden by default (can be re-enabled if needed)
+  const [cookieBanner, setCookieBanner] = useState(false);
 
   const stats1 = useCounter(companyInfo.yearsExperience);
   const stats2 = useCounter(companyInfo.solutions);
@@ -60,51 +110,7 @@ export default function Home() {
   return (
     <div className="bg-warm-white">
       {/* HERO */}
-      <section className="relative h-[100dvh] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-white">
-          <img
-            src={import.meta.env.BASE_URL + 'home_hero.jpg'}
-            alt="Luxury modern furniture interior"
-            className="w-full h-full object-cover mix-blend-multiply opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-warm-white/90 via-warm-white/40 to-transparent" />
-        </div>
-        <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-            className="max-w-2xl"
-          >
-            <motion.p variants={fadeUp} className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-6">
-              Premium Furniture Fittings • Muscat, Oman
-            </motion.p>
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-normal text-charcoal leading-[1.1] tracking-tight">
-              Intelligent functions.<br />Brought to life.
-            </motion.h1>
-            <motion.p variants={fadeUp} className="text-charcoal/80 text-lg md:text-xl mt-6 max-w-lg leading-relaxed">
-              Built into furniture of all kinds, our products are usually invisible. But they are no less essential for that.
-            </motion.p>
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
-              <Link to="/products" className="inline-flex items-center gap-2 px-8 py-4 bg-gold text-white font-medium hover:bg-gold-deep transition-colors">
-                Explore Collection <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/solutions" className="inline-flex items-center gap-2 px-8 py-4 border border-charcoal/30 text-charcoal font-medium hover:border-gold hover:text-gold transition-colors">
-                Our Solutions <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-charcoal/60"
-        >
-          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
-          <ChevronDown className="w-5 h-5 animate-bounce" />
-        </motion.div>
-      </section>
+      <HeroSlider slides={heroSlides} />
 
       {/* BRAND STATEMENT */}
       <section className="py-32 md:py-40 bg-white">
@@ -134,28 +140,30 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat, i) => (
               <AnimatedSection key={cat.id}>
-                <motion.div
-                  variants={fadeUp}
-                  className={`group relative overflow-hidden cursor-pointer bg-white border border-warm-beige flex flex-col h-full`}
-                >
-                  <div className="aspect-[3/2] overflow-hidden bg-warm-white">
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6 bg-white flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="text-gold text-xs font-medium tracking-wider">{cat.count} Products</span>
-                      <h3 className="text-charcoal text-xl font-medium mt-1">{cat.name}</h3>
-                      <p className="text-warm-grey text-sm mt-2 line-clamp-2">{cat.description}</p>
+                <Link to={`/products/${cat.id}`} className="block h-full">
+                  <motion.div
+                    variants={fadeUp}
+                    className={`group relative overflow-hidden cursor-pointer bg-white border border-warm-beige flex flex-col h-full hover:border-gold transition-colors`}
+                  >
+                    <div className="aspect-[3/2] overflow-hidden bg-warm-white">
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                      />
                     </div>
-                    <div className="flex items-center gap-2 mt-4 text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      Explore <ArrowUpRight className="w-4 h-4" />
+                    <div className="p-6 bg-white flex-1 flex flex-col justify-between">
+                      <div>
+                        <span className="text-gold text-xs font-medium tracking-wider">{cat.count} Products</span>
+                        <h3 className="text-charcoal text-xl font-medium mt-1 group-hover:text-gold transition-colors">{cat.name}</h3>
+                        <p className="text-warm-grey text-sm mt-2 line-clamp-2">{cat.description}</p>
+                      </div>
+                      <div className="flex items-center gap-2 mt-4 text-gold text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        Explore <ArrowUpRight className="w-4 h-4" />
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
@@ -167,22 +175,22 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <AnimatedSection>
-              <motion.div variants={fadeUp} className="relative overflow-hidden bg-warm-beige aspect-square">
+              <motion.div variants={fadeUp} className="relative overflow-hidden bg-warm-beige aspect-[4/3] rounded-sm">
                 <img
-                  src={import.meta.env.BASE_URL + 'silentclose_hinge.jpeg'}
-                  alt="Precision Hinge"
+                  src={import.meta.env.BASE_URL + 'hettich_aluminium_profile/hettich_gola_profile_system.webp'}
+                  alt="Hettich Gola Handleless Profile System"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
             </AnimatedSection>
             <AnimatedSection>
               <motion.div variants={fadeUp}>
-                <span className="text-gold text-sm font-medium tracking-wider">Featured Fitting</span>
-                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">The SilentClose Hinge</h2>
-                <p className="text-gold text-xl mt-2 font-light">Precision you can feel. Elegance you can see.</p>
-                <p className="text-warm-grey mt-6 leading-relaxed">Engineered from premium materials with advanced soft-closing technology, our signature hinge delivers flawlessly smooth articulation while ensuring long-lasting durability for modern cabinetry.</p>
+                <span className="text-gold text-sm font-medium tracking-wider">Featured Architectural Profile</span>
+                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">Hettich Gola System</h2>
+                <p className="text-gold text-xl mt-2 font-light">Seamless handleless elegance. Architectural precision.</p>
+                <p className="text-warm-grey mt-6 leading-relaxed">Engineered from extruded architectural aluminium with continuous linear shadow channels, the Hettich Gola system delivers true minimalist handleless cabinetry for luxury kitchen islands, wardrobes, and contemporary living spaces.</p>
                 <div className="mt-8 space-y-3">
-                  {['Soft-close technology', 'Adjustable tension', 'High load capacity', 'Premium finish'].map((b) => (
+                  {['Integrated finger pull recess', 'Continuous horizontal & vertical lines', 'C-Type & L-Type configurations', 'Premium anodized architectural finish'].map((b) => (
                     <div key={b} className="flex items-center gap-3 text-sm text-charcoal">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full" />
                       {b}
@@ -190,11 +198,11 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-4 mt-10">
-                  <Link to="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-white text-sm font-medium hover:bg-gold-deep transition-colors">
-                    Explore Product <ArrowRight className="w-4 h-4" />
+                  <Link to="/products/aluminium-profiles" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-white text-sm font-medium hover:bg-gold-deep transition-colors">
+                    Explore Collection <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <Link to="/resources" className="inline-flex items-center gap-2 px-6 py-3 border border-charcoal/20 text-charcoal text-sm font-medium hover:border-gold hover:text-gold transition-colors">
-                    View Specifications
+                  <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 border border-charcoal/20 text-charcoal text-sm font-medium hover:border-gold hover:text-gold transition-colors">
+                    Request Consultation
                   </Link>
                 </div>
               </motion.div>

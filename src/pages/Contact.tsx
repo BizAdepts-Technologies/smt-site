@@ -28,12 +28,11 @@ export default function Contact() {
   };
 
   return (
-    <div className="pt-32 pb-20 bg-warm-white min-h-screen">
+    <div className="pt-2 pb-20 bg-warm-white min-h-screen">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <motion.div variants={fadeUp}>
-            <span className="text-rust text-sm font-medium tracking-wider">07 / CONTACT</span>
-            <h1 className="text-4xl md:text-6xl font-light text-charcoal mt-3 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-light text-charcoal tracking-tight">
               Let's build something<br /><span className="text-rust">better.</span>
             </h1>
             <p className="text-warm-grey mt-4 max-w-xl">Tell us about your project and our team will help you find the right solution.</p>

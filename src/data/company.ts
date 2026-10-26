@@ -25,19 +25,68 @@ export const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+export interface MegaMenuCategoryItem {
+  id: string;
+  title: string;
+  items: string[];
+  image: string;
+  href?: string;
+}
+
+export interface PartnerBrandMegaMenu {
+  id: 'hettich' | 'iblue';
+  name: string;
+  badge: string;
+  tagline: string;
+  description: string;
+  filterHref: string;
+  accentColor: string;
+  categories: MegaMenuCategoryItem[];
+}
+
+export const megaMenuPartners: PartnerBrandMegaMenu[] = [
+  {
+    id: 'hettich',
+    name: 'Hettich',
+    badge: 'German Engineering',
+    tagline: 'Precision Furniture Fittings & Architectural Extrusions',
+    description: 'World-renowned German fittings, handleless Gola profiles, pro luxury handles, and kitchen storage systems.',
+    filterHref: '/products?partner=hettich',
+    accentColor: 'gold',
+    categories: [
+      { id: 'aluminium-profiles', title: 'Aluminium Profiles & Gola', items: ['Gola Handleless Channels', '19mm & 45mm Glass Frames', 'Edge Banding Profiles', 'Curved Shutter Profiles'], image: import.meta.env.BASE_URL + 'hettich_aluminium_profile/aluminium_profiles_category_hero.webp' },
+      { id: 'applied-kitchens', title: 'Applied Kitchen Systems HD', items: ['Modern White Glass Suites', 'Handleless Island Suites', 'Flap Wall Cabinets', 'Sliding Wardrobe Applications'], image: import.meta.env.BASE_URL + 'hettich_applied_kitchen_images_HD/01_modern_white_glass_frame_kitchen.jpg' },
+      { id: 'door-handles', title: 'Pro Luxury Door Handles', items: ['Pro Luxury Handle 03', 'Pro Luxury Handle 04', 'Inox Brass & Red Copper', 'Architectural Alloy Levers'], image: import.meta.env.BASE_URL + 'hettich_handels/hettich_handles_category_hero.webp' },
+      { id: 'furniture-accessories', title: 'Furniture & Storage Accessories', items: ['Tandem Tall Larder Systems', 'Corner Pull-Out Pro Units', 'Slim Pantry Towers', 'In-Drawer Plate Racks'], image: import.meta.env.BASE_URL + 'hettich_accessories/hettich_accessories_hero.webp' },
+    ],
+  },
+  {
+    id: 'iblue',
+    name: 'iBlue',
+    badge: 'Architectural Systems',
+    tagline: 'Smart Access, Frameless Glass & Door Hardware',
+    description: 'Advanced biometric smart door locks, SUS304 glass patch fittings, hydraulic floor springs, and silent sliding systems.',
+    filterHref: '/products?partner=iblue',
+    accentColor: 'blue',
+    categories: [
+      { id: 'smart-access', title: 'Smart Digital Locks', items: ['Biometric Touch X9 Lock', 'Backlit Touch Keypad Access', 'RFID Card & App Control', 'Anti-Pick Concealed Mortise'], image: import.meta.env.BASE_URL + 'iblue_hardware/iblue_smart_lock_x9.jpg' },
+      { id: 'glass-systems', title: 'Glass Hardware & Patch Fittings', items: ['SUS304 Patch Fitting Sets', 'Concealed Floor Springs FS-500', '90° Heavy-Duty Shower Hinges', 'Pivot Top & Bottom Sets'], image: import.meta.env.BASE_URL + 'iblue_hardware/iblue_glass_patch_fitting.jpg' },
+      { id: 'door-ironmongery', title: 'Architectural Door Ironmongery', items: ['Solid Brass Mortise Handle MH-01', 'Magnetic Silent Latch Systems', 'Concealed Escutcheon Rosettes', 'Stainless Steel Lever Sets'], image: import.meta.env.BASE_URL + 'iblue_hardware/iblue_floor_spring_fs500.jpg' },
+      { id: 'sliding-systems', title: 'Sliding & Pocket Door Systems', items: ['Whisper-Glide Glass Sliding SD-80', 'Dual Hydraulic Soft-Close', 'Top-Hung Concealed Tracks', 'Heavy-Duty Glass Rollers'], image: import.meta.env.BASE_URL + 'iblue_hardware/iblue_sliding_system_sd80.jpg' },
+    ],
+  },
+];
+
 export const megaMenuCategories = [
-  { title: 'Hinges', items: ['Sensys', 'Intermat', 'SlideOn'], image: import.meta.env.BASE_URL + 'hinges&fittings.jpeg' },
-  { title: 'Drawers', items: ['AvanTech YOU', 'ArciTech', 'InnoTech Atira'], image: import.meta.env.BASE_URL + 'drawer.jpeg' },
-  { title: 'Runners', items: ['Actro 5D', 'Quadro', 'Ball Bearing'], image: import.meta.env.BASE_URL + 'drawer.jpeg' },
-  { title: 'Sliding Doors', items: ['TopLine', 'SlideLine', 'WingLine'], image: import.meta.env.BASE_URL + 'sliding_doors.jpeg' },
-  { title: 'Handles', items: ['ProLock Luxury', 'Touch-in', 'Aluminium Handles'], image: import.meta.env.BASE_URL + 'prolock_handles.jpeg' },
-  { title: 'Assembly', items: ['Practica', 'BlueMax', 'Accura'], image: import.meta.env.BASE_URL + 'assembly_machinery.jpeg' },
+  { id: 'aluminium-profiles', title: 'Aluminium Profiles', items: ['Gola Handleless', 'Frame Profiles', 'Edge Banding', 'Glass Shutters'], image: import.meta.env.BASE_URL + 'hettich_aluminium_profile/aluminium_profiles_category_hero.webp' },
+  { id: 'door-handles', title: 'Door Handles', items: ['Hettich Pro Luxury', 'Handle 04', 'Premium Bronze', 'Architectural Alloy'], image: import.meta.env.BASE_URL + 'hettich_handels/hettich_handles_category_hero.webp' },
+  { id: 'furniture-accessories', title: 'Storage & Accessories', items: ['Larder Units', 'Pull-Out Baskets', 'Corner Systems', 'Plate Organizers'], image: import.meta.env.BASE_URL + 'hettich_accessories/hettich_accessories_hero.webp' },
 ];
 
 export const solutions = [
-  { id: 'residential', title: 'Luxury Residential', description: 'Transform living spaces with furniture fittings that provide convenient and reliable operation. Usually invisible, but essential.', image: import.meta.env.BASE_URL + 'luxury_residential.jpeg' },
-  { id: 'hospitality', title: 'Hospitality', description: 'Enduring hardware for premium hotels. Built into furniture of all kinds, ensuring whisper-quiet movement and intensive use durability.', image: import.meta.env.BASE_URL + 'hospitality.jpeg' },
-  { id: 'commercial', title: 'Offices & Commercial', description: 'Table and desk systems, intelligent organizers, and sliding solutions designed for high-traffic work environments.', image: import.meta.env.BASE_URL + 'offices_commercial.jpeg' },
+  { id: 'residential', title: 'Luxury Residential', description: 'Transform living spaces with furniture fittings that provide convenient and reliable operation. Usually invisible, but essential.', image: import.meta.env.BASE_URL + 'luxury_residential.webp' },
+  { id: 'hospitality', title: 'Hospitality', description: 'Enduring hardware for premium hotels. Built into furniture of all kinds, ensuring whisper-quiet movement and intensive use durability.', image: import.meta.env.BASE_URL + 'hospitality.webp' },
+  { id: 'commercial', title: 'Offices & Commercial', description: 'Table and desk systems, intelligent organizers, and sliding solutions designed for high-traffic work environments.', image: import.meta.env.BASE_URL + 'offices_commercial.webp' },
 ];
 
 export const audienceSegments = [

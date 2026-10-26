@@ -20,7 +20,7 @@ export default function Breadcrumb() {
   if (location.pathname === '/') return null;
 
   return (
-    <nav className="pt-28 pb-4 bg-warm-white">
+    <nav className="pt-24 pb-2 bg-warm-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <ol className="flex items-center gap-2 text-sm">
           <li>

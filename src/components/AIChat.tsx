@@ -8,19 +8,19 @@ interface Message {
 }
 
 const mockResponses: Record<string, string> = {
-  'hinge': 'For modern kitchens, our SilentClose Hinge series offers whisper-quiet closure with adjustable tension. Would you like to explore the full hinge range?',
-  'drawer': 'Our Precision Drawer Systems come in multiple configurations — slim, heavy-duty, and soft-close. Which application are you planning for?',
-  'kitchen': 'For modern kitchens, our drawer systems, cabinet interior systems and soft-close hinges are ideal. Would you like to explore one of these categories?',
-  'sliding': 'Our SlideX Pro sliding systems support doors up to 80kg with whisper-quiet glide. Perfect for wardrobes and room dividers.',
-  'default': "I'd be happy to help you find the right solution. Could you tell me more about your project — is it for a kitchen, wardrobe, office, or commercial space?",
+  'profile': 'Our Hettich Aluminium Profiles collection features seamless Gola handleless systems, 19mm/45mm/55mm glass shutter frame profiles, and edge profiles. Would you like to explore aluminium profiles?',
+  'handle': 'Our Hettich Pro Luxury Handle collection features premium alloy door handles with ergonomic profiles in matte black, brass gold, satin silver, and brushed anthracite.',
+  'storage': 'For kitchen and wardrobe interiors, we supply Hettich Magic Corner units, LeMans corner solutions, tandem larder columns, and bottle pullouts.',
+  'kitchen': 'For modern kitchens, our Gola handleless aluminium profiles and luxury internal storage pullouts provide flawless function. Would you like to see our kitchen solutions?',
+  'default': "I'd be happy to help you find the right solution. Could you tell me more about your project — are you looking for aluminium profiles, luxury door handles, or internal storage accessories?",
 };
 
 function getResponse(input: string): string {
   const lower = input.toLowerCase();
-  if (lower.includes('hinge')) return mockResponses.hinge;
-  if (lower.includes('drawer')) return mockResponses.drawer;
+  if (lower.includes('profile') || lower.includes('gola') || lower.includes('frame') || lower.includes('aluminium')) return mockResponses.profile;
+  if (lower.includes('handle')) return mockResponses.handle;
+  if (lower.includes('corner') || lower.includes('storage') || lower.includes('larder') || lower.includes('pullout') || lower.includes('accessory')) return mockResponses.storage;
   if (lower.includes('kitchen')) return mockResponses.kitchen;
-  if (lower.includes('sliding') || lower.includes('door')) return mockResponses.sliding;
   return mockResponses.default;
 }
 
@@ -91,7 +91,7 @@ export default function AIChat() {
             <div className="px-4 pb-2">
               <p className="text-xs text-warm-grey mb-2">Suggested questions</p>
               <div className="flex flex-wrap gap-2">
-                {['What hinge should I use?', 'Show me drawer systems', 'Which solution for kitchens?', 'Help me find a product'].map((q) => (
+                {['Explore Aluminium Profiles', 'Show Hettich Luxury Handles', 'Kitchen Storage Accessories', 'What is Gola System?'].map((q) => (
                   <button
                     key={q}
                     onClick={() => { setInput(q); }}

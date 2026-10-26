@@ -33,12 +33,11 @@ export default function Resources() {
   };
 
   return (
-    <div className="pt-32 pb-20 bg-warm-white min-h-screen">
+    <div className="pt-2 pb-20 bg-warm-white min-h-screen">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <AnimatedSection>
           <motion.div variants={fadeUp}>
-            <span className="text-rust text-sm font-medium tracking-wider">08 / RESOURCES</span>
-            <h1 className="text-4xl md:text-6xl font-light text-charcoal mt-3 tracking-tight">Resources & downloads</h1>
+            <h1 className="text-4xl md:text-6xl font-light text-charcoal tracking-tight">Resources & downloads</h1>
             <p className="text-warm-grey mt-4 max-w-xl">Technical documents, catalogues and planning resources for professionals.</p>
           </motion.div>
         </AnimatedSection>

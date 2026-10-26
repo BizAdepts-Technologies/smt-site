@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -38,6 +39,10 @@ function PageTransition({ children }: { children: React.ReactNode }) {
 export default function App() {
   const location = useLocation();
   const isCms = location.pathname === '/cms' || location.pathname.startsWith('/cms/');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (isCms) {
     return <CmsApp />;

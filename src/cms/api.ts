@@ -46,4 +46,6 @@ export const api = {
         }),
     deleteProduct: (id: number) =>
         axios.delete(`${API_BASE}/products/${id}/`, { headers: getAuthHeaders() }),
+    deleteProductImage: (id: number) =>
+        axios.post(`${API_BASE}/products/${id}/remove_image/`, {}, { headers: getAuthHeaders() }),
 };

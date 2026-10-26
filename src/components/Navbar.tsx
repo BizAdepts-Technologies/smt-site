@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Menu, X, ChevronRight, ArrowRight } from 'lucide-react';
 import { navLinks, megaMenuCategories } from '../data/company';
 
@@ -8,13 +8,33 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const megaTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleMouseEnter = () => {
+    if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current);
+    setMegaOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    megaTimeoutRef.current = setTimeout(() => {
+      setMegaOpen(false);
+    }, 150);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleSearchSubmit = (term: string) => {
+    if (!term.trim()) return;
+    setSearchOpen(false);
+    navigate(`/products`);
+  };
 
   useEffect(() => {
     setMobileOpen(false);
@@ -24,16 +44,20 @@ export default function Navbar() {
 
   const isHome = location.pathname === '/';
   const navBg = scrolled || !isHome ? 'bg-warm-white/95 backdrop-blur-md border-b border-warm-beige' : 'bg-transparent';
-  const textColor = 'text-charcoal';
+  const textColor = (isHome && !scrolled) ? 'text-white' : 'text-charcoal';
 
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <img src={import.meta.env.BASE_URL + 'smt-logo.png'} alt="SMT Logo" className="h-14 w-auto object-contain py-1" />
+              <img
+                src={import.meta.env.BASE_URL + 'smt-logo.png'}
+                alt="SMT Logo"
+                className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 hover:scale-105"
+              />
             </Link>
 
             {/* Desktop Nav */}
@@ -41,9 +65,9 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <div
                   key={link.label}
-                  className="relative"
-                  onMouseEnter={() => link.label === 'Products' && setMegaOpen(true)}
-                  onMouseLeave={() => link.label === 'Products' && setMegaOpen(false)}
+                  className="relative h-full flex items-center py-5"
+                  onMouseEnter={() => link.label === 'Products' && handleMouseEnter()}
+                  onMouseLeave={() => link.label === 'Products' && handleMouseLeave()}
                 >
                   <Link
                     to={link.href}
@@ -86,13 +110,13 @@ export default function Navbar() {
         {megaOpen && (
           <div
             className="absolute top-full left-0 right-0 bg-warm-white border-b border-warm-beige shadow-lg"
-            onMouseEnter={() => setMegaOpen(true)}
-            onMouseLeave={() => setMegaOpen(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {megaMenuCategories.map((cat) => (
-                  <div key={cat.title} className="group cursor-pointer">
+                  <Link to={`/products/${cat.id}`} key={cat.title} className="group cursor-pointer block" onClick={() => setMegaOpen(false)}>
                     <div className="aspect-[4/3] overflow-hidden mb-3 bg-warm-beige">
                       <img
                         src={cat.image}
@@ -110,7 +134,7 @@ export default function Navbar() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </Link>
                 ))}
               </div>
               <div className="mt-8 pt-6 border-t border-warm-beige">
@@ -168,19 +192,42 @@ export default function Navbar() {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <input
-              type="text"
-              placeholder="Search hinges, drawers, sliding doors..."
-              className="w-full bg-transparent border-b-2 border-warm-beige text-charcoal text-xl py-4 focus:outline-none focus:border-gold placeholder:text-warm-grey"
-              autoFocus
-            />
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSearchSubmit(searchQuery);
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Search aluminium profiles, handles, storage accessories..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent border-b-2 border-warm-beige text-charcoal text-xl py-4 focus:outline-none focus:border-gold placeholder:text-warm-grey"
+                autoFocus
+              />
+            </form>
             <div className="mt-8">
               <p className="text-warm-grey text-sm mb-4">Popular searches</p>
               <div className="flex flex-wrap gap-3">
-                {['Silent hinges', 'Sliding door systems', 'Runner systems', 'ProLock handles', 'Cabinet mechanics'].map((term) => (
-                  <span key={term} className="px-4 py-2 border border-warm-beige text-charcoal text-sm hover:border-gold hover:text-gold transition-colors cursor-pointer bg-warm-white">
-                    {term}
-                  </span>
+                {[
+                  { name: 'Aluminium Profiles', slug: 'aluminium-profiles' },
+                  { name: 'Gola Profile System', slug: 'aluminium-profiles' },
+                  { name: '45mm Frame Profile', slug: 'aluminium-profiles' },
+                  { name: 'Hettich Luxury Handles', slug: 'door-handles' },
+                  { name: 'Storage & Accessories', slug: 'furniture-accessories' },
+                  { name: 'Magic Corner', slug: 'furniture-accessories' },
+                ].map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => {
+                      setSearchOpen(false);
+                      navigate(`/products/${item.slug}`);
+                    }}
+                    className="px-4 py-2 border border-warm-beige text-charcoal text-sm hover:border-gold hover:text-gold transition-colors cursor-pointer bg-warm-white"
+                  >
+                    {item.name}
+                  </button>
                 ))}
               </div>
             </div>

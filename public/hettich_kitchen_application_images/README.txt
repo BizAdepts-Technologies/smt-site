@@ -1,0 +1,1 @@
+Hettich aluminium profile catalogue — kitchen/application imagery for website UI\nThese are cropped application/lifestyle images from catalogue pages, not isolated product cutouts.\nSelected pages: 3, 5, 13, 15, 16, 35, 36, 37, 38. Review crops and confirm image usage rights before publishing.\n
