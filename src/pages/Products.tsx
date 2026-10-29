@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Search, X } from 'lucide-react';
 import axios from 'axios';
 import { products as staticProducts, categories as staticCategories, Product, Category } from '../data/products';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -22,12 +22,14 @@ export default function Products() {
   const { category } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const partnerQuery = searchParams.get('partner');
+  const urlSearch = searchParams.get('search') || '';
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(urlSearch);
   const [activePartner, setActivePartner] = useState<'all' | 'hettich' | 'iblue'>(
     (partnerQuery === 'hettich' || partnerQuery === 'iblue') ? partnerQuery : 'all'
   );
   const [activeCategory, setActiveCategory] = useState(category || 'all');
+
   const [productList, setProductList] = useState<Product[]>(staticProducts);
   const [categoryList, setCategoryList] = useState<Category[]>(staticCategories);
 
@@ -61,28 +63,24 @@ export default function Products() {
             partner: c.partner || 'all',
             description: c.description || '',
             image: c.image || '',
-            count: c.products_count ?? c.products?.length ?? 0
+            count: c.products_count ?? c.products?.length ?? 0,
           }));
           setCategoryList(cats);
         }
 
         if (prodRes.data && prodRes.data.length > 0) {
-          const prods: Product[] = prodRes.data.map((p: any) => {
-            const catSlug = p.category_slug || (catRes.data?.find((c: any) => c.id === p.category)?.slug) || 'other';
-            const brandVal = (p.specs || []).find((s: any) => s.label?.toLowerCase() === 'brand')?.value?.toLowerCase();
-            const partnerName = brandVal?.includes('iblue') ? 'iblue' : 'hettich';
-            return {
-              id: String(p.id),
-              slug: p.slug || p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-              name: p.title,
-              category: catSlug,
-              partner: partnerName,
-              description: p.description || '',
-              image: p.image ? (p.image.startsWith('http') ? p.image : `http://localhost:8000${p.image}`) : '',
-              specs: Array.isArray(p.specs) ? p.specs : [],
-              benefits: Array.isArray(p.benefits) ? p.benefits : [],
-            };
-          });
+          const prods: Product[] = prodRes.data.map((p: any) => ({
+            id: String(p.id),
+            product_code: p.product_code || '',
+            slug: p.slug || p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+            name: p.title,
+            category: p.category_slug || (catRes.data?.find((c: any) => c.id === p.category)?.slug) || 'other',
+            partner: p.partner || 'hettich',
+            description: p.description || '',
+            image: p.image ? (p.image.startsWith('http') ? p.image : `http://localhost:8000${p.image}`) : '',
+            specs: Array.isArray(p.specs) ? p.specs : [],
+            benefits: Array.isArray(p.benefits) ? p.benefits : [],
+          }));
           setProductList(prods);
         }
       } catch {
@@ -111,6 +109,24 @@ export default function Products() {
     setSearchParams({});
   };
 
+  const handleSearchChange = (val: string) => {
+    setSearch(val);
+    const params = new URLSearchParams(searchParams);
+    if (val.trim()) {
+      params.set('search', val.trim());
+    } else {
+      params.delete('search');
+    }
+    setSearchParams(params, { replace: true });
+  };
+
+  const handleClearSearch = () => {
+    setSearch('');
+    const params = new URLSearchParams(searchParams);
+    params.delete('search');
+    setSearchParams(params, { replace: true });
+  };
+
   // Filter categories shown in tabs based on selected partner
   const visibleCategories = categoryList.filter((c) => {
     if (activePartner === 'all') return true;
@@ -119,14 +135,30 @@ export default function Products() {
 
   // Filter products based on search, partner, and category
   const filtered = productList.filter((p) => {
-    const matchesSearch =
-      p.name.toLowerCase().includes(search.toLowerCase()) ||
-      p.description.toLowerCase().includes(search.toLowerCase()) ||
-      (p.specs && p.specs.some((s) => s.value.toLowerCase().includes(search.toLowerCase())));
+    const q = search.trim().toLowerCase();
+    const cleanQ = q.replace(/[^a-z0-9]/g, '');
+    const pCode = p.product_code ? p.product_code.toLowerCase() : '';
+    const cleanCode = pCode.replace(/[^a-z0-9]/g, '');
+
+    const codeMatches =
+      pCode.includes(q) ||
+      (cleanQ.length >= 2 && cleanCode.includes(cleanQ));
+    const exactCodeMatch = cleanQ.length >= 3 && (cleanCode === cleanQ || pCode === q);
+
+    const matchesSearch = !q ||
+      codeMatches ||
+      p.name.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      (p.specs && p.specs.some((s) => s.value.toLowerCase().includes(q)));
+
+    // When an exact product code is entered, match it directly across all categories
+    if (exactCodeMatch) return true;
+
     const matchesPartner = activePartner === 'all' || p.partner === activePartner;
     const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
     return matchesSearch && matchesPartner && matchesCategory;
   });
+
 
   return (
     <div className="pt-2 pb-20 bg-warm-white min-h-screen">
@@ -141,67 +173,77 @@ export default function Products() {
           </motion.div>
         </AnimatedSection>
 
-        {/* Partner Filter */}
-        <div className="mt-10 flex flex-wrap items-center gap-2">
-          <span className="text-xs uppercase tracking-wider font-semibold text-charcoal mr-2">Partner:</span>
-          {[
-            { id: 'all', label: 'All Partners' },
-            { id: 'hettich', label: 'Hettich' },
-            { id: 'iblue', label: 'iBlue' },
-          ].map((partner) => (
-            <button
-              key={partner.id}
-              onClick={() => handlePartnerChange(partner.id as 'all' | 'hettich' | 'iblue')}
-              className={`px-4 py-2 text-sm border transition-colors ${
-                activePartner === partner.id
-                  ? 'border-rust bg-rust/5 text-rust font-medium'
-                  : 'border-warm-beige bg-white text-warm-grey hover:border-charcoal hover:text-charcoal'
-              }`}
-            >
-              {partner.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Search & Category Filter Toolbar */}
-        <div className="mt-4 flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
-          {/* Search Bar */}
-          <div className="relative flex-1 max-w-md">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-5 py-2.5 bg-white border border-warm-beige text-charcoal text-sm placeholder:text-warm-grey focus:outline-none focus:border-rust"
-            />
-          </div>
-
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-2 items-center">
-            <button
-              onClick={() => setActiveCategory('all')}
-              className={`px-4 py-2 text-sm border transition-colors ${
-                activeCategory === 'all'
-                  ? 'border-rust bg-rust/5 text-rust font-medium'
-                  : 'border-warm-beige bg-white text-warm-grey hover:border-charcoal hover:text-charcoal'
-              }`}
-            >
-              All
-            </button>
-            {visibleCategories.map((c) => (
+        {/* Partner Filter & Search Bar */}
+        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs uppercase tracking-wider font-semibold text-charcoal mr-2">Partner:</span>
+            {[
+              { id: 'all', label: 'All Partners' },
+              { id: 'hettich', label: 'Hettich' },
+              { id: 'iblue', label: 'iBlue' },
+            ].map((partner) => (
               <button
-                key={c.id}
-                onClick={() => setActiveCategory(c.id)}
+                key={partner.id}
+                onClick={() => handlePartnerChange(partner.id as 'all' | 'hettich' | 'iblue')}
                 className={`px-4 py-2 text-sm border transition-colors ${
-                  activeCategory === c.id
+                  activePartner === partner.id
                     ? 'border-rust bg-rust/5 text-rust font-medium'
                     : 'border-warm-beige bg-white text-warm-grey hover:border-charcoal hover:text-charcoal'
                 }`}
               >
-                {c.name}
+                {partner.label}
               </button>
             ))}
           </div>
+
+          <div className="relative w-full sm:w-80">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-warm-grey pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search by title, code (e.g. ALU-001)..."
+              value={search}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="w-full pl-10 pr-9 py-2 bg-white border border-warm-beige text-charcoal text-sm placeholder:text-warm-grey focus:outline-none focus:border-rust transition-colors"
+            />
+            {search && (
+              <button
+                type="button"
+                onClick={handleClearSearch}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-warm-grey hover:text-charcoal transition-colors cursor-pointer"
+                title="Clear search"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+        </div>
+
+
+        {/* Category Tabs */}
+        <div className="mt-4 flex flex-wrap gap-2 items-center">
+          <button
+            onClick={() => setActiveCategory('all')}
+            className={`px-3.5 py-1.5 text-xs font-medium border transition-colors ${
+              activeCategory === 'all'
+                ? 'border-rust bg-rust/5 text-rust font-semibold'
+                : 'border-warm-beige bg-white text-warm-grey hover:border-charcoal hover:text-charcoal'
+            }`}
+          >
+            All
+          </button>
+          {visibleCategories.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => setActiveCategory(c.id)}
+              className={`px-3.5 py-1.5 text-xs font-medium border transition-colors ${
+                activeCategory === c.id
+                  ? 'border-rust bg-rust/5 text-rust font-semibold'
+                  : 'border-warm-beige bg-white text-warm-grey hover:border-charcoal hover:text-charcoal'
+              }`}
+            >
+              {c.name}
+            </button>
+          ))}
         </div>
 
         {/* Results Counter & Reset Filter */}
@@ -244,9 +286,16 @@ export default function Products() {
                   </div>
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      <span className="text-rust text-xs font-medium tracking-wider uppercase block">
-                        {product.category.replace('-', ' ')}
-                      </span>
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="text-rust text-xs font-medium tracking-wider uppercase truncate">
+                          {product.category.replace('-', ' ')}
+                        </span>
+                        {product.product_code && (
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200/80 tracking-wider shrink-0 shadow-xs">
+                            {product.product_code}
+                          </span>
+                        )}
+                      </div>
                       <h3 className="text-lg font-medium text-charcoal mt-1 group-hover:text-rust transition-colors leading-snug">
                         {product.name}
                       </h3>

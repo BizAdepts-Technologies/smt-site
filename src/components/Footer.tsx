@@ -17,7 +17,7 @@ export default function Footer() {
 
       {/* Footer Links */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-6">Collections</h3>
             <ul className="space-y-3">
@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-6">Company</h3>
             <ul className="space-y-3">
-              {['About', 'Projects', 'Inspiration', 'Careers', 'Contact'].map((item) => (
+              {['About', 'Projects', 'Careers', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link to={`/${item.toLowerCase()}`} className="text-sm text-white/70 hover:text-gold transition-colors">
                     {item}
@@ -58,6 +58,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+          {/* Resources column commented out
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-6">Resources</h3>
             <ul className="space-y-3">
@@ -70,6 +71,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+          */}
         </div>
       </div>
 

@@ -62,9 +62,9 @@ export default function App() {
           <Route path="/product/:slug" element={<PageTransition><ProductDetail /></PageTransition>} />
           <Route path="/solutions" element={<PageTransition><Solutions /></PageTransition>} />
           <Route path="/solutions/:id" element={<PageTransition><Solutions /></PageTransition>} />
-          <Route path="/inspiration" element={<PageTransition><Inspiration /></PageTransition>} />
+          {/* <Route path="/inspiration" element={<PageTransition><Inspiration /></PageTransition>} /> */}
           <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-          <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
+          {/* <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} /> */}
           <Route path="/about" element={<PageTransition><About /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />

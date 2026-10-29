@@ -20,8 +20,8 @@ export const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Products', href: '/products' },
   { label: 'Solutions', href: '/solutions' },
-  { label: 'Inspiration', href: '/inspiration' },
-  { label: 'Resources', href: '/resources' },
+  // { label: 'Inspiration', href: '/inspiration' },
+  // { label: 'Resources', href: '/resources' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -55,9 +55,12 @@ export const megaMenuPartners: PartnerBrandMegaMenu[] = [
     accentColor: 'gold',
     categories: [
       { id: 'aluminium-profiles', title: 'Aluminium Profiles & Gola', items: ['Gola Handleless Channels', '19mm & 45mm Glass Frames', 'Edge Banding Profiles', 'Curved Shutter Profiles'], image: import.meta.env.BASE_URL + 'hettich_aluminium_profile/aluminium_profiles_category_hero.webp' },
-      { id: 'applied-kitchens', title: 'Applied Kitchen Systems HD', items: ['Modern White Glass Suites', 'Handleless Island Suites', 'Flap Wall Cabinets', 'Sliding Wardrobe Applications'], image: import.meta.env.BASE_URL + 'hettich_applied_kitchen_images_HD/01_modern_white_glass_frame_kitchen.jpg' },
+      { id: 'cabinet-handles', title: 'Cabinet & Drawer Handles', items: ['Linear Bar Pulls', 'Edge Profile Handles', 'Inlaid Wood Pulls', 'Modern Drawer Bows'], image: import.meta.env.BASE_URL + 'hettich_cabinet_handles/02_wood_drawer_handles.jpg' },
+      { id: 'applied-kitchens', title: 'Applied Kitchen Systems', items: ['Modern White Glass Suites', 'Handleless Island Suites', 'Flap Wall Cabinets', 'Sliding Wardrobe Applications'], image: import.meta.env.BASE_URL + 'hettich_applied_kitchen_images_HD/01_modern_white_glass_frame_kitchen.jpg' },
       { id: 'door-handles', title: 'Pro Luxury Door Handles', items: ['Pro Luxury Handle 03', 'Pro Luxury Handle 04', 'Inox Brass & Red Copper', 'Architectural Alloy Levers'], image: import.meta.env.BASE_URL + 'hettich_handels/hettich_handles_category_hero.webp' },
       { id: 'furniture-accessories', title: 'Furniture & Storage Accessories', items: ['Tandem Tall Larder Systems', 'Corner Pull-Out Pro Units', 'Slim Pantry Towers', 'In-Drawer Plate Racks'], image: import.meta.env.BASE_URL + 'hettich_accessories/hettich_accessories_hero.webp' },
+      { id: 'hepo-hardware', title: 'Hepo Hardware & Distribution', items: ['Wire Pullouts & Pantries', 'Gas Lift Mechanisms', 'Telescopic Runners', 'Bathroom Fittings'], image: import.meta.env.BASE_URL + 'hepo_distribution_catalogue/kitchen_pantry_wire_basket.jpg' },
+      { id: 'das-ideenbuch', title: 'Das Ideenbuch Living Suites', items: ['Culinary Island Suites', 'Glass Display Vitrines', 'Youth Room Modules', 'Utility Room Sorters'], image: import.meta.env.BASE_URL + 'das_ideenbuch_2018/modern-kitchen-cabinetry.jpg' },
     ],
   },
   {
@@ -79,8 +82,14 @@ export const megaMenuPartners: PartnerBrandMegaMenu[] = [
 
 export const megaMenuCategories = [
   { id: 'aluminium-profiles', title: 'Aluminium Profiles', items: ['Gola Handleless', 'Frame Profiles', 'Edge Banding', 'Glass Shutters'], image: import.meta.env.BASE_URL + 'hettich_aluminium_profile/aluminium_profiles_category_hero.webp' },
-  { id: 'door-handles', title: 'Door Handles', items: ['Hettich Pro Luxury', 'Handle 04', 'Premium Bronze', 'Architectural Alloy'], image: import.meta.env.BASE_URL + 'hettich_handels/hettich_handles_category_hero.webp' },
+  { id: 'cabinet-handles', title: 'Cabinet Handles', items: ['Linear Bar Pulls', 'Edge Lip Handles', 'Wood Inlays', 'Wardrobe Profiles'], image: import.meta.env.BASE_URL + 'hettich_cabinet_handles/02_wood_drawer_handles.jpg' },
+  { id: 'applied-kitchens', title: 'Applied Kitchens', items: ['Modern Glass Suites', 'Handleless Islands', 'Flap Wall Units', 'Gola Channels'], image: import.meta.env.BASE_URL + 'hettich_applied_kitchen_images_HD/01_modern_white_glass_frame_kitchen.jpg' },
+  { id: 'wardrobe-systems', title: 'Wardrobe Systems', items: ['TopLine XL Sliding', 'Glass-Frame Doors', 'AvanTech Organizers', 'Walk-in Closets'], image: import.meta.env.BASE_URL + 'hettich_furniture_applied_images_HD/02_walk_in_wardrobe_sliding_door_system.jpg' },
+  { id: 'hepo-hardware', title: 'Hepo Hardware', items: ['Wire Baskets', 'Lift Fittings', 'Drawer Slides', 'Bathroom Storage'], image: import.meta.env.BASE_URL + 'hepo_distribution_catalogue/kitchen_pantry_wire_basket.jpg' },
+  { id: 'das-ideenbuch', title: 'Das Ideenbuch', items: ['Island Suites', 'Living Vitrines', 'Youth Modules', 'Utility Sorters'], image: import.meta.env.BASE_URL + 'das_ideenbuch_2018/modern-kitchen-cabinetry.jpg' },
+  { id: 'living-media', title: 'Living & Media', items: ['Glass Vitrines', 'Floating Shelves', 'Open Wall Systems', 'Media Lowboards'], image: import.meta.env.BASE_URL + 'hettich_furniture_applied_images_HD/01_modern_glass_display_cabinet_application.jpg' },
   { id: 'furniture-accessories', title: 'Storage & Accessories', items: ['Larder Units', 'Pull-Out Baskets', 'Corner Systems', 'Plate Organizers'], image: import.meta.env.BASE_URL + 'hettich_accessories/hettich_accessories_hero.webp' },
+  { id: 'smart-access', title: 'iBlue Smart Access', items: ['Biometric Locks', 'Touch Keypads', 'Patch Fittings', 'Floor Springs'], image: import.meta.env.BASE_URL + 'iblue_hardware/iblue_smart_lock_x9.jpg' },
 ];
 
 export const solutions = [

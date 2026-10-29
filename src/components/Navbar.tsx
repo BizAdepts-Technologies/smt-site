@@ -33,8 +33,9 @@ export default function Navbar() {
   const handleSearchSubmit = (term: string) => {
     if (!term.trim()) return;
     setSearchOpen(false);
-    navigate(`/products`);
+    navigate(`/products?search=${encodeURIComponent(term.trim())}`);
   };
+
 
   useEffect(() => {
     setMobileOpen(false);
@@ -200,12 +201,13 @@ export default function Navbar() {
             >
               <input
                 type="text"
-                placeholder="Search aluminium profiles, handles, storage accessories..."
+                placeholder="Search products or code (e.g. ALU-001, handles, accessories)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-transparent border-b-2 border-warm-beige text-charcoal text-xl py-4 focus:outline-none focus:border-gold placeholder:text-warm-grey"
                 autoFocus
               />
+
             </form>
             <div className="mt-8">
               <p className="text-warm-grey text-sm mb-4">Popular searches</p>

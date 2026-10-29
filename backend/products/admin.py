@@ -7,9 +7,20 @@ from .models import Category, Product
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'products_count')
-    search_fields = ('name', 'slug')
+    list_display = ('image_thumbnail', 'name', 'code', 'slug', 'partner', 'products_count')
+    list_filter = ('partner',)
+    search_fields = ('name', 'slug', 'code')
     prepopulated_fields = {'slug': ('name',)}
+    fields = ('name', 'code', 'slug', 'partner', 'description', 'image')
+
+    def image_thumbnail(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="width: 52px; height: 38px; object-fit: cover; border-radius: 6px; border: 1px solid #e4e7ec;" />',
+                obj.image.url
+            )
+        return format_html('<span style="color:#aaa; font-size:11px;">No image</span>')
+    image_thumbnail.short_description = "Image"
 
     def products_count(self, obj):
         count = obj.products.count()
@@ -37,15 +48,25 @@ class HasImageFilter(admin.SimpleListFilter):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('image_thumbnail', 'title', 'category', 'has_image_badge', 'image_action_buttons')
-    list_display_links = ('image_thumbnail', 'title')
-    list_filter = ('category', HasImageFilter)
-    search_fields = ('title', 'description', 'slug', 'category__name')
+    list_display = ('product_code_badge', 'image_thumbnail', 'title', 'partner', 'category', 'has_image_badge', 'image_action_buttons')
+    list_display_links = ('product_code_badge', 'title')
+    list_filter = ('partner', 'category', HasImageFilter)
+    search_fields = ('product_code', 'title', 'description', 'slug', 'category__name')
     list_per_page = 25
-    ordering = ('category__name', 'title')
-    readonly_fields = ('image_preview_large',)
-    fields = ('title', 'slug', 'category', 'description', 'image', 'image_preview_large', 'specs', 'benefits')
+    ordering = ('category__name', 'product_code', 'title')
+    readonly_fields = ('product_code', 'image_preview_large')
+    fields = ('product_code', 'title', 'slug', 'partner', 'category', 'description', 'image', 'image_preview_large', 'specs', 'benefits')
     actions = ['delete_selected_images']
+
+    def product_code_badge(self, obj):
+        if obj.product_code:
+            return format_html(
+                '<span style="font-family: monospace; font-size: 11.5px; font-weight: 700; background: #e0f2fe; color: #0284c7; padding: 3px 8px; border-radius: 6px; border: 1px solid #bae6fd; letter-spacing: 0.5px;">{}</span>',
+                obj.product_code
+            )
+        return format_html('<span style="color: #aaa; font-style: italic;">No code</span>')
+    product_code_badge.short_description = "Code"
+    product_code_badge.admin_order_field = "product_code"
 
     def image_thumbnail(self, obj):
         if obj.image:

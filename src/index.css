@@ -48,3 +48,33 @@
     cursor: none !important;
   }
 }
+
+/* Smooth continuous marquee for latest products */
+@keyframes marquee-sideway {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marquee-sideway 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-smooth:hover,
+.animate-marquee-smooth.is-paused {
+  animation-play-state: paused !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

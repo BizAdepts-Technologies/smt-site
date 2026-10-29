@@ -20,8 +20,10 @@ export default function ProductDetail() {
         if (res.data && res.data.length > 0) {
           const prods: Product[] = res.data.map((p: any) => ({
             id: String(p.id),
+            product_code: p.product_code || '',
             slug: p.slug || p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
             name: p.title,
+            partner: p.partner || 'hettich',
             category: p.category_slug || 'other',
             description: p.description || '',
             image: p.image ? (p.image.startsWith('http') ? p.image : `http://localhost:8000${p.image}`) : '',
@@ -90,14 +92,22 @@ export default function ProductDetail() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-white p-7 md:p-10 rounded-3xl border border-warm-beige/80 shadow-sm"
           >
-            <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 ${
-              product.partner === 'iblue'
-                ? 'bg-blue-600/10 text-blue-800 border border-blue-600/20'
-                : 'bg-rust/10 text-rust border border-rust/20'
-            }`}>
-              <span>{product.partner === 'iblue' ? 'iBlue Hardware' : 'Hettich Germany'}</span>
-              <span>/</span>
-              <span>{product.category.replace('-', ' ')}</span>
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase ${
+                product.partner === 'iblue'
+                  ? 'bg-blue-600/10 text-blue-800 border border-blue-600/20'
+                  : 'bg-rust/10 text-rust border border-rust/20'
+              }`}>
+                <span>{product.partner === 'iblue' ? 'iBlue Hardware' : 'Hettich Germany'}</span>
+                <span>/</span>
+                <span>{product.category.replace('-', ' ')}</span>
+              </div>
+              {product.product_code && (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-50 text-amber-900 border border-amber-200/90 shadow-xs">
+                  <span className="text-[10px] uppercase font-sans font-medium text-amber-700 tracking-wider">Item Code:</span>
+                  <span>{product.product_code}</span>
+                </div>
+              )}
             </div>
             <h1 className="text-3xl md:text-5xl font-light text-charcoal tracking-tight leading-tight">
               {product.name}
@@ -124,28 +134,36 @@ export default function ProductDetail() {
             )}
 
             {/* Technical Specifications */}
-            {product.specs && product.specs.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-warm-beige/60">
-                <h3 className="text-xs uppercase tracking-widest text-charcoal font-bold mb-3.5">
-                  Technical Specifications
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {product.specs.map((spec) => (
-                    <div
-                      key={spec.label}
-                      className="p-3.5 rounded-xl bg-[#f9f8f6] border border-warm-beige/60"
-                    >
-                      <span className="text-[10px] font-semibold text-warm-grey uppercase tracking-wider block">
-                        {spec.label}
-                      </span>
-                      <p className="text-charcoal font-medium text-xs mt-1">
-                        {spec.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+            <div className="mt-8 pt-6 border-t border-warm-beige/60">
+              <h3 className="text-xs uppercase tracking-widest text-charcoal font-bold mb-3.5">
+                Technical Specifications
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                {product.product_code && (
+                  <div className="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200/80">
+                    <span className="text-[10px] font-semibold text-amber-800 uppercase tracking-wider block">
+                      Product Code / SKU
+                    </span>
+                    <p className="text-amber-950 font-mono font-bold text-xs mt-1">
+                      {product.product_code}
+                    </p>
+                  </div>
+                )}
+                {product.specs && product.specs.map((spec) => (
+                  <div
+                    key={spec.label}
+                    className="p-3.5 rounded-xl bg-[#f9f8f6] border border-warm-beige/60"
+                  >
+                    <span className="text-[10px] font-semibold text-warm-grey uppercase tracking-wider block">
+                      {spec.label}
+                    </span>
+                    <p className="text-charcoal font-medium text-xs mt-1">
+                      {spec.value}
+                    </p>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-3.5 mt-8 pt-6 border-t border-warm-beige/60">

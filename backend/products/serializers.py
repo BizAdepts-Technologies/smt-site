@@ -4,15 +4,21 @@ from .models import Category, Product
 class ProductSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
     category_slug = serializers.CharField(source='category.slug', read_only=True)
+    category_code = serializers.CharField(source='category.get_code', read_only=True)
 
     class Meta:
         model = Product
         fields = '__all__'
+        extra_kwargs = {
+            'product_code': {'required': False, 'allow_blank': True, 'allow_null': True}
+        }
 
 class CategorySerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True, read_only=True)
     products_count = serializers.IntegerField(source='products.count', read_only=True)
+    code = serializers.CharField(source='get_code', read_only=True)
     
     class Meta:
         model = Category
         fields = '__all__'
+

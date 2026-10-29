@@ -36,6 +36,9 @@ export const api = {
 
     // Products
     getProducts: () => axios.get(`${API_BASE}/products/`),
+    getLatestProducts: (limit = 6) => axios.get(`${API_BASE}/products/latest/?limit=${limit}`),
+    getNextProductCode: (category: string | number) =>
+        axios.get(`${API_BASE}/products/next_code/?category=${encodeURIComponent(category)}`),
     createProduct: (data: FormData) =>
         axios.post(`${API_BASE}/products/`, data, {
             headers: { ...getAuthHeaders(), 'Content-Type': 'multipart/form-data' },
@@ -49,3 +52,4 @@ export const api = {
     deleteProductImage: (id: number) =>
         axios.post(`${API_BASE}/products/${id}/remove_image/`, {}, { headers: getAuthHeaders() }),
 };
+

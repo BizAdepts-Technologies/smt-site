@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Download, FileText, Wrench, Ruler, HelpCircle, BookOpen, Users, MessageSquare } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import Newsletter from '../components/Newsletter';
 import HeroSlider, { type HeroSlide } from '../components/HeroSlider';
+import LatestProductsSection from '../components/LatestProductsSection';
 import { useCounter } from '../hooks/useCounter';
 import { categories, products } from '../data/products';
 import { articles } from '../data/articles';
 import { projects } from '../data/projects';
 import { solutions, audienceSegments, companyInfo } from '../data/company';
 import { resources, resourceFilters } from '../data/resources';
+import architectStudioImg from '../assets/collage/architect_studio.jpg';
+import studioPhotoshootImg from '../assets/collage/studio_photoshoot.jpg';
+import portraitDetailImg from '../assets/collage/portrait_detail.jpg';
+import darkStudioWardrobeImg from '../assets/collage/dark_studio_wardrobe.jpg';
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
@@ -37,6 +42,189 @@ function SectionHeading({ number, title, subtitle }: { number: string; title: st
       <h2 className="text-3xl md:text-5xl font-light text-charcoal mt-2 tracking-tight">{title}</h2>
       {subtitle && <p className="text-warm-grey mt-4 max-w-xl">{subtitle}</p>}
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Brand statement – editorial collage                                 */
+/* ------------------------------------------------------------------ */
+
+// Curated studio photoshoot & architectural assets for the editorial collage
+const collageImages = {
+  leftBack: architectStudioImg,
+  leftFront: studioPhotoshootImg,
+  rightBack: portraitDetailImg,
+  rightFront: darkStudioWardrobeImg,
+};
+const GHOST_WORD = 'HETTICH & IBLUE';
+
+function GhostText({ text, className = '' }: { text: string; className?: string }) {
+  // SVG text stretched to the box width, so the word always spans edge to edge.
+  return (
+    <svg viewBox="0 0 1000 170" className={className} aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+      <text
+        x="500"
+        y="140"
+        textAnchor="middle"
+        textLength="980"
+        lengthAdjust="spacingAndGlyphs"
+        fontSize="160"
+        fontWeight="900"
+        fill="currentColor"
+        style={{ fontFamily: 'inherit' }}
+      >
+        {text}
+      </text>
+    </svg>
+  );
+}
+
+function CollagePhoto({
+  src,
+  alt,
+  ratio,
+  className,
+}: {
+  src: string;
+  alt: string;
+  ratio: string;
+  className: string;
+  delay?: number;
+  reduce?: boolean | null;
+}) {
+  return (
+    <div
+      className={`overflow-hidden bg-[#ebe6df] shadow-[0_18px_40px_-18px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.02] ${className}`}
+      style={{ aspectRatio: ratio }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="eager"
+        decoding="sync"
+        draggable={false}
+        className="w-full h-full object-cover object-center block"
+      />
+    </div>
+  );
+}
+
+function BrandStatement() {
+  const reduce = useReducedMotion();
+  const reveal = (delay: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 16 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true, amount: 0.2 },
+          transition: { duration: 0.8, delay, ease: 'easeOut' as const },
+        };
+
+  return (
+    <section className="relative overflow-hidden bg-white py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:block lg:relative lg:aspect-[961/645]">
+          {/* Ghost figure behind the signature */}
+          <div className="hidden lg:block absolute left-[48%] top-[11%] w-[33%] text-charcoal/[0.05] pointer-events-none select-none">
+            <GhostText text={`${companyInfo.yearsExperience}+`} className="w-full h-auto" />
+          </div>
+
+          {/* Statement (top right) */}
+          <motion.div
+            {...reveal(0.1)}
+            className="col-span-2 order-first lg:absolute lg:left-[69%] lg:top-[7%] lg:w-[29%]"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-[1.9rem] xl:text-4xl font-light text-charcoal tracking-tight leading-[1.15]">
+              Invisible mechanics.
+              <br />
+              <span className="text-gold">Flawless design.</span>
+            </h2>
+            <p className="text-warm-grey text-sm leading-relaxed mt-5">
+              Whenever a cabinet door opens, a drawer is pulled out or whenever furniture elements move in any other
+              way, we are usually behind the movement. Our fittings provide convenient and reliable operation in
+              millions of furniture applications.
+            </p>
+            <Link
+              to="/solutions"
+              className="inline-block mt-4 text-sm text-warm-grey underline underline-offset-4 decoration-warm-grey/50 hover:text-gold hover:decoration-gold transition-colors"
+            >
+              Read more
+            </Link>
+          </motion.div>
+
+          {/* Left pair */}
+          <CollagePhoto
+            reduce={reduce}
+            src={collageImages.leftBack}
+            alt="German-engineered wardrobe & furniture movement"
+            ratio="220 / 227"
+            delay={0.05}
+            className="relative lg:absolute lg:left-[16.6%] lg:top-[4.3%] lg:w-[22.9%] translate-y-6 lg:translate-y-0"
+          />
+          <CollagePhoto
+            reduce={reduce}
+            src={collageImages.leftFront}
+            alt="Studio photoshoot - interior architectural craftsmanship"
+            ratio="219 / 261"
+            delay={0.2}
+            className="relative lg:absolute lg:left-[4.6%] lg:top-[16.6%] lg:w-[22.8%] lg:z-10 -translate-y-0"
+          />
+
+          {/* Supporting line (bottom left) */}
+          <motion.p
+            {...reveal(0.3)}
+            className="col-span-2 text-charcoal text-sm leading-relaxed lg:absolute lg:left-[4.6%] lg:top-[66%] lg:w-[26%]"
+          >
+            From soft-close drawers to full sliding wardrobes, {companyInfo.solutions}+ fitting solutions are built to
+            work quietly for years.
+          </motion.p>
+
+          {/* Signature stroke (draws itself once) */}
+          <motion.svg
+            viewBox="0 0 140 70"
+            className="hidden lg:block absolute left-[46.5%] top-[21%] w-[12%] text-charcoal"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <motion.path
+              d="M6 58 C 14 20, 22 8, 20 30 C 19 46, 30 44, 38 26 C 44 14, 40 44, 52 40 C 62 36, 62 22, 70 34 C 76 44, 88 36, 96 26 C 104 16, 100 40, 112 38 C 122 36, 126 26, 134 24"
+              initial={reduce ? false : { pathLength: 0 }}
+              whileInView={reduce ? undefined : { pathLength: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 1.8, delay: 0.4, ease: 'easeInOut' }}
+            />
+          </motion.svg>
+
+          {/* Right pair */}
+          <CollagePhoto
+            reduce={reduce}
+            src={collageImages.rightBack}
+            alt="Editorial portrait & luxury fittings detail"
+            ratio="220 / 227"
+            delay={0.15}
+            className="relative lg:absolute lg:left-[53%] lg:top-[34%] lg:w-[22.8%]"
+          />
+          <CollagePhoto
+            reduce={reduce}
+            src={collageImages.rightFront}
+            alt="Dark studio architectural wardrobe installation"
+            ratio="219 / 261"
+            delay={0.3}
+            className="relative lg:absolute lg:left-[64.5%] lg:top-[45.6%] lg:w-[22.8%] lg:z-10 translate-y-6 lg:translate-y-0"
+          />
+        </div>
+      </div>
+
+      {/* Ghost brand word along the bottom */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-10 lg:-mt-[11%] pointer-events-none select-none text-gold/[0.07]">
+        <GhostText text={GHOST_WORD} className="w-full h-auto" />
+      </div>
+    </section>
   );
 }
 
@@ -112,20 +300,11 @@ export default function Home() {
       {/* HERO */}
       <HeroSlider slides={heroSlides} />
 
-      {/* BRAND STATEMENT */}
-      <section className="py-32 md:py-40 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <AnimatedSection>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl lg:text-7xl font-light text-charcoal tracking-tight leading-[1.1]">
-              Invisible mechanics.<br />
-              <span className="text-gold">Flawless design.</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-warm-grey text-lg md:text-xl mt-8 max-w-2xl leading-relaxed">
-              Whenever a cabinet door opens, a drawer is pulled out or whenever furniture elements move in any other way, we are usually behind the movement. Our fittings provide convenient and reliable operation in millions of furniture applications.
-            </motion.p>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/* LATEST PRODUCTS (3D Cube Showcase) */}
+      <LatestProductsSection />
+
+      {/* BRAND STATEMENT (editorial collage) */}
+      <BrandStatement />
 
       {/* PRODUCT CATEGORIES */}
       <section className="py-20 bg-warm-white">
@@ -175,22 +354,27 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <AnimatedSection>
-              <motion.div variants={fadeUp} className="relative overflow-hidden bg-warm-beige aspect-[4/3] rounded-sm">
+              <motion.div variants={fadeUp} className="relative overflow-hidden bg-warm-beige aspect-[4/3] rounded-sm shadow-md">
                 <img
-                  src={import.meta.env.BASE_URL + 'hettich_aluminium_profile/hettich_gola_profile_system.webp'}
-                  alt="Hettich Gola Handleless Profile System"
-                  className="w-full h-full object-cover"
+                  src={import.meta.env.BASE_URL + 'das_ideenbuch_2018/sliding-wardrobe-interior.jpg'}
+                  alt="Hettich Architectural Sliding Wardrobe & Interior System"
+                  className="w-full h-full object-cover object-center"
                 />
               </motion.div>
             </AnimatedSection>
             <AnimatedSection>
               <motion.div variants={fadeUp}>
                 <span className="text-gold text-sm font-medium tracking-wider">Featured Architectural Profile</span>
-                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">Hettich Gola System</h2>
-                <p className="text-gold text-xl mt-2 font-light">Seamless handleless elegance. Architectural precision.</p>
-                <p className="text-warm-grey mt-6 leading-relaxed">Engineered from extruded architectural aluminium with continuous linear shadow channels, the Hettich Gola system delivers true minimalist handleless cabinetry for luxury kitchen islands, wardrobes, and contemporary living spaces.</p>
+                <h2 className="text-4xl md:text-5xl font-light text-charcoal mt-3 tracking-tight">Hettich Architectural Sliding Wardrobe Systems</h2>
+                <p className="text-gold text-xl mt-2 font-light">Top-running sliding precision. Complete interior organization.</p>
+                <p className="text-warm-grey mt-6 leading-relaxed">Engineered with German precision overhead running gear and integrated soft-close dampening, Hettich sliding wardrobe systems transform bedroom spaces with whisper-quiet movement, expansive panoramic openings, and tailor-made interior organizers for modern living.</p>
                 <div className="mt-8 space-y-3">
-                  {['Integrated finger pull recess', 'Continuous horizontal & vertical lines', 'C-Type & L-Type configurations', 'Premium anodized architectural finish'].map((b) => (
+                  {[
+                    'TopLine XL whisper-quiet overhead running track',
+                    'Concealed floor guides for seamless threshold-free flooring',
+                    'Integrated AvanTech YOU internal drawers & illuminated shelves',
+                    'Silent System 3-way cushioning (opening, closing & collision)'
+                  ].map((b) => (
                     <div key={b} className="flex items-center gap-3 text-sm text-charcoal">
                       <span className="w-1.5 h-1.5 bg-gold rounded-full" />
                       {b}
@@ -198,7 +382,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-4 mt-10">
-                  <Link to="/products/aluminium-profiles" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-white text-sm font-medium hover:bg-gold-deep transition-colors">
+                  <Link to="/products/wardrobe-systems" className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-white text-sm font-medium hover:bg-gold-deep transition-colors">
                     Explore Collection <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 border border-charcoal/20 text-charcoal text-sm font-medium hover:border-gold hover:text-gold transition-colors">
@@ -423,7 +607,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DOWNLOAD CENTER */}
+      {/* DOWNLOAD CENTER / RESOURCES (Commented out as requested) */}
+      {/*
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection>
@@ -476,6 +661,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* AUDIENCE */}
       <section className="py-20 bg-warm-white text-charcoal border-t border-warm-beige">

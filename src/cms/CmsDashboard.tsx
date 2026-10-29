@@ -338,7 +338,8 @@ function ProductsTab() {
     const [categories, setCategories] = useState<any[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [editId, setEditId] = useState<number | null>(null);
-    const [formProduct, setFormProduct] = useState({ title: '', description: '', category: '' });
+    const [formProduct, setFormProduct] = useState({ title: '', description: '', category: '', product_code: '' });
+    const [loadingCode, setLoadingCode] = useState(false);
     const [currentImage, setCurrentImage] = useState<string | null>(null);
     const [removeCurrentImage, setRemoveCurrentImage] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -358,23 +359,61 @@ function ProductsTab() {
     };
     useEffect(() => { load(); }, []);
 
+    const fetchNextCodeForCategory = async (catId: string | number) => {
+        if (!catId) {
+            setFormProduct(prev => ({ ...prev, product_code: '' }));
+            return;
+        }
+        setLoadingCode(true);
+        try {
+            const res = await api.getNextProductCode(catId);
+            if (res.data?.next_code) {
+                setFormProduct(prev => ({ ...prev, product_code: res.data.next_code }));
+            }
+        } catch {
+            const cat = categories.find(c => String(c.id) === String(catId) || c.slug === catId);
+            const prefix = cat?.code || 'PRD';
+            const existingInCat = products.filter(p => String(p.category) === String(catId));
+            setFormProduct(prev => ({ ...prev, product_code: `${prefix}-${String(existingInCat.length + 1).padStart(3, '0')}` }));
+        } finally {
+            setLoadingCode(false);
+        }
+    };
+
     const openCreate = (prefillCategoryId?: string | number) => {
         setEditId(null);
+        const initialCatId = prefillCategoryId ? String(prefillCategoryId) : (categories[0]?.id ? String(categories[0].id) : '');
         setFormProduct({
             title: '',
             description: '',
-            category: prefillCategoryId ? String(prefillCategoryId) : (categories[0]?.id ? String(categories[0].id) : '')
+            category: initialCatId,
+            product_code: ''
         });
         setCurrentImage(null);
         setRemoveCurrentImage(false);
         setImageFile(null);
         setShowForm(true);
+        if (initialCatId) {
+            fetchNextCodeForCategory(initialCatId);
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleCategoryChange = (newCatId: string) => {
+        setFormProduct(prev => ({ ...prev, category: newCatId }));
+        if (!editId && newCatId) {
+            fetchNextCodeForCategory(newCatId);
+        }
     };
 
     const openEdit = (p: any) => {
         setEditId(p.id);
-        setFormProduct({ title: p.title, description: p.description || '', category: String(p.category) });
+        setFormProduct({
+            title: p.title,
+            description: p.description || '',
+            category: String(p.category),
+            product_code: p.product_code || ''
+        });
         setCurrentImage(p.image || null);
         setRemoveCurrentImage(false);
         setImageFile(null);
@@ -387,6 +426,9 @@ function ProductsTab() {
         fd.append('title', formProduct.title);
         fd.append('description', formProduct.description);
         fd.append('category', formProduct.category);
+        if (formProduct.product_code) {
+            fd.append('product_code', formProduct.product_code);
+        }
         if (imageFile) {
             fd.append('image', imageFile);
         } else if (removeCurrentImage) {
@@ -449,11 +491,24 @@ function ProductsTab() {
     // Filter products based on search, category pill, and image filter
     const filteredProducts = products.filter(p => {
         const q = searchQuery.trim().toLowerCase();
+        const cleanQ = q.replace(/[^a-z0-9]/g, '');
+        const pCode = p.product_code ? p.product_code.toLowerCase() : '';
+        const cleanCode = pCode.replace(/[^a-z0-9]/g, '');
         const catName = getCategoryName(p).toLowerCase();
+
+        const codeMatches =
+            pCode.includes(q) ||
+            (cleanQ.length >= 2 && cleanCode.includes(cleanQ));
+        const exactCodeMatch = cleanQ.length >= 3 && (cleanCode === cleanQ || pCode === q);
+
         const matchesSearch = !q ||
+            codeMatches ||
             p.title.toLowerCase().includes(q) ||
             (p.description && p.description.toLowerCase().includes(q)) ||
             catName.includes(q);
+
+        // If exact code match, match regardless of selected category pill
+        if (exactCodeMatch) return true;
 
         const matchesCategory = selectedCategory === 'all' ||
             String(p.category) === String(selectedCategory) ||
@@ -490,16 +545,34 @@ function ProductsTab() {
                 )}
                 <div style={{
                     position: 'absolute', bottom: '8px', left: '8px',
-                    background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)',
+                    background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)',
                     color: '#fff', fontSize: '10.5px', padding: '2px 7px',
-                    borderRadius: '4px', fontWeight: 600
+                    borderRadius: '4px', fontWeight: 700, fontFamily: 'monospace', letterSpacing: '0.4px'
                 }}>
-                    #{p.id}
+                    {p.product_code ? p.product_code : `#${p.id}`}
                 </div>
             </div>
             <div style={{ padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontSize: '10.5px', color: C.brown500, fontWeight: 700, textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.4px' }}>
-                    {getCategoryName(p)}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
+                    <div style={{ fontSize: '10.5px', color: C.brown500, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.4px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {getCategoryName(p)}
+                    </div>
+                    {p.product_code && (
+                        <span style={{
+                            fontFamily: 'monospace',
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            background: '#eff6ff',
+                            color: '#0284c7',
+                            border: '1px solid #bae6fd',
+                            padding: '1.5px 6px',
+                            borderRadius: '4px',
+                            letterSpacing: '0.5px',
+                            flexShrink: 0
+                        }}>
+                            {p.product_code}
+                        </span>
+                    )}
                 </div>
                 <p style={{ margin: '0 0 4px', fontWeight: 600, fontSize: '13.5px', color: C.grey900, lineHeight: 1.3 }}>{p.title}</p>
                 {p.description && <p style={{ margin: '0 0 10px', fontSize: '12px', color: C.grey500, lineHeight: 1.4, flex: 1 }}>{p.description}</p>}
@@ -591,10 +664,70 @@ function ProductsTab() {
                                 </div>
                                 <div>
                                     <label style={S.label}>Category</label>
-                                    <select style={{ ...S.input, background: C.brown50 }} value={formProduct.category} onChange={e => setFormProduct({ ...formProduct, category: e.target.value })}>
+                                    <select style={{ ...S.input, background: C.white }} value={formProduct.category} onChange={e => handleCategoryChange(e.target.value)}>
                                         <option value="">Select category…</option>
-                                        {categories.map(c => <option key={c.id} value={String(c.id)}>{c.name}</option>)}
+                                        {categories.map(c => (
+                                            <option key={c.id} value={String(c.id)}>
+                                                {c.name} {c.code ? `[${c.code}]` : ''}
+                                            </option>
+                                        ))}
                                     </select>
+                                </div>
+                                <div style={{ gridColumn: '1/-1', marginBottom: '14px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                                        <label style={{ ...S.label, marginBottom: 0 }}>
+                                            Product Code (SKU / Barcode)
+                                        </label>
+                                        <span style={{ fontSize: '11px', color: '#0369a1', fontWeight: 600 }}>
+                                            {editId ? '• Permanently Assigned to this Product' : '• Auto-Incremented for Selected Category'}
+                                        </span>
+                                    </div>
+                                    <div style={{ position: 'relative' }}>
+                                        <input
+                                            style={{
+                                                ...S.input,
+                                                background: '#f8fafc',
+                                                color: '#0f172a',
+                                                fontFamily: 'monospace',
+                                                fontWeight: 700,
+                                                fontSize: '14px',
+                                                letterSpacing: '0.6px',
+                                                border: '1.5px solid #cbd5e1',
+                                                cursor: 'not-allowed',
+                                                paddingRight: '125px'
+                                            }}
+                                            value={formProduct.product_code || (loadingCode ? 'Generating next code…' : (formProduct.category ? 'Fetching next code…' : 'Select category to generate code'))}
+                                            readOnly
+                                            disabled
+                                            title="Auto-incremented product code based on category. This value is permanent and unchangeable."
+                                        />
+                                        <span style={{
+                                            position: 'absolute',
+                                            right: '8px',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            fontSize: '11px',
+                                            fontWeight: 700,
+                                            color: '#0369a1',
+                                            background: '#e0f2fe',
+                                            padding: '3px 8px',
+                                            borderRadius: '6px',
+                                            border: '1px solid #bae6fd',
+                                            letterSpacing: '0.4px',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '4px',
+                                            userSelect: 'none'
+                                        }}>
+                                            🔒 UNCHANGEABLE
+                                        </span>
+                                    </div>
+                                    <p style={{ margin: '4px 0 0', fontSize: '11.5px', color: '#64748b' }}>
+                                        {editId
+                                            ? 'Product code is fixed and unchangeable to maintain database and barcode integrity.'
+                                            : 'Selecting any category immediately reserves the next consecutive product code (e.g. ALU-017, KIT-025).'
+                                        }
+                                    </p>
                                 </div>
                                 <div style={{ gridColumn: '1/-1' }}>
                                     <label style={S.label}>Description</label>
@@ -665,7 +798,7 @@ function ProductsTab() {
                                 <Search size={16} color={C.grey500} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
                                 <input
                                     type="text"
-                                    placeholder="Search products by title, description, category..."
+                                    placeholder="Search by title, product code (e.g. ALU-001), category..."
                                     value={searchQuery}
                                     onChange={e => setSearchQuery(e.target.value)}
                                     style={{
