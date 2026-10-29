@@ -1,0 +1,6 @@
+{
+  "embedding_type": "gemini",
+  "model_name": "gemini-embedding-001",
+  "count": 50,
+  "dimension": 3072
+}

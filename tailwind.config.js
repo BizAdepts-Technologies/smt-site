@@ -7,6 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        rust: {
+          DEFAULT: '#B85C38',
+          deep: '#9B4725',
+          light: '#D47A57',
+        },
         gold: {
           DEFAULT: '#CBA153',
           deep: '#B08845',

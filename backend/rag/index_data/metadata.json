@@ -1,0 +1,750 @@
+[
+  {
+    "id": "company_info",
+    "type": "company",
+    "metadata": {
+      "title": "Sahab Al Mabelah Trading LLC",
+      "phone": "+968 2412 3456",
+      "email": "info@sahabalmabelah.com",
+      "address": "Office no:3-C, Vitality logistics, opposite of asian paints warehouse, Muscat, Oman",
+      "type": "company"
+    },
+    "text": "[COMPANY INFORMATION]\nOfficial Name: Sahab Al Mabelah Trading LLC (Sahab Al Mabelah)\nTagline: Premium products and reliable service to the furniture, interior, and construction industries\nHead Office: Muscat, Sultanate of Oman\nAddress: Office no:3-C, Vitality logistics, opposite of asian paints warehouse, Muscat, Oman\nContact Email: info@sahabalmabelah.com\nContact Phone / WhatsApp: +968 2412 3456\nFounded Year: 2007\nFounder: Mr. Shameem Shah\nTeam Size: ~25 dedicated employees\nBranch Network: 6 branches across Oman\nCore Business: Premium furniture fittings, architectural aluminium profiles, luxury door handles, and smart access systems for the furniture, interior design, and construction industries."
+  },
+  {
+    "id": "company_about_branches",
+    "type": "about",
+    "metadata": {
+      "title": "About Sahab Al Mabelah & Oman Branches",
+      "warehouse": "1,000 sqm in Ghala, Muscat",
+      "branches": [
+        "Muscat (Ghala)",
+        "Salalah",
+        "Nizwa",
+        "Sohar",
+        "Barka",
+        "Al Mabelah No. 4",
+        "Al Mabelah No. 5"
+      ],
+      "authorized_dealer": "Hettich (German Engineering)",
+      "type": "about"
+    },
+    "text": "[COMPANY HISTORY, WAREHOUSE & BRANCHES IN OMAN]\nCompany Background: Sahab Al Mabelah Trading LLC was founded in 2007 by Mr. Shameem Shah.\nCentral Logistics Hub: Supported by a 1,000 sqm central warehouse located in Ghala, Muscat, Oman.\nNationwide Branches in Oman:\n- Muscat / Ghala (Central Warehouse & Operations)\n- Salalah\n- Nizwa\n- Sohar\n- Barka\n- Al Mabelah No. 4\n- Al Mabelah No. 5\nOfficial Dealership: Proud Authorized Dealer of Hettich (German Engineering) across the Sultanate of Oman, providing 100% genuine Hettich furniture fittings, handleless Gola profiles, luxury door handles, and kitchen hardware."
+  },
+  {
+    "id": "category_8",
+    "type": "category",
+    "metadata": {
+      "title": "Aluminium Profiles",
+      "slug": "aluminium-profiles",
+      "url": "/products?category=aluminium-profiles",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Aluminium Profiles\nSlug: aluminium-profiles\nDescription: Architectural aluminium frame profiles, handleless Gola systems, integrated handle profiles and glass shutter framing by Hettich.\nBrowse Link: /products?category=aluminium-profiles"
+  },
+  {
+    "id": "category_9",
+    "type": "category",
+    "metadata": {
+      "title": "Applied Kitchen Systems HD",
+      "slug": "applied-kitchens",
+      "url": "/products?category=applied-kitchens",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Applied Kitchen Systems HD\nSlug: applied-kitchens\nDescription: High-definition applied kitchen suites, display flaps, island Gola channels, and wardrobe systems by Hettich.\nBrowse Link: /products?category=applied-kitchens"
+  },
+  {
+    "id": "category_10",
+    "type": "category",
+    "metadata": {
+      "title": "Hettich Door Handles",
+      "slug": "door-handles",
+      "url": "/products?category=door-handles",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Hettich Door Handles\nSlug: door-handles\nDescription: Premium luxury door handles from Hettich Pro Luxury collection.\nBrowse Link: /products?category=door-handles"
+  },
+  {
+    "id": "category_11",
+    "type": "category",
+    "metadata": {
+      "title": "Furniture & Storage Accessories",
+      "slug": "furniture-accessories",
+      "url": "/products?category=furniture-accessories",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Furniture & Storage Accessories\nSlug: furniture-accessories\nDescription: Premium kitchen pullouts, larder systems, corner units and luxury furniture accessories.\nBrowse Link: /products?category=furniture-accessories"
+  },
+  {
+    "id": "category_12",
+    "type": "category",
+    "metadata": {
+      "title": "Smart Digital Locks",
+      "slug": "smart-access",
+      "url": "/products?category=smart-access",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Smart Digital Locks\nSlug: smart-access\nDescription: Biometric fingerprint, touch keypad, RFID card and Bluetooth digital smart access locks by iBlue.\nBrowse Link: /products?category=smart-access"
+  },
+  {
+    "id": "category_13",
+    "type": "category",
+    "metadata": {
+      "title": "Glass Hardware & Patch Fittings",
+      "slug": "glass-systems",
+      "url": "/products?category=glass-systems",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Glass Hardware & Patch Fittings\nSlug: glass-systems\nDescription: SUS304 architectural frameless glass patch fittings, hydraulic floor springs and shower hinges by iBlue.\nBrowse Link: /products?category=glass-systems"
+  },
+  {
+    "id": "category_14",
+    "type": "category",
+    "metadata": {
+      "title": "Door Ironmongery & Handles",
+      "slug": "door-ironmongery",
+      "url": "/products?category=door-ironmongery",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Door Ironmongery & Handles\nSlug: door-ironmongery\nDescription: Architectural solid brass mortise lever handles, magnetic latches and concealed hardware by iBlue.\nBrowse Link: /products?category=door-ironmongery"
+  },
+  {
+    "id": "category_15",
+    "type": "category",
+    "metadata": {
+      "title": "Sliding & Pocket Door Systems",
+      "slug": "sliding-systems",
+      "url": "/products?category=sliding-systems",
+      "type": "category"
+    },
+    "text": "[PRODUCT CATEGORY]\nCategory Name: Sliding & Pocket Door Systems\nSlug: sliding-systems\nDescription: Whisper-quiet soft-close sliding systems, concealed rollers and pocket door hardware by iBlue.\nBrowse Link: /products?category=sliding-systems"
+  },
+  {
+    "id": "product_1",
+    "type": "product",
+    "metadata": {
+      "id": 1,
+      "title": "Hettich Pro Luxury Handle 03",
+      "slug": "hettich-handle-03",
+      "category": "Hettich Door Handles",
+      "category_slug": "door-handles",
+      "image": "http://localhost:8000/media/products/Hettich_Handle_03.webp",
+      "url": "/products/hettich-handle-03",
+      "description": "Elegant Hettich Pro Luxury door handle with a sleek profile, offering a perfect blend of style and functionality for premium interiors.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Pro Luxury Handle 03\nCategory: Hettich Door Handles\nOverview: Elegant Hettich Pro Luxury door handle with a sleek profile, offering a perfect blend of style and functionality for premium interiors.\nSpecifications:\n- Brand: Hettich\n- Collection: Pro Luxury\n- Material: Premium Alloy\n- Finish: Inox Brass\nKey Benefits:\n- Ergonomic grip\n- Luxury aesthetic\n- Durable finish\n- Easy installation\nProduct Page URL: /products/hettich-handle-03\n"
+  },
+  {
+    "id": "product_2",
+    "type": "product",
+    "metadata": {
+      "id": 2,
+      "title": "Hettich Pro Luxury Handle 04",
+      "slug": "hettich-handle-04",
+      "category": "Hettich Door Handles",
+      "category_slug": "door-handles",
+      "image": "http://localhost:8000/media/products/Hettich_Handle_04.webp",
+      "url": "/products/hettich-handle-04",
+      "description": "Sophisticated door handle from the Hettich Pro Luxury range, designed for a modern aesthetic with top-tier durability.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Pro Luxury Handle 04\nCategory: Hettich Door Handles\nOverview: Sophisticated door handle from the Hettich Pro Luxury range, designed for a modern aesthetic with top-tier durability.\nSpecifications:\n- Brand: Hettich\n- Collection: Pro Luxury\n- Material: Premium Alloy\n- Finish: Polished Chrome\nKey Benefits:\n- Modern design\n- Smooth touch\n- High wear resistance\n- Secure mounting\nProduct Page URL: /products/hettich-handle-04\n"
+  },
+  {
+    "id": "product_3",
+    "type": "product",
+    "metadata": {
+      "id": 3,
+      "title": "Hettich Pro Luxury Handle 05",
+      "slug": "hettich-handle-05",
+      "category": "Hettich Door Handles",
+      "category_slug": "door-handles",
+      "image": "http://localhost:8000/media/products/Hettich_Handle_05.webp",
+      "url": "/products/hettich-handle-05",
+      "description": "Architectural grade door handle by Hettich. The Pro Luxury series ensures exceptional longevity and timeless design.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Pro Luxury Handle 05\nCategory: Hettich Door Handles\nOverview: Architectural grade door handle by Hettich. The Pro Luxury series ensures exceptional longevity and timeless design.\nSpecifications:\n- Brand: Hettich\n- Collection: Pro Luxury\n- Material: Premium Alloy\n- Finish: Red Copper Polished\nKey Benefits:\n- Timeless design\n- Robust build\n- Corrosion resistant\n- Comfortable feel\nProduct Page URL: /products/hettich-handle-05\n"
+  },
+  {
+    "id": "product_4",
+    "type": "product",
+    "metadata": {
+      "id": 4,
+      "title": "Hettich Pro Luxury Handle 06",
+      "slug": "hettich-handle-06",
+      "category": "Hettich Door Handles",
+      "category_slug": "door-handles",
+      "image": "http://localhost:8000/media/products/Hettich_Handle_06.webp",
+      "url": "/products/hettich-handle-06",
+      "description": "Striking Hettich Pro Luxury handle suitable for both classic and contemporary doors. Engineered for perfection.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Pro Luxury Handle 06\nCategory: Hettich Door Handles\nOverview: Striking Hettich Pro Luxury handle suitable for both classic and contemporary doors. Engineered for perfection.\nSpecifications:\n- Brand: Hettich\n- Collection: Pro Luxury\n- Material: Premium Alloy\n- Finish: Anthracite Polished\nKey Benefits:\n- Striking appearance\n- Precision engineering\n- Solid core\n- Premium appeal\nProduct Page URL: /products/hettich-handle-06\n"
+  },
+  {
+    "id": "product_5",
+    "type": "product",
+    "metadata": {
+      "id": 5,
+      "title": "Hettich Pro Luxury Handle 07",
+      "slug": "hettich-handle-07",
+      "category": "Hettich Door Handles",
+      "category_slug": "door-handles",
+      "image": "http://localhost:8000/media/products/Hettich_Handle_07.webp",
+      "url": "/products/hettich-handle-07",
+      "description": "The pinnacle of the Hettich Pro Luxury series, this door handle provides maximum elegance and superior performance.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Pro Luxury Handle 07\nCategory: Hettich Door Handles\nOverview: The pinnacle of the Hettich Pro Luxury series, this door handle provides maximum elegance and superior performance.\nSpecifications:\n- Brand: Hettich\n- Collection: Pro Luxury\n- Material: Premium Alloy\n- Finish: Inox Brass Leaf Pattern\nKey Benefits:\n- Maximum elegance\n- Superior performance\n- Heavy-duty construction\n- Exclusive look\nProduct Page URL: /products/hettich-handle-07\n"
+  },
+  {
+    "id": "product_6",
+    "type": "product",
+    "metadata": {
+      "id": 6,
+      "title": "Hettich Base Pull-Out Basket",
+      "slug": "hettich-pullout-hme002",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_pullout_hme002.webp",
+      "url": "/products/hettich-pullout-hme002",
+      "description": "Two-tier base cabinet pull-out storage system with melamine bases, chrome/anthracite railing, full-extension slides, and integrated soft-close damping.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Base Pull-Out Basket\nCategory: Furniture & Storage Accessories\nOverview: Two-tier base cabinet pull-out storage system with melamine bases, chrome/anthracite railing, full-extension slides, and integrated soft-close damping.\nSpecifications:\n- Brand: Hettich\n- Model: HME002ME\n- Slide Type: Full Extension Soft-Close\n- Finish: Orion Grey / Natural Oak\nKey Benefits:\n- Full extension access\n- Silent soft closing\n- Dual tier storage\n- High weight capacity\nProduct Page URL: /products/hettich-pullout-hme002\n"
+  },
+  {
+    "id": "product_7",
+    "type": "product",
+    "metadata": {
+      "id": 7,
+      "title": "Hettich Flat-Wire Pull-Out Basket",
+      "slug": "hettich-bottle-rack-hme003",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_bottle_rack_hme003.webp",
+      "url": "/products/hettich-bottle-rack-hme003",
+      "description": "Compact and robust flat-wire pull-out basket with integrated bottle dividers and bottom-mounted soft-closing slides for kitchen base units.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Flat-Wire Pull-Out Basket\nCategory: Furniture & Storage Accessories\nOverview: Compact and robust flat-wire pull-out basket with integrated bottle dividers and bottom-mounted soft-closing slides for kitchen base units.\nSpecifications:\n- Brand: Hettich\n- Model: HME003+\n- Mounting: Bottom-mounted Slide\n- Finish: Polished Chrome\nKey Benefits:\n- Smooth glide runners\n- Bottle rack divider\n- Compact base fit\n- Easy clean surface\nProduct Page URL: /products/hettich-bottle-rack-hme003\n"
+  },
+  {
+    "id": "product_8",
+    "type": "product",
+    "metadata": {
+      "id": 8,
+      "title": "Hettich Tandem Tall Larder System",
+      "slug": "hettich-tandem-larder-hme230",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_tandem_larder_hme230.webp",
+      "url": "/products/hettich-tandem-larder-hme230",
+      "description": "Intelligent tall pantry system where opening the door automatically draws inner shelves forward for total panoramic visibility and ergonomic access.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Tandem Tall Larder System\nCategory: Furniture & Storage Accessories\nOverview: Intelligent tall pantry system where opening the door automatically draws inner shelves forward for total panoramic visibility and ergonomic access.\nSpecifications:\n- Brand: Hettich\n- Model: HME230AME\n- Height Range: 1700mm - 2150mm\n- Capacity: Up to 80 kg\nKey Benefits:\n- Panoramic dual-rack access\n- Damped opening & closing\n- Adjustable shelf heights\n- Heavy-duty capacity\nProduct Page URL: /products/hettich-tandem-larder-hme230\n"
+  },
+  {
+    "id": "product_9",
+    "type": "product",
+    "metadata": {
+      "id": 9,
+      "title": "Hettich Slim Pantry Column Pull-Out",
+      "slug": "hettich-pantry-column-hme258",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_pantry_column_hme258.webp",
+      "url": "/products/hettich-pantry-column-hme258",
+      "description": "Sleek full-height pantry pull-out tower providing access from both sides with timber-inlay shelf bottoms and synchronised heavy-duty slides.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Slim Pantry Column Pull-Out\nCategory: Furniture & Storage Accessories\nOverview: Sleek full-height pantry pull-out tower providing access from both sides with timber-inlay shelf bottoms and synchronised heavy-duty slides.\nSpecifications:\n- Brand: Hettich\n- Model: HME258ME\n- Mechanism: Synchronized Soft-Close\n- Tray Finish: Orion Grey with Wood Inlay\nKey Benefits:\n- Dual-sided access\n- Whisper-quiet movement\n- Space-optimised footprint\n- Solid stability\nProduct Page URL: /products/hettich-pantry-column-hme258\n"
+  },
+  {
+    "id": "product_10",
+    "type": "product",
+    "metadata": {
+      "id": 10,
+      "title": "Hettich Deluxe Oak Larder System",
+      "slug": "hettich-timber-larder-hme295",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_timber_larder_hme295.webp",
+      "url": "/products/hettich-timber-larder-hme295",
+      "description": "Architectural tall pantry unit featuring warm natural Halifax oak melamine shelving, premium dark Orion metal frames, and glass gallery inserts.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Deluxe Oak Larder System\nCategory: Furniture & Storage Accessories\nOverview: Architectural tall pantry unit featuring warm natural Halifax oak melamine shelving, premium dark Orion metal frames, and glass gallery inserts.\nSpecifications:\n- Brand: Hettich\n- Model: HME295ME\n- Shelf Finish: Natural Halifax Oak & Glass\n- Frame Finish: Matte Orion Dark\nKey Benefits:\n- Luxury natural timber look\n- Glass side inserts\n- Smooth full pull-out\n- Modular shelf adjustment\nProduct Page URL: /products/hettich-timber-larder-hme295\n"
+  },
+  {
+    "id": "product_11",
+    "type": "product",
+    "metadata": {
+      "id": 11,
+      "title": "Hettich Corner Pull-Out System Pro",
+      "slug": "hettich-magic-corner-hme340",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_magic_corner_hme340.webp",
+      "url": "/products/hettich-magic-corner-hme340",
+      "description": "Ingenious corner cabinet solution that brings rear cabinet contents completely out into the open with smooth articulated movement.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Corner Pull-Out System Pro\nCategory: Furniture & Storage Accessories\nOverview: Ingenious corner cabinet solution that brings rear cabinet contents completely out into the open with smooth articulated movement.\nSpecifications:\n- Brand: Hettich\n- Model: HME340PRO\n- Configuration: 4 Heavy-duty Trays\n- Damping: Integrated Soft-Closing\nKey Benefits:\n- Total corner space utilisation\n- Effortless sliding motion\n- Individual tray loading\n- Heavy load resistance\nProduct Page URL: /products/hettich-magic-corner-hme340\n"
+  },
+  {
+    "id": "product_12",
+    "type": "product",
+    "metadata": {
+      "id": 12,
+      "title": "Hettich LeMans Corner Swing System",
+      "slug": "hettich-lemans-corner-hme373i",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_lemans_corner_hme373i.webp",
+      "url": "/products/hettich-lemans-corner-hme373i",
+      "description": "Ergonomic curved trays that swing out smoothly past the cabinet door, allowing effortless access to stored cookware in corner base cabinets.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich LeMans Corner Swing System\nCategory: Furniture & Storage Accessories\nOverview: Ergonomic curved trays that swing out smoothly past the cabinet door, allowing effortless access to stored cookware in corner base cabinets.\nSpecifications:\n- Brand: Hettich\n- Model: HME373i\n- Tray Movement: Independent 85° Swing\n- Railing: Polished Chrome Gallery Rail\nKey Benefits:\n- Independent tray extension\n- Ergonomic swing trajectory\n- Anti-slip base coating\n- 25 kg per shelf load\nProduct Page URL: /products/hettich-lemans-corner-hme373i\n"
+  },
+  {
+    "id": "product_13",
+    "type": "product",
+    "metadata": {
+      "id": 13,
+      "title": "Hettich In-Drawer Plate Organizer",
+      "slug": "hettich-drawer-plate-rack-hme999",
+      "category": "Furniture & Storage Accessories",
+      "category_slug": "furniture-accessories",
+      "image": "http://localhost:8000/media/products/hettich_drawer_plate_rack_hme999.webp",
+      "url": "/products/hettich-drawer-plate-rack-hme999",
+      "description": "Precision plate holding and organizer rack engineered for deep kitchen drawers, keeping porcelain securely upright and silent during drawer motion.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich In-Drawer Plate Organizer\nCategory: Furniture & Storage Accessories\nOverview: Precision plate holding and organizer rack engineered for deep kitchen drawers, keeping porcelain securely upright and silent during drawer motion.\nSpecifications:\n- Brand: Hettich\n- Model: HME999PRO / HME098V\n- Drawer Fit: 600mm - 900mm wide deep drawers\n- Finish: Anthracite / Anodized\nKey Benefits:\n- Rattle-free dish storage\n- Adjustable plate spacers\n- Easy lift-out cleaning\n- Universal drawer fit\nProduct Page URL: /products/hettich-drawer-plate-rack-hme999\n"
+  },
+  {
+    "id": "product_14",
+    "type": "product",
+    "metadata": {
+      "id": 14,
+      "title": "Hettich 19mm Straight Frame Glass Profile",
+      "slug": "hettich-19mm-straight-frame-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_19mm_straight_frame.webp",
+      "url": "/products/hettich-19mm-straight-frame-profile",
+      "description": "Minimalist 19mm straight aluminium frame profile engineered for 4mm glass cabinetry doors. Ideal for contemporary overhead kitchen units and illuminated display cabinets.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 19mm Straight Frame Glass Profile\nCategory: Aluminium Profiles\nOverview: Minimalist 19mm straight aluminium frame profile engineered for 4mm glass cabinetry doors. Ideal for contemporary overhead kitchen units and illuminated display cabinets.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 19 mm\n- Glass Fit: 4 mm Glass\n- Finish: Anodized Silver / Matte Black\nKey Benefits:\n- Ultra-slim visual sightlines\n- Rigid extruded aluminium\n- Seamless corner angle jointing\n- Integrated silicone gasket fit\nProduct Page URL: /products/hettich-19mm-straight-frame-profile\n"
+  },
+  {
+    "id": "product_15",
+    "type": "product",
+    "metadata": {
+      "id": 15,
+      "title": "Hettich 45mm Straight Frame Shutter Profile",
+      "slug": "hettich-45mm-straight-frame-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_straight_frame.webp",
+      "url": "/products/hettich-45mm-straight-frame-profile",
+      "description": "Robust 45mm straight aluminium frame profile engineered for small-to-medium cabinet shutters and contemporary kitchen doors with concealed hardware.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Straight Frame Shutter Profile\nCategory: Aluminium Profiles\nOverview: Robust 45mm straight aluminium frame profile engineered for small-to-medium cabinet shutters and contemporary kitchen doors with concealed hardware.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 45 mm\n- Glass Fit: 4mm - 6mm Glass\n- Finish: Brushed Aluminium / Satin Silver\nKey Benefits:\n- High torsional rigidity\n- Durable scratch-resistant surface\n- Works with concealed cup hinges\n- Clean architectural shadow line\nProduct Page URL: /products/hettich-45mm-straight-frame-profile\n"
+  },
+  {
+    "id": "product_16",
+    "type": "product",
+    "metadata": {
+      "id": 16,
+      "title": "Hettich 45mm Glass Shutter Profile System",
+      "slug": "hettich-45mm-glass-shutter-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_glass_shutter_profile.webp",
+      "url": "/products/hettich-45mm-glass-shutter-profile",
+      "description": "Architectural grade 45mm aluminium shutter profile system designed for modern wall-mounted glass cabinets and showcase units.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Glass Shutter Profile System\nCategory: Aluminium Profiles\nOverview: Architectural grade 45mm aluminium shutter profile system designed for modern wall-mounted glass cabinets and showcase units.\nSpecifications:\n- Brand: Hettich\n- Profile Dimension: 45 mm x 20 mm\n- Application: Wall-mounted Glass Shutters\n- Finish: Matte Silver Anodized\nKey Benefits:\n- Contemporary minimalist frame\n- Concealed mounting accessories\n- High load capacity\n- Dust-proof perimeter seal\nProduct Page URL: /products/hettich-45mm-glass-shutter-profile\n"
+  },
+  {
+    "id": "product_17",
+    "type": "product",
+    "metadata": {
+      "id": 17,
+      "title": "Hettich 45mm Sliding Wardrobe Frame Profile",
+      "slug": "hettich-45mm-wardrobe-frame-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_wardrobe_frame.webp",
+      "url": "/products/hettich-45mm-wardrobe-frame-profile",
+      "description": "Heavy-duty 45mm straight frame profile designed for large bedroom sliding wardrobe doors and premium interior partition systems.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Sliding Wardrobe Frame Profile\nCategory: Aluminium Profiles\nOverview: Heavy-duty 45mm straight frame profile designed for large bedroom sliding wardrobe doors and premium interior partition systems.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 45 mm\n- Max Panel Height: Up to 2700 mm\n- Finish: Anodized Silver / Pure White\nKey Benefits:\n- High load resistance\n- Effortless sliding motion\n- Modern bedroom aesthetic\n- Stiff anti-warping structure\nProduct Page URL: /products/hettich-45mm-wardrobe-frame-profile\n"
+  },
+  {
+    "id": "product_18",
+    "type": "product",
+    "metadata": {
+      "id": 18,
+      "title": "Hettich 45mm Stick-On Glass Frame Profile",
+      "slug": "hettich-45mm-stick-on-frame-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_stick_on_frame.webp",
+      "url": "/products/hettich-45mm-stick-on-frame-profile",
+      "description": "Specialized 45mm stick-on aluminium framing system providing an invisible perimeter bond for luxury glass flaps and overhead cabinet units.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Stick-On Glass Frame Profile\nCategory: Aluminium Profiles\nOverview: Specialized 45mm stick-on aluminium framing system providing an invisible perimeter bond for luxury glass flaps and overhead cabinet units.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 45 mm\n- Glass Fit: 4 mm Toughened Glass\n- Mounting: High-Strength Structural Bonding\nKey Benefits:\n- Flawless front glass surface\n- No visible front frame\n- Compatible with flap lift fittings\n- Effortless cleaning\nProduct Page URL: /products/hettich-45mm-stick-on-frame-profile\n"
+  },
+  {
+    "id": "product_19",
+    "type": "product",
+    "metadata": {
+      "id": 19,
+      "title": "Hettich 45mm Lift-Up Flap Shutter Profile",
+      "slug": "hettich-45mm-liftup-flap-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_liftup_flap_profile.webp",
+      "url": "/products/hettich-45mm-liftup-flap-profile",
+      "description": "Engineered aluminium frame profile specifically optimized for horizontal lift-up stay flap fittings in contemporary kitchens.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Lift-Up Flap Shutter Profile\nCategory: Aluminium Profiles\nOverview: Engineered aluminium frame profile specifically optimized for horizontal lift-up stay flap fittings in contemporary kitchens.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 45 mm\n- Compatibility: Stay Flap Fittings & Gas Springs\n- Finish: Brushed Aluminium / Satin Nickel\nKey Benefits:\n- Balanced flap articulation\n- Rigid horizontal spans\n- Concealed fastener channels\n- Smooth lift action\nProduct Page URL: /products/hettich-45mm-liftup-flap-profile\n"
+  },
+  {
+    "id": "product_20",
+    "type": "product",
+    "metadata": {
+      "id": 20,
+      "title": "Hettich 45mm Curved Frame Profile",
+      "slug": "hettich-45mm-curved-frame-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_curved_frame.webp",
+      "url": "/products/hettich-45mm-curved-frame-profile",
+      "description": "Ergonomic 45mm curved aluminium frame profile designed for soft-line cabinet doors and corner pantry units with frosted glass infills.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Curved Frame Profile\nCategory: Aluminium Profiles\nOverview: Ergonomic 45mm curved aluminium frame profile designed for soft-line cabinet doors and corner pantry units with frosted glass infills.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 45 mm\n- Profile Shape: Curved Soft-Edge\n- Glass Fit: 4mm - 5mm Glass\nKey Benefits:\n- Soft-touch curved outer edge\n- Ideal for corner cabinets\n- Seamless angle alignment\n- High structural stability\nProduct Page URL: /products/hettich-45mm-curved-frame-profile\n"
+  },
+  {
+    "id": "product_21",
+    "type": "product",
+    "metadata": {
+      "id": 21,
+      "title": "Hettich 45mm Corner Pantry Cabinet Frame Profile",
+      "slug": "hettich-45mm-corner-pantry-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_45mm_corner_pantry_profile.webp",
+      "url": "/products/hettich-45mm-corner-pantry-profile",
+      "description": "Full-height 45mm corner aluminium frame profile system designed for tall larder units, integrated corner pantries, and walk-in cabinets.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Corner Pantry Cabinet Frame Profile\nCategory: Aluminium Profiles\nOverview: Full-height 45mm corner aluminium frame profile system designed for tall larder units, integrated corner pantries, and walk-in cabinets.\nSpecifications:\n- Brand: Hettich\n- Height Support: Up to 2400 mm\n- Door Type: Bi-fold & Corner Swing\n- Finish: Natural Anodized Silver\nKey Benefits:\n- Optimal corner visibility\n- Heavy-duty vertical alignment\n- Supports frosted or tinted glass\n- Precision corner hinge prep\nProduct Page URL: /products/hettich-45mm-corner-pantry-profile\n"
+  },
+  {
+    "id": "product_22",
+    "type": "product",
+    "metadata": {
+      "id": 22,
+      "title": "Hettich 55mm Luxury Sliding Wardrobe Profile",
+      "slug": "hettich-55mm-curved-wardrobe",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_55mm_curved_wardrobe.webp",
+      "url": "/products/hettich-55mm-curved-wardrobe",
+      "description": "Heavy-duty 55mm architectural aluminium frame profile with integrated ergonomic grip for large sliding glass wardrobe doors and room dividers.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 55mm Luxury Sliding Wardrobe Profile\nCategory: Aluminium Profiles\nOverview: Heavy-duty 55mm architectural aluminium frame profile with integrated ergonomic grip for large sliding glass wardrobe doors and room dividers.\nSpecifications:\n- Brand: Hettich\n- Profile Width: 55 mm\n- Load Capacity: Up to 80 kg per door\n- Glass Fit: 4mm - 8mm Glass / Mirrored Panels\nKey Benefits:\n- Heavy-duty load capacity\n- Integrated vertical grip contour\n- Whisper-quiet sliding operation\n- Floor-to-ceiling dimension support\nProduct Page URL: /products/hettich-55mm-curved-wardrobe\n"
+  },
+  {
+    "id": "product_23",
+    "type": "product",
+    "metadata": {
+      "id": 23,
+      "title": "Hettich Aluminium Edge Banding Profile",
+      "slug": "hettich-aluminium-edge-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_aluminium_edge_profile.webp",
+      "url": "/products/hettich-aluminium-edge-profile",
+      "description": "Extruded aluminium protective edge profile for solid wood, veneer, and composite cabinet panels. Protects edges while providing a striking metallic accent.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Aluminium Edge Banding Profile\nCategory: Aluminium Profiles\nOverview: Extruded aluminium protective edge profile for solid wood, veneer, and composite cabinet panels. Protects edges while providing a striking metallic accent.\nSpecifications:\n- Brand: Hettich\n- Panel Thickness: 18 mm - 20 mm\n- Material: Architectural Aluminium Alloy\n- Mounting: Spline / Push-in Groove\nKey Benefits:\n- Superior impact protection\n- Prevents moisture ingress\n- Sharp contemporary look\n- Rapid push-fit installation\nProduct Page URL: /products/hettich-aluminium-edge-profile\n"
+  },
+  {
+    "id": "product_24",
+    "type": "product",
+    "metadata": {
+      "id": 24,
+      "title": "Hettich Gola Profile System (C & L Types)",
+      "slug": "hettich-gola-profile-system",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_gola_profile_system.webp",
+      "url": "/products/hettich-gola-profile-system",
+      "description": "Premium Gola handleless channel profile system enabling true minimalist handleless cabinetry with recessed finger-pull ergonomics for kitchen islands and base units.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Gola Profile System (C & L Types)\nCategory: Aluminium Profiles\nOverview: Premium Gola handleless channel profile system enabling true minimalist handleless cabinetry with recessed finger-pull ergonomics for kitchen islands and base units.\nSpecifications:\n- Brand: Hettich\n- Profiles: C-Shape (Mid) & L-Shape (Top)\n- Length: Up to 4.1 m continuous\n- Finish: Matte Black / Anodized Silver / Inox\nKey Benefits:\n- Clean handleless aesthetic\n- Ergonomic finger clearance\n- Full-length continuous lines\n- Complete connector ecosystem\nProduct Page URL: /products/hettich-gola-profile-system\n"
+  },
+  {
+    "id": "product_25",
+    "type": "product",
+    "metadata": {
+      "id": 25,
+      "title": "Hettich Gola Seamless Horizontal System",
+      "slug": "hettich-gola-seamless-system",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_gola_seamless_system.webp",
+      "url": "/products/hettich-gola-seamless-system",
+      "description": "Continuous horizontal Gola profile system for modern kitchen base cabinets and stacked drawers, creating an unbroken handleless aesthetic.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Gola Seamless Horizontal System\nCategory: Aluminium Profiles\nOverview: Continuous horizontal Gola profile system for modern kitchen base cabinets and stacked drawers, creating an unbroken handleless aesthetic.\nSpecifications:\n- Brand: Hettich\n- System Type: Horizontal Integrated Gola\n- Application: Kitchen Islands & Drawer Banks\n- Finish: Satin Anodized / Inox\nKey Benefits:\n- Completely handleless operation\n- Linear continuous shadow line\n- Easy cleaning and maintenance\n- Heavy-duty extruded rigidity\nProduct Page URL: /products/hettich-gola-seamless-system\n"
+  },
+  {
+    "id": "product_26",
+    "type": "product",
+    "metadata": {
+      "id": 26,
+      "title": "Hettich Gola L-Type Horizontal Profile",
+      "slug": "hettich-gola-l-type-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_gola_l_type_profile.webp",
+      "url": "/products/hettich-gola-l-type-profile",
+      "description": "Continuous L-Type upper Gola profile mounted immediately beneath kitchen worktops to provide seamless finger-recess access to top drawers and cabinet doors.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Gola L-Type Horizontal Profile\nCategory: Aluminium Profiles\nOverview: Continuous L-Type upper Gola profile mounted immediately beneath kitchen worktops to provide seamless finger-recess access to top drawers and cabinet doors.\nSpecifications:\n- Brand: Hettich\n- Profile Type: L-Shape Top Channel\n- Worktop Recess: 26 mm recess depth\n- Finish: Anodized Silver / Brushed Anthracite\nKey Benefits:\n- Seamless under-counter recess\n- Ergonomic grip angle\n- Rigid counter support\n- Corner miter capability\nProduct Page URL: /products/hettich-gola-l-type-profile\n"
+  },
+  {
+    "id": "product_27",
+    "type": "product",
+    "metadata": {
+      "id": 27,
+      "title": "Hettich Gola C-Type Intermediate Profile",
+      "slug": "hettich-gola-c-type-profile",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_gola_c_type_profile.webp",
+      "url": "/products/hettich-gola-c-type-profile",
+      "description": "Mid-level C-Type dual-recess Gola profile installed between stacked drawers, offering symmetrical upper and lower finger pull accessibility.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Gola C-Type Intermediate Profile\nCategory: Aluminium Profiles\nOverview: Mid-level C-Type dual-recess Gola profile installed between stacked drawers, offering symmetrical upper and lower finger pull accessibility.\nSpecifications:\n- Brand: Hettich\n- Profile Type: C-Shape Mid Channel\n- Profile Height: 65.7 mm\n- Finish: Natural Anodized / Matte Black\nKey Benefits:\n- Dual-direction finger access\n- Uniform horizontal drawer spacing\n- Quick clip-on bracket fixing\n- Heavy-duty structural stability\nProduct Page URL: /products/hettich-gola-c-type-profile\n"
+  },
+  {
+    "id": "product_28",
+    "type": "product",
+    "metadata": {
+      "id": 28,
+      "title": "Hettich Edge Profile Wall Cabinet System",
+      "slug": "hettich-edge-profile-wall-cabinet",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_edge_wall_cabinet.webp",
+      "url": "/products/hettich-edge-profile-wall-cabinet",
+      "description": "Complete architectural aluminium framing and edge integration system for handleless floating wall units and contemporary kitchen cabinetry.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Edge Profile Wall Cabinet System\nCategory: Aluminium Profiles\nOverview: Complete architectural aluminium framing and edge integration system for handleless floating wall units and contemporary kitchen cabinetry.\nSpecifications:\n- Brand: Hettich\n- System: Integrated Cabinet Edge & Frame\n- Application: Luxury Residential & Commercial\n- Finish: Matte Inox / Satin Anodized\nKey Benefits:\n- Architectural elegance\n- Total handle-free operation\n- Clean vertical and horizontal lines\n- Hettich engineered longevity\nProduct Page URL: /products/hettich-edge-profile-wall-cabinet\n"
+  },
+  {
+    "id": "product_29",
+    "type": "product",
+    "metadata": {
+      "id": 29,
+      "title": "Hettich Contemporary Architectural Kitchen Island Edge System",
+      "slug": "hettich-edge-kitchen-island",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/hettich_edge_kitchen_island.webp",
+      "url": "/products/hettich-edge-kitchen-island",
+      "description": "Architectural aluminium edge profiles engineered for custom luxury kitchen islands, dark stone countertops, and textured floating cabinetry.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Contemporary Architectural Kitchen Island Edge System\nCategory: Aluminium Profiles\nOverview: Architectural aluminium edge profiles engineered for custom luxury kitchen islands, dark stone countertops, and textured floating cabinetry.\nSpecifications:\n- Brand: Hettich\n- Application: Kitchen Islands & Floating Cabinetry\n- Worktop Fit: Slimline 12mm - 20mm Panels\n- Finish: Brushed Dark Pewter / Silver\nKey Benefits:\n- Protects delicate panel edges\n- Refined architectural metallic shadow line\n- Integrated ergonomic finger recess\n- Heat and moisture resistant\nProduct Page URL: /products/hettich-edge-kitchen-island\n"
+  },
+  {
+    "id": "product_30",
+    "type": "product",
+    "metadata": {
+      "id": 30,
+      "title": "Hettich 19mm Frosted Glass Kitchen Wall Cabinet System",
+      "slug": "hettich-19mm-kitchen-wall-cabinets",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/03_kitchen_aluminium_frame_profiles.webp",
+      "url": "/products/hettich-19mm-kitchen-wall-cabinets",
+      "description": "Architectural 19mm slimline aluminium straight frame profiles with frosted glass insert doors, wall cabinet integrated bottom profiles, and under-cabinet accessory hanging rails.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 19mm Frosted Glass Kitchen Wall Cabinet System\nCategory: Aluminium Profiles\nOverview: Architectural 19mm slimline aluminium straight frame profiles with frosted glass insert doors, wall cabinet integrated bottom profiles, and under-cabinet accessory hanging rails.\nSpecifications:\n- Brand: Hettich\n- Frame Profile: 19mm Slimline Aluminium\n- Glass Type: 4mm Frosted Tempered Glass\n- Application: Contemporary Kitchen Wall Units\n- Finish: Satin Anodized Silver\nKey Benefits:\n- Ultra-slim modern front profile\n- Moisture and steam resistant\n- Soft diffused interior glow\n- Engineered for intensive kitchen use\nProduct Page URL: /products/hettich-19mm-kitchen-wall-cabinets\n"
+  },
+  {
+    "id": "product_31",
+    "type": "product",
+    "metadata": {
+      "id": 31,
+      "title": "Hettich 45mm Flap Shutter & Gola Island System",
+      "slug": "hettich-45mm-kitchen-flap-island-system",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/05_yellow_kitchen_frame_profiles.webp",
+      "url": "/products/hettich-45mm-kitchen-flap-island-system",
+      "description": "Modern kitchen cabinetry integration featuring 45mm horizontal lift-up flap shutter profiles with frosted glass, combined with continuous handleless Gola profiles on base units.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Flap Shutter & Gola Island System\nCategory: Aluminium Profiles\nOverview: Modern kitchen cabinetry integration featuring 45mm horizontal lift-up flap shutter profiles with frosted glass, combined with continuous handleless Gola profiles on base units.\nSpecifications:\n- Brand: Hettich\n- Frame Profile: 45mm Horizontal Shutter\n- Mechanism: Lift-Up Flap Stay Compatible\n- Base System: Integrated Horizontal Gola\n- Finish: Natural Anodized Inox\nKey Benefits:\n- Ergonomic upward opening access\n- Unbroken horizontal architectural lines\n- Rigid anti-torsion extrusion\n- Seamless appliance integration\nProduct Page URL: /products/hettich-45mm-kitchen-flap-island-system\n"
+  },
+  {
+    "id": "product_32",
+    "type": "product",
+    "metadata": {
+      "id": 32,
+      "title": "Hettich 45mm Stick-On Architectural Glass Display System",
+      "slug": "hettich-45mm-stick-on-glass-display-system",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/13_kitchen_cabinet_frame_profiles.webp",
+      "url": "/products/hettich-45mm-stick-on-glass-display-system",
+      "description": "Contemporary stick-on 45mm aluminium profile system creating floating glass display cabinets with ambient LED shelf illumination and corner pantry integration.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Stick-On Architectural Glass Display System\nCategory: Aluminium Profiles\nOverview: Contemporary stick-on 45mm aluminium profile system creating floating glass display cabinets with ambient LED shelf illumination and corner pantry integration.\nSpecifications:\n- Brand: Hettich\n- Profile Type: 45mm Stick-On Architectural Frame\n- Glass Support: 4mm Clear & Frosted Glass\n- Lighting: Integrated LED Channel Support\n- Finish: Brushed Satin Silver\nKey Benefits:\n- Concealed adhesive mounting technology\n- Integrated accent lighting channel\n- Corner space optimization\n- Refined architectural elegance\nProduct Page URL: /products/hettich-45mm-stick-on-glass-display-system\n"
+  },
+  {
+    "id": "product_33",
+    "type": "product",
+    "metadata": {
+      "id": 33,
+      "title": "Hettich 45mm Curved Shutter Corner Kitchen Suite",
+      "slug": "hettich-45mm-curved-shutter-kitchen-suite",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/15_modern_kitchen_edge_profiles.webp",
+      "url": "/products/hettich-45mm-curved-shutter-kitchen-suite",
+      "description": "L-shaped kitchen layout showcasing 45mm curved frame glass flap cabinets with integrated downlights and concealed finger-pull edge profiles on base drawers.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Curved Shutter Corner Kitchen Suite\nCategory: Aluminium Profiles\nOverview: L-shaped kitchen layout showcasing 45mm curved frame glass flap cabinets with integrated downlights and concealed finger-pull edge profiles on base drawers.\nSpecifications:\n- Brand: Hettich\n- Profile Contour: 45mm Gentle Radius Curved Frame\n- Application: L-Shape Kitchens & Overhead Flaps\n- Finish: Anodized Matte Silver\n- Worktop Compatibility: Black Granite & Quartz\nKey Benefits:\n- Smooth curved contour aesthetic\n- Glare-reducing frosted glass\n- Effortless handleless opening\n- Durable scratch-proof coating\nProduct Page URL: /products/hettich-45mm-curved-shutter-kitchen-suite\n"
+  },
+  {
+    "id": "product_34",
+    "type": "product",
+    "metadata": {
+      "id": 34,
+      "title": "Hettich 45mm Tall Pantry Full-Height Glass Shutter System",
+      "slug": "hettich-45mm-tall-pantry-glass-shutter-system",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/16_kitchen_glass_cabinet_profiles.webp",
+      "url": "/products/hettich-45mm-tall-pantry-glass-shutter-system",
+      "description": "Full-height floor-to-ceiling corner pantry column with 45mm aluminium framed frosted glass bi-fold shutters, offering complete visibility and effortless access to kitchen provisions.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich 45mm Tall Pantry Full-Height Glass Shutter System\nCategory: Aluminium Profiles\nOverview: Full-height floor-to-ceiling corner pantry column with 45mm aluminium framed frosted glass bi-fold shutters, offering complete visibility and effortless access to kitchen provisions.\nSpecifications:\n- Brand: Hettich\n- Max Height: Up to 2400 mm Floor-to-Ceiling\n- Frame Structure: 45mm Heavy-Duty Extrusion\n- Glass Fit: 4mm - 5mm Toughened Frosted\n- Finish: Inox Brushed Anodized\nKey Benefits:\n- Maximized floor-to-ceiling storage\n- Smooth bi-fold corner opening\n- Rigid heavy-duty structural frame\n- High-end architectural showcase look\nProduct Page URL: /products/hettich-45mm-tall-pantry-glass-shutter-system\n"
+  },
+  {
+    "id": "product_35",
+    "type": "product",
+    "metadata": {
+      "id": 35,
+      "title": "Hettich Gola Open-Plan Architectural Kitchen Island Suite",
+      "slug": "hettich-gola-open-plan-kitchen-island",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/35_gola_profile_kitchen_application_1.webp",
+      "url": "/products/hettich-gola-open-plan-kitchen-island",
+      "description": "Complete open-concept kitchen island and breakfast counter integration utilizing continuous horizontal L and C Gola profiles with contrasting teal and light pine finishes.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Gola Open-Plan Architectural Kitchen Island Suite\nCategory: Aluminium Profiles\nOverview: Complete open-concept kitchen island and breakfast counter integration utilizing continuous horizontal L and C Gola profiles with contrasting teal and light pine finishes.\nSpecifications:\n- Brand: Hettich\n- System Type: Gola L-Type (Top) & C-Type (Mid)\n- Recess Depth: 26 mm Ergonomic Finger Clearance\n- Application: Freestanding Islands & Peninsula Runs\n- Finish: Satin Anodized Silver / Anthracite\nKey Benefits:\n- Showcase kitchen center-piece\n- Natural handle-free ergonomics\n- Continuous unbroken channel perimeter\n- Zero protruding hardware\nProduct Page URL: /products/hettich-gola-open-plan-kitchen-island\n"
+  },
+  {
+    "id": "product_36",
+    "type": "product",
+    "metadata": {
+      "id": 36,
+      "title": "Hettich Linear Gola Continuous Drawer System",
+      "slug": "hettich-linear-gola-continuous-drawer-system",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/36_gola_profile_kitchen_application_2.webp",
+      "url": "/products/hettich-linear-gola-continuous-drawer-system",
+      "description": "Linear kitchen configuration with continuous dual-recess Gola channels across stacked drawers and base cabinetry, paired with overhead floating lift-up units.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Linear Gola Continuous Drawer System\nCategory: Aluminium Profiles\nOverview: Linear kitchen configuration with continuous dual-recess Gola channels across stacked drawers and base cabinetry, paired with overhead floating lift-up units.\nSpecifications:\n- Brand: Hettich\n- Application: Base Cabinets & Stacked Drawers\n- Mid Channel Height: 65.7 mm\n- Top Channel Height: 53.0 mm\n- Finish: Brushed Matte Inox\nKey Benefits:\n- Clean horizontal visual harmony\n- Comfortable upper and lower finger pull\n- Streamlined minimalist facade\n- German precision engineering\nProduct Page URL: /products/hettich-linear-gola-continuous-drawer-system\n"
+  },
+  {
+    "id": "product_37",
+    "type": "product",
+    "metadata": {
+      "id": 37,
+      "title": "Hettich Minimalist Architectural White Kitchen Suite",
+      "slug": "hettich-minimalist-architectural-kitchen-suite",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/37_wall_cabinet_edge_profile_application.webp",
+      "url": "/products/hettich-minimalist-architectural-kitchen-suite",
+      "description": "Pure white high-gloss architectural kitchen run featuring integrated aluminium edge profiles, handleless wall units, and extended island dining bar.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Minimalist Architectural White Kitchen Suite\nCategory: Aluminium Profiles\nOverview: Pure white high-gloss architectural kitchen run featuring integrated aluminium edge profiles, handleless wall units, and extended island dining bar.\nSpecifications:\n- Brand: Hettich\n- System: Integrated Aluminium Edge & Framing\n- Worktop Support: Slimline 12mm - 20mm Panels\n- Application: Monochrome High-Gloss Cabinetry\n- Finish: Anodized Silver / White Inox\nKey Benefits:\n- Shields fragile lacquer panel edges\n- Resistant to kitchen moisture & heat\n- Seamless monochrome aesthetic\n- Integrated discreet finger recess\nProduct Page URL: /products/hettich-minimalist-architectural-kitchen-suite\n"
+  },
+  {
+    "id": "product_38",
+    "type": "product",
+    "metadata": {
+      "id": 38,
+      "title": "Hettich Luxury Dark Stone Kitchen Island & Gola Suite",
+      "slug": "hettich-luxury-dark-stone-gola-suite",
+      "category": "Aluminium Profiles",
+      "category_slug": "aluminium-profiles",
+      "image": "http://localhost:8000/media/products/38_kitchen_gola_profile_application.webp",
+      "url": "/products/hettich-luxury-dark-stone-gola-suite",
+      "description": "Luxury executive kitchen showcasing continuous Gola channels beneath textured dark stone countertops, textured vertical larder cabinets, and open display framing.",
+      "type": "product"
+    },
+    "text": "[PRODUCT]\nName: Hettich Luxury Dark Stone Kitchen Island & Gola Suite\nCategory: Aluminium Profiles\nOverview: Luxury executive kitchen showcasing continuous Gola channels beneath textured dark stone countertops, textured vertical larder cabinets, and open display framing.\nSpecifications:\n- Brand: Hettich\n- Worktop Pairing: Natural Stone, Dekton & Quartz\n- Channel Type: Heavy-Duty Horizontal Gola\n- Corner Method: Precision 45° Miter Connectors\n- Finish: Matte Dark Pewter / Silver\nKey Benefits:\n- Rigid support for heavy stone slabs\n- Striking contrast with stone textures\n- Continuous clean perimeter channels\n- Long-life corrosion resistance\nProduct Page URL: /products/hettich-luxury-dark-stone-gola-suite\n"
+  },
+  {
+    "id": "brand_hettich",
+    "type": "brand",
+    "metadata": {
+      "title": "Hettich German Engineering",
+      "brand": "Hettich",
+      "type": "brand"
+    },
+    "text": "[PARTNER BRAND: HETTICH]\nBrand: Hettich (German Engineering)\nTagline: Precision Furniture Fittings & Architectural Extrusions\nAuthorized Dealer: Sahab Al Mabelah Trading LLC across the Sultanate of Oman.\nProduct Lines:\n- Aluminium Profiles & Gola: Handleless island channels, 19mm/45mm/55mm glass frames, edge banding.\n- Pro Luxury Door Handles: Ergonomic architectural levers, matte black, satin brass, brushed anthracite.\n- Kitchen Storage & Accessories: LeMans corner solutions, tandem larder columns, bottle pullouts, drawer plate racks.\n- Applied Kitchens HD: Glass flap systems, modern white and dark stone island suites."
+  },
+  {
+    "id": "brand_iblue",
+    "type": "brand",
+    "metadata": {
+      "title": "iBlue Architectural Systems",
+      "brand": "iBlue",
+      "type": "brand"
+    },
+    "text": "[PARTNER BRAND: iBlue]\nBrand: iBlue Architectural Systems\nTagline: Smart Access, Frameless Glass & Door Hardware\nProduct Lines:\n- Smart Digital Locks: Biometric fingerprint, backlit touch keypad, RFID card, Bluetooth app control.\n- Glass Hardware & Patch Fittings: SUS304 architectural frameless patch fittings, concealed hydraulic floor springs, shower hinges.\n- Door Ironmongery: Solid brass mortise handles, magnetic silent latches, concealed escutcheons.\n- Sliding Systems: Whisper-glide soft-close glass sliding systems and pocket door tracks."
+  }
+]
